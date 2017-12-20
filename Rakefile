@@ -132,10 +132,10 @@ namespace :db do
   end
 end
 
-desc 'Start PRY with application environment loaded'
-task "console" do
-  exec "pry -r./config/environment"
-end
+# desc 'Start PRY with application environment loaded'
+# task "console" do
+#   exec "pry -r./config/environment"
+# end
 
 
 # In a production environment like Heroku, RSpec might not
