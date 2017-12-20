@@ -6,7 +6,9 @@
 
 <div id="MainMenu">
 	<div id="logo">
-		<h4><a href="/"><div class="a">m</div>argarita<div class="a">g</div>aneva</a></h4>
+		<!-- <h4><a href="/"><div class="a">m</div>argarita<div class="a">g</div>aneva</a></h4> -->
+	<h4><a href="/">margarita</a></h4>
+	<h4><a href="/">ganeva</a></h4>
 
 	</div>
 	<ul>
@@ -21,7 +23,7 @@
 	</ul>
 	<div id="close">
 		<!-- <img src="img/Close.png" height="30px" width="30px"/> -->
-		<a class="button special">close</a>
+		<a class="button">X</a>
 	</div>  
 </div>
 
@@ -31,18 +33,20 @@
 
 	<!-- 	<h1>marganeva</h1> -->
 
-	<div class="image">
-		<iframe src="three" w scrolling="no">
+	<div class="frame">
+		<iframe src="three" scrolling="no">
 			<p>Your browser does not support iframes.</p>
 		</iframe>
 	</div>
 
 </div>
 
+
 <div id="box2">
 	<div class="wrapper">
 		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">architecture</h2>
-		<% (-14..-1).each do |n| %>	
+
+		<% (-15..-1).each do |n| %>	
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src="img/Arch/<%=n%>.jpg"
 			onclick="onClick(this)" class="w3-hover-opacity">
@@ -59,23 +63,22 @@
 
 
 
-
 <div id="box3">
 	<div class="wrapper">
 		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">installations</h2>
 		
 			<div class='icon'>
 				<h3 class="name" style="font-family: myFirstFont;">EQUILIBerrATIONS 2007 </h3>
-				<a href="equil"><img style="height:8em;cursor:pointer" src="img/Install/Equil 2007.gif" ></a>
+				<a href="equil"><img style="width:10em; height:8em; cursor:pointer" src="img/Install/Equil 2007.gif" ></a>
 			</div>
 
 		<div class='icon'>
 			<h3 class="name" style="font-family: myFirstFont;">BodyScapes 2006</h3>
-			<a href="bodyscapes"><img style="height:8em;cursor:pointer" src="img/Install/bodyscapes 2005.jpg" ></a>
+			<a href="bodyscapes"><img style="width:10em; height:8em; cursor:pointer" src="img/Install/bodyscapes 2005.jpg" ></a>
 		</div>
 		<div class='icon'>
 			<h3 class="name" style="font-family: myFirstFont;">Amphibian S scape 2003</h3>
-			<a href="amphibians"><img style="height:8em;cursor:pointer" src="img/Install/amphibians 2002.jpg" ></a>
+			<a href="amphibians"><img style="width:10em; height:8em; cursor:pointer" src="img/Install/amphibians 2002.jpg" ></a>
 		</div>
 	</div>
 </div>
@@ -129,14 +132,61 @@
 
 
 <div id="box6">
-	<div class="w3-row-padding">
-		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em; font-family: myFirstFont;">videos</h2>
+	<div class="wrapper">
+		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">videos</h2>
+			<div class="icon">
+				<img src="img/videos/anem-th.jpg" style="width:13em; cursor:pointer;"
+				onclick="document.getElementById('modal10').style.display='block'" class="w3-hover-opacity">
+			</div>
+			<div id="modal10" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div class="w3-modal-content w3-animate-zoom">
+					<video style="width:100%" controls>
+						<source src="img/videos/a.mp4" type="video/mp4" >
+							Your browser does not support the video tag.
+					</video>	
+				</div>
+			</div>
+
+
+			<div class="icon">
+				<img src="img/videos/haiku-th.jpg" style="width:13em; cursor:pointer;"
+				onclick="document.getElementById('modal11').style.display='inline'" class="w3-hover-opacity">
+			</div>
+			<div id="modal11" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div class="w3-modal-content w3-animate-zoom">
+					<video style="width:100%" controls>
+						<source src="img/videos/haiku.mp4" type="video/mp4" >
+							Your browser does not support the video tag.
+					</video>	
+				</div>
+			</div>
+
+
+			<div class="icon">
+				<img src="img/videos/robd-th.jpg" style="width:13em; cursor:pointer;"
+				onclick="document.getElementById('modal12').style.display='inline'" class="w3-hover-opacity">
+			</div>
+
+			<div id="modal12" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div class="w3-modal-content w3-animate-zoom">
+					<video style="width:100%" controls>
+						<source src="img/videos/0-rob-d.mp4" type="video/mp4" >
+							Your browser does not support the video tag.
+					</video>	
+				</div>
+			</div>
+
+
 	</div>
 </div>
 
 <div id="box7">
 	<div class="w3-row-padding">
 		<h2 style="font-size: 20px; padding-top: 1em;font-family: myFirstFont;">about</h2>
+		<p>maganeva@gmail.com</p>
 	</div>
 </div>
 
