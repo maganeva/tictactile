@@ -23,13 +23,11 @@ body{
   background-image: url("/img/bgrnd/A.jpg");
   background-size: cover;
   background-attachment: fixed;
-
-
 }
 #box3{
   min-height:100%;
   width: 100%;
- background-image: url("/img/bgrnd/A.jpg");
+ background-image: url("/img/bgrnd/D.jpg");
   background-size: cover;
   background-attachment: fixed;
   display: table;
@@ -38,7 +36,7 @@ body{
   min-height:100%;
   display: table;
   width: 100%;
-  background-image: url("/img/bgrnd/A.jpg");
+  background-image: url("/img/bgrnd/B.jpg");
   background-size: cover;
   background-attachment: fixed;
 }
@@ -46,7 +44,7 @@ body{
   min-height:100%;
   width: 100%;
  
-  background-image: url("/img/bgrnd/A.jpg");
+  background-image: url("/img/bgrnd/D.jpg");
   background-size: cover;
   background-attachment: fixed;
   display: table;
@@ -55,7 +53,7 @@ body{
 #box6{
   min-height:100%;
   width: 100%;
-  background-color: white;
+  background-image: url("/img/bgrnd/A.jpg");
   background-size: cover;
   background-attachment: fixed;
   display: table;
@@ -251,22 +249,23 @@ iframe {
   height:40em;
   width:60em;
   margin-top: 10em;
- 
-
-
   position: relative;
 
   min-height: 100%;
-  max-width: 90%;
+  max-width: 100%;
+
 }
 
-/*.frame {
-  margin-top: 10em;
+.frame {
   text-align: right;
- 
-  background-color:red;
- 
-}*/
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background:rgba(0, 0, 0, 0.0);
+
+}
 
 .wrapper{
   text-align: center;
@@ -275,7 +274,7 @@ iframe {
   min-height: 100%;
   max-width: 90%;
   margin: 0 auto;
- background:rgba(0, 0, 0, 0.2);
+ background:rgba(0, 0, 0, 0.0);
 
 
  margin-right: 4em;
@@ -358,5 +357,6 @@ h2 {
    color: grey;
    font-size: 5px;
 }
+
 
 

@@ -7,8 +7,8 @@
 <div id="MainMenu">
 	<div id="logo">
 		<!-- <h4><a href="/"><div class="a">m</div>argarita<div class="a">g</div>aneva</a></h4> -->
-	<h4><a href="/">margarita</a></h4>
-	<h4><a href="/">ganeva</a></h4>
+	<h4><a href="/">margaritaganeva</a></h4>
+	
 
 	</div>
 	<ul>
@@ -30,7 +30,7 @@
 
 
 <div id="box1">
-
+	
 	<!-- 	<h1>marganeva</h1> -->
 
 	<div class="frame">
@@ -39,149 +39,24 @@
 		</iframe>
 	</div>
 
+
 </div>
 
 
-<div id="box2">
-	<div class="wrapper">
-		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">architecture</h2>
-
-		<% (-15..-1).each do |n| %>	
-		<div class='icon'>
-			<img style="width:10em; cursor:pointer" src="img/Arch/<%=n%>.jpg"
-			onclick="onClick(this)" class="w3-hover-opacity">
-		</div>		
-		<%end%>
-		<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" style="width:100%">
-			</div>
-		</div>
-	</div>
-</div>
+														
 
 
+<%= erb :_architecture %>
 
-<div id="box3">
-	<div class="wrapper">
-		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">installations</h2>
-		
-			<div class='icon'>
-				<h3 class="name" style="font-family: myFirstFont;">EQUILIBerrATIONS 2007 </h3>
-				<a href="equil"><img style="width:10em; height:8em; cursor:pointer" src="img/Install/Equil 2007.gif" ></a>
-			</div>
+<%= erb :_installations %>
 
-		<div class='icon'>
-			<h3 class="name" style="font-family: myFirstFont;">BodyScapes 2006</h3>
-			<a href="bodyscapes"><img style="width:10em; height:8em; cursor:pointer" src="img/Install/bodyscapes 2005.jpg" ></a>
-		</div>
-		<div class='icon'>
-			<h3 class="name" style="font-family: myFirstFont;">Amphibian S scape 2003</h3>
-			<a href="amphibians"><img style="width:10em; height:8em; cursor:pointer" src="img/Install/amphibians 2002.jpg" ></a>
-		</div>
-	</div>
-</div>
+<%= erb :_digital %>
+
+<%= erb :_sketches %>
+
+<%= erb :_videos %>
 
 
-
-
-
-<div id="box4">
-	<div class="wrapper">
-		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 2em; font-family: myFirstFont;">digital</h2>
-		<% (-22..-1).each do |n| %>	
-		<div class='icon'>
-			<img style="width:10em;" src="img/Digital art/<%=n%>.jpg" style="cursor:pointer" 
-			onclick="onClick(this)" class="w3-hover-opacity">
-		</div>	
-		<%end%>
-		<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" style="width:100%">
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-<div id="box5">
-	<div class="wrapper">
-		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 2em; font-family: myFirstFont;">sketches</h2>
-		<% (-10..-1).each do |n| %>
-		<div class="icon">
-			<img style="width:10em; cursor:pointer" src="img/Art/<%=n%>.jpg"  
-			onclick="onClick(this)" class="w3-hover-opacity">
-		</div>	
-		<%end%>
-		<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" style="width:100%">
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-<div id="box6">
-	<div class="wrapper">
-		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">videos</h2>
-			<div class="icon">
-				<img src="img/videos/anem-th.jpg" style="width:13em; cursor:pointer;"
-				onclick="document.getElementById('modal10').style.display='block'" class="w3-hover-opacity">
-			</div>
-			<div id="modal10" class="w3-modal" onclick="this.style.display='none'">
-				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-				<div class="w3-modal-content w3-animate-zoom">
-					<video style="width:100%" controls>
-						<source src="img/videos/a.mp4" type="video/mp4" >
-							Your browser does not support the video tag.
-					</video>	
-				</div>
-			</div>
-
-
-			<div class="icon">
-				<img src="img/videos/haiku-th.jpg" style="width:13em; cursor:pointer;"
-				onclick="document.getElementById('modal11').style.display='inline'" class="w3-hover-opacity">
-			</div>
-			<div id="modal11" class="w3-modal" onclick="this.style.display='none'">
-				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-				<div class="w3-modal-content w3-animate-zoom">
-					<video style="width:100%" controls>
-						<source src="img/videos/haiku.mp4" type="video/mp4" >
-							Your browser does not support the video tag.
-					</video>	
-				</div>
-			</div>
-
-
-			<div class="icon">
-				<img src="img/videos/robd-th.jpg" style="width:13em; cursor:pointer;"
-				onclick="document.getElementById('modal12').style.display='inline'" class="w3-hover-opacity">
-			</div>
-
-			<div id="modal12" class="w3-modal" onclick="this.style.display='none'">
-				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-				<div class="w3-modal-content w3-animate-zoom">
-					<video style="width:100%" controls>
-						<source src="img/videos/0-rob-d.mp4" type="video/mp4" >
-							Your browser does not support the video tag.
-					</video>	
-				</div>
-			</div>
-
-
-	</div>
-</div>
 
 <div id="box7">
 	<div class="w3-row-padding">
@@ -189,4 +64,6 @@
 		<p>maganeva@gmail.com</p>
 	</div>
 </div>
+
+
 
