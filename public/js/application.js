@@ -51,14 +51,14 @@ $(document).ready(function(){
 
 	//Show modal with url
 	
-  	if(window.location.href.indexOf('#modalbusiness') != -1) {
+  	if(window.location.href.indexOf('#businesscenter') != -1) {
   		console.log('asdf')
-    	$("#modalbusiness").show();
+    	$("#businesscenter").show();
   	}
 
-  	if(window.location.href.indexOf('#modalmemorial') != -1) {
+  	if(window.location.href.indexOf('#parametricexperiment') != -1) {
   		console.log('asdf')
-    	$("#modalmemorial").show();
+    	$("#parametricexperiment").show();
   	}
 
 

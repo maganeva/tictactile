@@ -1,4 +1,4 @@
-<div id="box2">
+<div id="box2" style="margin-top: -0.5em;">
 	<div class="wrapper">
 		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">architecture</h2>
 
@@ -10,7 +10,7 @@
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
 				<img id="img01" src=<%=project[:image]%>>
-						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px;"><mark class="mark"><%=project[:title]%></mark><p>
+						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%=project[:title]%></mark><p>
 			</div>
 		</div>
 		<%end%>
@@ -18,23 +18,24 @@
 
 		
 	<!-- modals with url addresses. not visible -->
-		<div id="modalbusiness" class="w3-modal" onclick="this.style.display='none'">
+		<div id="businesscenter" class="w3-modal" onclick="this.style.display='none'">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div class="w3-modal-content w3-animate-zoom">
 				<img id="img01" src=<%='img/Arch/-14.jpg'%> style="width:100%; max-height: 100%">
-				<p style="font-family: myFirstFont; color: grey; background-color: black; margin-top: 0px;">business center</p>
+				<p style="font-family: myFirstFont; color: grey; background-color: black; margin-top: 0px; font-size: 13px;">business center</p>
 			</div>
 		</div>
 
-		<div id="modalmemorial" class="w3-modal" onclick="this.style.display='none'">
+		<div id="parametricexperiment" class="w3-modal" onclick="this.style.display='none'">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" src=<%='img/Arch/-15.jpg'%> style="width:100%; max-height: 100%">
-				<p style="font-family: myFirstFont; color: grey; background-color: black; margin-top: 0px;">memorial building</p>
+			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+				<img id="img01" src=<%='img/Arch/-15.jpg'%>>
+						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">parametric experiment</mark><p>
 			</div>
 		</div>
 	
 	
+		
 
 
 	</div>

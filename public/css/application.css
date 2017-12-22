@@ -246,26 +246,14 @@ iframe {
   margin: 0;
   padding: 0em;
   border: 0;
-  height:40em;
-  width:60em;
-  margin-top: 10em;
-  position: relative;
-
-  min-height: 100%;
-  max-width: 100%;
-
-}
-
-.frame {
-  text-align: right;
-  position: relative;
+  height: 100vh;
   width: 100%;
+ 
+  position: relative;
   min-height: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  background:rgba(0, 0, 0, 0.0);
-
 }
+
 
 .wrapper{
   text-align: center;
