@@ -42,11 +42,45 @@ $(document).ready(function(){
 	});
 
 
-});
-
-
-//modal onclick function
+	//modal onclick function
 	function onClick(element) {
 				document.getElementById("img01").src = element.src;
 				document.getElementById("modal01").style.display = "block";
 			}
+
+
+	//Show modal with url
+	
+  	if(window.location.href.indexOf('#modalbusiness') != -1) {
+  		console.log('asdf')
+    	$("#modalbusiness").show();
+  	}
+
+  	if(window.location.href.indexOf('#modalmemorial') != -1) {
+  		console.log('asdf')
+    	$("#modalmemorial").show();
+  	}
+
+
+
+ 	//stop video when modal is clicked by reseting the source
+    $('#modal033, #modal022, #modal0101, #modalvideo1, #modalvideo2, #modalvideo3').each(function(){
+            var src = $(this).find('video').find('source').attr('src');
+            console.log(src)
+
+        $(this).on('click', function(){
+
+            $(this).find('video').attr('src', '');
+            $(this).find('video').attr('src', src);
+            
+
+        });
+    });
+
+
+
+
+
+
+});
+

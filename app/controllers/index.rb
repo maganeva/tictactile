@@ -1,4 +1,39 @@
 get '/' do
+
+  # def architecture
+  #   @arch = []
+  #   @title = ['zero','Residence 2003 / D&D Harvey Architects, East Hampton, NY',
+  #     'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
+  #     'Residence 2005 / D&D Harvey Architects, East Hampton, NY',
+  #     'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
+  #     'Residence 2004 / D&D Harvey Architects, East Hampton, NY',
+  #     'Watch Store / Project with Genius Mad Architects, Sofia, Bulgaria',
+  #     'Watch Store 1999 / Project with Genius Mad Architects, Sofia, Bulgaria',
+  #     'Residence / Project with Genius Mad Architects, Sofia, Bulgaria',
+  #     'Residence / Project by Genius Mad Architects, Sofia, Bulgaria',
+  #     'Business Center / GM Architects, Sofia, Bulgaria',
+  #     'Lighthouse Cafe',
+  #     'HHJA - poster 2009',
+  #     'Restaurant',
+  #     'Business Center',
+  #     'Memorial Building'
+  #     ]
+
+
+  #     (1..15).each do |n|
+  #       @arch << {thumbnail: "img/Arch/#{n}.jpg",
+  #               image: "img/Arch/-#{n}.jpg",
+  #               title: @title[n]
+  #               }
+  #     end
+  #     p @arch
+  # end
+
+  # @arch = architecture
+
+
+
+
   @arch = [
     {thumbnail: 'img/Arch/1.jpg',
       image: 'img/Arch/-1.jpg',
@@ -8,10 +43,10 @@ get '/' do
       title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY'},
     {thumbnail: "img/Arch/3.jpg",
       image: 'img/Arch/-3.jpg',
-      title: 'Residence 2005 / D&D Harvey Architects, East Hampton, NY '},
+      title: 'Residence 2005 / D&D Harvey Architects, East Hampton, NY'},
     {thumbnail: "img/Arch/4.jpg",
       image: 'img/Arch/-4.jpg',
-      title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY '},
+      title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY'},
     {thumbnail: "img/Arch/5.jpg",
       image: 'img/Arch/-5.jpg',
       title: 'Residence 2004 / D&D Harvey Architects, East Hampton, NY'},
@@ -43,8 +78,11 @@ get '/' do
       image: 'img/Arch/-14.jpg',
       title: 'Business Center'},
     {thumbnail: 'img/Arch/15.jpg',
-      image: 'img/Arch/-13.jpg',
-      title: ' Memorial Building'},
+      image: 'img/Arch/-15.jpg',
+      title: 'Memorial Building'},
+      {thumbnail: 'img/Arch/16.jpg',
+      image: 'img/Arch/-16.jpg',
+      title: 'Parametric Experiment'}
     ]
 
 
@@ -150,11 +188,60 @@ get '/' do
       image: 'img/Art/-10.jpg',
       title: ''}
     ] 
+erb :'index'
 
-  erb :'index'
 end
 
 get '/amphibians' do
+
+@amphibians = [
+    {thumbnail: 'img/Install/amphibians2002/1.jpg',
+      image: 'img/Install/amphibians2002/-1.jpg',
+      title: '15 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/2.jpg',
+      image: 'img/Install/amphibians2002/-2.jpg',
+      title: ' Total Sale / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/3.jpg',
+      image: 'img/Install/amphibians2002/-3.jpg',
+      title: 'Master / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/4.jpg',
+      image: 'img/Install/amphibians2002/-4.jpg',
+      title: '06 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/5.jpg',
+      image: 'img/Install/amphibians2002/-5.jpg',
+      title: 'Intentional Coincidences/ Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/6.jpg',
+      image: 'img/Install/amphibians2002/-6.jpg',
+      title: 'No home / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/7.jpg',
+      image: 'img/Install/amphibians2002/-7.jpg',
+      title: '03 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/8.jpg',
+      image: 'img/Install/amphibians2002/-8.jpg',
+      title: '07 / Amphibians S scape 2003 '},
+    {thumbnail: 'img/Install/amphibians2002/9.jpg',
+      image: 'img/Install/amphibians2002/-9.jpg',
+      title: 'Leader / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/10.jpg',
+      image: 'img/Install/amphibians2002/-10.jpg',
+      title: '09 Sun/ Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/11.jpg',
+      image: 'img/Install/amphibians2002/-11.jpg',
+      title: '10 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/12.jpg',
+      image: 'img/Install/amphibians2002/-12.jpg',
+      title: '11 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/13.jpg',
+      image: 'img/Install/amphibians2002/-13.jpg',
+      title: '12 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/14.jpg',
+      image: 'img/Install/amphibians2002/-14.jpg',
+      title: '13 / Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/15.jpg',
+      image: 'img/Install/amphibians2002/-15.jpg',
+      title: '14 / Amphibians S scape 2003'},
+    ] 
+
   erb :'amphibians'
 end
 
@@ -166,10 +253,11 @@ get '/equil' do
   erb :'equil'
 end
 
-get '/digital' do
-  erb :'digital'
-end
+# get '/digital' do
+#   erb :'digital'
+# end
 
 get '/three' do
   erb :'three'
 end
+

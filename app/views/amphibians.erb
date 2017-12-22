@@ -30,19 +30,21 @@
 
 <div id="box2">
 	<div class="wrapper">
-		<p style="color: white; font-family: myFirstFont;">Amphibian S scape 2003</p>
-		<% (-18..-1).each do |n| %>
-			<div class="icon">
-				<img style="width:10em; cursor:pointer" src="img/Install/amphibians 2002/<%=n%>.jpg" style="width:100%;cursor:pointer" 
-				onclick="onClick(this)" class="w3-hover-opacity">
-			</div>
-		<%end%>
-		<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">amphibians</h2>
+
+		<% @amphibians.each.with_index do |project, index| %>	
+		<div class='icon'>
+			<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
+			onclick="document.getElementById('modal21<%=index%>').style.display='inline'" class="w3-hover-opacity">
+		</div><div id="modal21<%=index%>" class="w3-modal" onclick="this.style.display='none'">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" style="width:100%">
+			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+				<img id="img01" src=<%=project[:image]%> style="height:100%;">
+				<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); black; margin-top: 0px;"><%=project[:title]%><p>
 			</div>
 		</div>
+		<%end%>
+
 	</div>
 </div>
 
