@@ -43,7 +43,6 @@ body{
 #box5{
   min-height:100%;
   width: 100%;
- 
   background-image: url("/img/bgrnd/D.jpg");
   background-size: cover;
   background-attachment: fixed;
@@ -62,7 +61,7 @@ body{
 #box7{
   min-height:100%;
   width: 100%;
-  background-color: white;
+  background-image: url("/img/bgrnd/D.jpg");
   background-size: cover;
   background-attachment: fixed;
   display: table;
@@ -280,8 +279,6 @@ iframe {
 
  margin-right: 4em;
  margin-top: -1em;
-
-
 }
 
 .icon{
@@ -319,6 +316,7 @@ h6 {
   font-size: 13px;
   min-height:100%;
   min-width: 35%;
+  font-family: myFirstFont;
   
 }
 
@@ -342,15 +340,13 @@ h6 {
 }
 
 
+
 @font-face {
     font-family: myFirstFont;
     src: url("/img/BankGothic Regular.ttf");
 
 }
 
-.text {
-    font-family: myFirstFont;
-}
 
 h2 {
    font-family: myFirstFont;
@@ -359,5 +355,50 @@ h2 {
    font-size: 5px;
 }
 
+.mark{
+  color:grey;
+  background-color: black;
+  opacity: .75;
+  padding:0.2em 0.5em;
+  border-radius:3px;
+}
 
+#img01 {
+  height: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  #img01{
+    width:100%;
+  }
+
+  .text{
+
+  }
+
+
+  .equiwrapper{
+    text-align: center;
+    position: relative;
+    width: 75%;
+    min-height: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+   background:rgba(0, 0, 0, 0.0);
+  
+  
+  }
+  
+  .text{
+    color:grey;
+    text-align: left;
+    /*background-color:  red;*/
+    margin-left: 0%;
+    margin-right:0%;
+    font-size: 13px;
+    min-height:100%;
+    min-width: 100%; 
+    padding-left: 0px;
+  }
+}
 

@@ -8,7 +8,7 @@
 <div id="MainMenu">
 	<div id="logo">
 		<!-- <h4><a href="/"><div class="a">m</div>argarita<div class="a">g</div>aneva</a></h4> -->
-	<h4><a href="/">margaritaganeva</a></h4>
+	<h4><a style ="font-size: 83%;" href="/">margaritaganeva</a></h4>
 	</div>
 	<ul>
 
@@ -28,20 +28,22 @@
 
 <div id="box2" style="height: 100vh;"">
 <div class="wrapper">
-	<p style="color: white;font-family: myFirstFont;">bodyscapes2005</p>
+	<p style="color:grey; font-family: myFirstFont; padding-top: 1em;">bodyscapes2005</p>
 				<% (1..4).each do |n|  %>	
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src="img/Install/bodyscapes2005/<%=n%>.jpg"
 			onclick="document.getElementById('modal1<%=n%>').style.display='inline'" class="w3-hover-opacity">
 		</div><div id="modal1<%=n%>" class="w3-modal" onclick="this.style.display='none'">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" src="img/Install/bodyscapes2005/<%=n%>.jpg" style="width:100%; max-height: 100%">
-				<p style="font-family: myFirstFont; color: grey; background-color: black; margin-top: 0px;"></p>
+			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+				<img id="img01" src="img/Install/bodyscapes2005/<%=n%>.jpg">
 			</div>
 		</div>
 		<%end%>
 </div>
 </div>
+
+
+
 
 		
