@@ -149,10 +149,10 @@ get '/' do
       title: '011 2004'},
     {thumbnail: 'img/Digitalart/21.jpg',
       image: 'img/Digitalart/-21.jpg',
-      title: '012 2004'},
+      title: '2004'},
     {thumbnail: 'img/Digitalart/22.jpg',
       image: 'img/Digitalart/-22.jpg',
-      title: '174 Poster'}
+      title: 'Poster'}
       ]
 
 
@@ -177,7 +177,7 @@ get '/' do
       title: 'untitled'},
     {thumbnail: 'img/Art/7.jpg',
       image: 'img/Art/-7.jpg',
-      title: 'Untitled 2004'},
+      title: 'untitled 2004'},
     {thumbnail: 'img/Art/8.jpg',
       image: 'img/Art/-8.jpg',
       title: 'untitled'},

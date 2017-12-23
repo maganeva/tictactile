@@ -52,7 +52,6 @@ $(document).ready(function(){
 	//Show modal with url
 	
   	if(window.location.href.indexOf('#businesscenter') != -1) {
-  		console.log('asdf')
     	$("#businesscenter").show();
   	}
 
@@ -65,15 +64,11 @@ $(document).ready(function(){
 
  	//stop video when modal is clicked by reseting the source
     $('#modal033, #modal022, #modal0101, #modalvideo1, #modalvideo2, #modalvideo3').each(function(){
-            var src = $(this).find('video').find('source').attr('src');
-            console.log(src)
+     	var src = $(this).find('video').find('source').attr('src');
 
-        $(this).on('click', function(){
-
-            $(this).find('video').attr('src', '');
-            $(this).find('video').attr('src', src);
-            
-
+      $(this).on('click', function(){
+			$(this).find('video').attr('src', '');
+      $(this).find('video').attr('src', src);
         });
     });
 
