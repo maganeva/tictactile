@@ -50,13 +50,13 @@ $(document).ready(function(){
 
 
 	//Show modal with url
-	
-  	if(window.location.href.indexOf('#businesscenter') != -1) {
+			
+		if(window.location.href.indexOf('#businesscenter') != -1) {
     	$("#businesscenter").show();
   	}
 
   	if(window.location.href.indexOf('#parametricexperiment') != -1) {
-  		console.log('asdf')
+  	
     	$("#parametricexperiment").show();
   	}
 
@@ -72,10 +72,16 @@ $(document).ready(function(){
         });
     });
 
+		
 
-
-
-
+		$('.wrapper').find('.w3-modal').each(function(){
+			var id = $(this).attr('id');
+	
+			if(window.location.href.indexOf('#'+id) != -1) {
+    	$('#'+id).show();
+  	}
+		
+		});
 
 });
 
