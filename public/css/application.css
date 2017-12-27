@@ -50,7 +50,7 @@ body{
 
 }
 #box6{
-  min-height:100%;
+  min-height:100vh;
   width: 100%;
   background-image: url("/img/bgrnd/A.jpg");
   background-size: cover;
@@ -396,6 +396,8 @@ h2 {
     min-height:100%;
     min-width: 100%; 
     padding-left: 0px;
+    padding-right: 0px;
+
   }
 }
 

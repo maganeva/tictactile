@@ -79,10 +79,17 @@ get '/' do
       title: 'Business Center'},
     {thumbnail: 'img/Arch/15.jpg',
       image: 'img/Arch/-15.jpg',
-      title: 'Memorial Building'},
-      {thumbnail: 'img/Arch/16.jpg',
+      title: 'Parametric Experiment'},
+    {thumbnail: 'img/Arch/16.jpg',
       image: 'img/Arch/-16.jpg',
-      title: 'Parametric Experiment'}
+      title: 'Memorial Building'},
+    {thumbnail: 'img/Arch/20.jpg',
+      image: 'img/Arch/-20.jpg',
+      title: 'Avila Design 2013'},
+    {thumbnail: 'img/Arch/21.jpg',
+      image: 'img/Arch/-21.jpg',
+      title: 'Avila Design 2013'}
+    
     ]
 
 
@@ -152,7 +159,10 @@ get '/' do
       title: '2004'},
     {thumbnail: 'img/Digitalart/22.jpg',
       image: 'img/Digitalart/-22.jpg',
-      title: 'Poster'}
+      title: 'Poster'},
+    {thumbnail: 'img/Digitalart/23.jpg',
+      image: 'img/Digitalart/-23.jpg',
+      title: 'Distopia'}
       ]
 
 
@@ -241,7 +251,6 @@ get '/amphibians' do
       image: 'img/Install/amphibians2002/-15.jpg',
       title: 'Amphibians S scape 2003'},
     ] 
-
   erb :'amphibians'
 end
 
