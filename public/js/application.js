@@ -51,14 +51,14 @@ $(document).ready(function(){
 
 	//Show modal with url
 			
-		if(window.location.href.indexOf('#businesscenter') != -1) {
-    	$("#businesscenter").show();
-  	}
+		// if(window.location.href.indexOf('#businesscenter') != -1) {
+  //   	$("#businesscenter").show();
+  // 	}
 
-  	if(window.location.href.indexOf('#parametricexperiment') != -1) {
+  // 	if(window.location.href.indexOf('#parametricexperiment') != -1) {
   	
-    	$("#parametricexperiment").show();
-  	}
+  //   	$("#parametricexperiment").show();
+  // 	}
 
 
 
@@ -73,15 +73,33 @@ $(document).ready(function(){
     });
 
 		
-
+    // open modals if their id is in the url
+    
 		$('.wrapper').find('.w3-modal').each(function(){
 			var id = $(this).attr('id');
 	
 			if(window.location.href.indexOf('#'+id) != -1) {
+				console.log(window.location.href.indexOf('#'+id))
     	$('#'+id).show();
   	}
 		
 		});
+
+
+
+		// $(document).bind('scroll',function(e){
+  //   	$('section').each(function(){
+  //       if (
+  //          $(this).offset().top < window.pageYOffset + 10
+		// 		//begins before top
+  //       && $(this).offset().top + $(this).height() > window.pageYOffset + 10
+		// 		//but ends in visible area
+		// 		//+ 10 allows you to change hash before it hits the top border
+  //       ) {
+  //           window.location.hash = $(this).attr('id');
+  //       }
+  //   	});
+		// });
 
 });
 

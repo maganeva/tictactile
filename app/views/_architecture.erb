@@ -1,77 +1,73 @@
-<div id="box2" style="margin-top: -0.5em;">
-	<div class="wrapper">
-		<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em;  font-family: myFirstFont;">architecture</h2>
+	<div id="box2" style="margin-top: -0.5em;">
+		<div class="wrapper">
+			<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em;  font-family: myFirstFont;">architecture</h2>
 
-		<% @arch.each.with_index do |project, index| %>	
-		<div class='icon'>
-			<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
-			onclick="self.location = window.location + '#modal1<%=index%>'; document.getElementById('modal1<%=index%>').style.display='inline';"  class="w3-hover-opacity">
-		</div><div id="modal1<%=index%>" class="w3-modal" onclick="var url = window.location.href; console.log(url.slice(0, url.indexOf('#modal1<%=index%>'))); window.location = url.slice(0, url.indexOf('modal1<%=index%>'))+'#'; this.style.display='none';">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img01" src=<%=project[:image]%>>
-						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%=project[:title]%></mark><p>
+			<% @arch.each.with_index do |project, index| %>	
+			<div class='icon'>
+				<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
+				onclick="document.getElementById('modal<%=index%>').style.display='inline';"  class="w3-hover-opacity">
+			</div><div id="modal<%=index%>" class="w3-modal" onclick="this.style.display='none';">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img id="img01" src=<%=project[:image]%>>
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%=project[:title]%></mark></p>
+				</div>
 			</div>
-		</div>
-		<%end%>
+			<%end%>
 
-		<div class='icon'>
-			<img style="height:10em; cursor:pointer" src='img/Arch/17.jpg'
-			onclick="document.getElementById('modal124').style.display='inline';" class="w3-hover-opacity">
-		</div><div id="modal124" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img011" src='img/Arch/-17.jpg'>
-						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark><p>
+			<div class='icon'>
+				<img style="height:10em; cursor:pointer" src='img/Arch/17.jpg'
+				onclick="document.getElementById('modal124').style.display='inline';" class="w3-hover-opacity">
+			</div><div id="modal124" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img id="img011" src='img/Arch/-17.jpg'>
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
+				</div>
 			</div>
-		</div>
 
-		<div class='icon'>
-			<img style="height:10em; cursor:pointer" src='img/Arch/18.jpg'
-			onclick="document.getElementById('modal125').style.display='inline'" class="w3-hover-opacity">
-		</div><div id="modal125" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img011" src='img/Arch/-18.jpg'>
-						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark><p>
+			<div class='icon'>
+				<img style="height:10em; cursor:pointer" src='img/Arch/18.jpg'
+				onclick="document.getElementById('modal125').style.display='inline'" class="w3-hover-opacity">
+			</div><div id="modal125" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img id="img011" src='img/Arch/-18.jpg'>
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
+				</div>
 			</div>
-		</div>
 
 
-				<div class='icon'>
-			<img style="height:10em; cursor:pointer" src='img/Arch/19.jpg'
-			onclick="document.getElementById('modal126').style.display='inline'" class="w3-hover-opacity">
-		</div><div id="modal126" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img011" src='img/Arch/-19.jpg'>
-						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark><p>
+			<div class='icon'>
+				<img style="height:10em; cursor:pointer" src='img/Arch/19.jpg'
+				onclick="document.getElementById('modal126').style.display='inline'" class="w3-hover-opacity">
+			</div><div id="modal126" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img id="img011" src='img/Arch/-19.jpg'>
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
+				</div>
 			</div>
-		</div>
-		
 
-		
-	<!-- modals with url addresses. not visible -->
-		<div id="businesscenter" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div class="w3-modal-content w3-animate-zoom">
-				<img id="img01" src=<%='img/Arch/-14.jpg'%> >
-				<p style="font-family: myFirstFont; color: grey; background-color: black; margin-top: 0px; font-size: 13px;">business center</p>
+
+
+			<!-- modals with url addresses. not visible -->
+			<div id="businesscenter" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div class="w3-modal-content w3-animate-zoom">
+					<img id="img01" src=<%='img/Arch/-14.jpg'%> >
+					<p style="font-family: myFirstFont; color: grey; background-color: black; margin-top: 0px; font-size: 13px;">business center</p>
+				</div>
 			</div>
-		</div>
 
-		<div id="parametricexperiment" class="w3-modal" onclick="this.style.display='none'">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img0101" style="width: 50%"; src=<%='img/Arch/-15.jpg'%>>
-						<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">parametric experiment</mark><p>
+			<div id="parametricexperiment" class="w3-modal" onclick="this.style.display='none'">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img id="img0101" style="width: 50%"; src=<%='img/Arch/-15.jpg'%>>
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">parametric experiment</mark></p>
+				</div>
 			</div>
+
 		</div>
-	
-	
-		
-
-
 	</div>
-</div>
 

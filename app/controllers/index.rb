@@ -196,6 +196,9 @@ get '/' do
       title: 'untitled'},
     {thumbnail: 'img/Art/10.jpg',
       image: 'img/Art/-10.jpg',
+      title: 'untitled'},
+    {thumbnail: 'img/Art/11.jpg',
+      image: 'img/Art/-11.jpg',
       title: 'untitled'}
     ] 
 erb :'index'
