@@ -1,4 +1,4 @@
-<section id="#sketches">
+<div class="section" id="sketches">
 <div id="box5" style="margin-top: -0.5em;">
 	<div class="wrapper">
 		<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em; font-family: myFirstFont;">sketches</h2>
@@ -6,8 +6,8 @@
 		<% @sketches.each.with_index do |project, index| %>	
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
-			onclick="document.getElementById('modal16<%=index%>').style.display='inline'" class="w3-hover-opacity">
-		</div><div id="modal16<%=index%>" class="w3-modal" onclick="this.style.display='none'">
+			onclick="history.pushState(null, null, window.location.href + '?sketchmod<%=index%>al'); document.getElementById('sketchmod<%=index%>al').style.display='inline';"  class="w3-hover-opacity">
+		</div><div id="sketchmod<%=index%>al" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
 				<img id="img01" src=<%=project[:image]%>>
@@ -18,7 +18,7 @@
 
 	</div>
 </div>
-</section>
+</div>
 
 
 

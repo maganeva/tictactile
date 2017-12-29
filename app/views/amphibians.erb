@@ -28,14 +28,14 @@
 
 
 <div id="box2">
-	<div class="wrapper">
+	<div class="amphiwrapper">
 		<h2 style="font-size: 20px; padding-top: 2em; padding-bottom: 1em;  font-family: myFirstFont;">amphibians S scape</h2>
 
 		<% @amphibians.each.with_index do |project, index| %>	
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
-			onclick="document.getElementById('modal21<%=index%>').style.display='inline'" class="w3-hover-opacity">
-		</div><div id="modal21<%=index%>" class="w3-modal" onclick="this.style.display='none'">
+			onclick="history.pushState(null, null, window.location.href + '?amphimo<%=index%>dal'); document.getElementById('amphimo<%=index%>dal').style.display='inline';" class="w3-hover-opacity">
+		</div><div id="amphimo<%=index%>dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
 				<img id="img01" src=<%=project[:image]%>>

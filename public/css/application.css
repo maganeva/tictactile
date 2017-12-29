@@ -255,19 +255,28 @@ iframe {
 }
 
 
-.wrapper{
+.wrapper, .amphiwrapper, .bodywrapper {
   text-align: center;
   position: relative;
   width: 75%;
   min-height: 100%;
   max-width: 90%;
   margin: 0 auto;
- background:rgba(0, 0, 0, 0.0);
-
-
- margin-right: 4em;
- margin-top: -1em;
+  background:rgba(0, 0, 0, 0.0);
+  margin-right: 4em;
+  margin-top: -1em;
 }
+
+.equiwrapper{
+  width: 75%;
+  min-height: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-right: 4em;
+  margin-top: -1em;
+}
+
+
 
 .icon{
   display: inline-block;
@@ -317,16 +326,6 @@ h6 {
   min-width: 35%;
 
 }
-
-.equiwrapper{
-  width: 75%;
-  min-height: 100%;
-  max-width: 90%;
-  margin: 0 auto;
-  margin-right: 4em;
-  margin-top: -1em;
-}
-
 
 
 @font-face {
@@ -382,7 +381,6 @@ h2 {
     max-width: 95%;
     margin: 0 auto;
    background:rgba(0, 0, 0, 0.0);
-  
   
   }
   

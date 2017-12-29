@@ -26,13 +26,13 @@
 </div>
 
 <div id="box2" style="height: 100vh;"">
-<div class="wrapper">
+<div class="bodywrapper">
 	<p style="color:grey; font-family: myFirstFont; padding-top: 1em;">BodyScapes2006</p>
 				<% (1..4).each do |n|  %>	
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src="img/Install/bodyscapes2005/<%=n%>.jpg"
-			onclick="document.getElementById('modal1<%=n%>').style.display='inline'" class="w3-hover-opacity">
-		</div><div id="modal1<%=n%>" class="w3-modal" onclick="this.style.display='none'">
+			onclick="history.pushState(null, null, window.location.href + '?bodymod<%=n%>scapes'); document.getElementById('bodymod<%=n%>scapes').style.display='inline';"  class="w3-hover-opacity">
+		</div><div id="bodymod<%=n%>scapes" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
 				<img id="img01" src="img/Install/bodyscapes2005/<%=n%>.jpg">
