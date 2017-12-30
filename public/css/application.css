@@ -37,7 +37,7 @@ body{
   width: 100%;
   background-image: url("/img/bgrnd/A.jpg");
   background-size: cover;
-  background-attachment: fixed;
+ /* background-attachment: fixed;*/
 }
 #box5{
   min-height:100%;
