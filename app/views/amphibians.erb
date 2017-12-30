@@ -11,12 +11,12 @@
 	</div>
 	<ul>
 
-		<li><a href="/#box2">architecture</a><div class="line"></div></li>
-		<li><a href="/#box3">installations</a><div class="line"></div></li>
-		<li><a href="/#box4">digital</a><div class="line"></div></li>
-		<li><a href="/#box5">sketches</a><div class="line"></div></li>
-		<li><a href="/#box6">video</a><div class="line"></div></li>
-		<li><a href="/#box7">about</a><div class="line"></div></li>
+		<li><a href="/#architecture">architecture</a><div class="line"></div></li>
+		<li><a href="/#installations">installations</a><div class="line"></div></li>
+		<li><a href="/#digital">digital</a><div class="line"></div></li>
+		<li><a href="/#sketches">sketches</a><div class="line"></div></li>
+		<li><a href="/#video">video</a><div class="line"></div></li>
+		<li><a href="/#about">about</a><div class="line"></div></li>
 
 	</ul>
 	<div id="close">
@@ -35,7 +35,8 @@
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
 			onclick="history.pushState(null, null, window.location.href + '?amphimo<%=index%>dal'); document.getElementById('amphimo<%=index%>dal').style.display='inline';" class="w3-hover-opacity">
-		</div><div id="amphimo<%=index%>dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
+		</div>
+		<div id="amphimo<%=index%>dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
 				<img id="img01" src=<%=project[:image]%>>

@@ -9,34 +9,33 @@ body{
 }
 
 #box1{
-  height: 100vh;
+ 
   width: 100%;
   background-color: black;
   background-size: cover;
-  display: table;
-  background-attachment: fixed;
+
 }
 #box2{
   min-height:100%;
   display: table;
   width: 100%;
-  background-image: url("/img/bgrnd/A.jpg");
+  background-image: url("/img/bgrnd/E.jpg");
   background-size: cover;
   background-attachment: fixed;
 }
 #box3{
   min-height:100vh;
   width: 100%;
- background-image: url("/img/bgrnd/D.jpg");
+ background-image: url("/img/bgrnd/B.jpg");
   background-size: cover;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   display: table;
 }
 #box4{
   min-height:100%;
   display: table;
   width: 100%;
-  background-image: url("/img/bgrnd/B.jpg");
+  background-image: url("/img/bgrnd/A.jpg");
   background-size: cover;
   background-attachment: fixed;
 }
@@ -45,16 +44,16 @@ body{
   width: 100%;
   background-image: url("/img/bgrnd/D.jpg");
   background-size: cover;
-  background-attachment: fixed;
+ /* background-attachment: fixed;*/
   display: table;
 
 }
 #box6{
   min-height:100vh;
   width: 100%;
-  background-image: url("/img/bgrnd/A.jpg");
+  background-image: url("/img/bgrnd/B.jpg");
   background-size: cover;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   display: table;
 }
 
@@ -63,7 +62,7 @@ body{
   width: 100%;
   background-image: url("/img/bgrnd/D.jpg");
   background-size: cover;
-  background-attachment: fixed;
+/*  background-attachment: fixed;*/
   display: table;
 }
 

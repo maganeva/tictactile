@@ -74,7 +74,6 @@ $(document).ready(function(){
    // open modals if their id is in the url
   $('.wrapper').find('.w3-modal').each(function(){
   	var id = $(this).attr('id');
-  	console.log('asdf')
   	if(window.location.href.indexOf(id) != -1) {
   		var url = window.location.href;
   		window.location = url.slice(0, url.indexOf('?'));
@@ -103,12 +102,14 @@ $(document).ready(function(){
 			//+ 10 allows you to change hash before it hits the top border
 			){
    			id = $(this).attr('id');
-   			if(history.pushState) {
-   				history.pushState(null, null, '#' + id);
+   			if ('#' + id != window.location.hash) {
+   				if(history.pushState) {
+   					history.pushState(null, null, '#' + id);
+   				}
+   				else {
+   				window.location.hash = '#' + id;
+   				} 
    			}
-   			else {
-   			window.location.hash = '#' + id;
-   			} 
    		}
    	});
    });

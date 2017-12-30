@@ -208,9 +208,6 @@ end
 get '/amphibians' do
 
 @amphibians = [
-    {thumbnail: 'img/Install/amphibians2002/1.jpg',
-      image: 'img/Install/amphibians2002/-1.jpg',
-      title: 'Amphibians S scape 2003'},
     {thumbnail: 'img/Install/amphibians2002/2.jpg',
       image: 'img/Install/amphibians2002/-2.jpg',
       title: 'Total Sale / Amphibians S scape 2003'},
@@ -238,6 +235,9 @@ get '/amphibians' do
     {thumbnail: 'img/Install/amphibians2002/10.jpg',
       image: 'img/Install/amphibians2002/-10.jpg',
       title: 'Amphibians S scape 2003'},
+    {thumbnail: 'img/Install/amphibians2002/1.jpg',
+      image: 'img/Install/amphibians2002/-1.jpg',
+      title: 'Amphibians S scape 2003'},
     {thumbnail: 'img/Install/amphibians2002/11.jpg',
       image: 'img/Install/amphibians2002/-11.jpg',
       title: 'Amphibians S scape 2003'},
@@ -252,7 +252,7 @@ get '/amphibians' do
       title: 'Amphibians S scape 2003'},
     {thumbnail: 'img/Install/amphibians2002/15.jpg',
       image: 'img/Install/amphibians2002/-15.jpg',
-      title: 'Amphibians S scape 2003'},
+      title: 'Amphibians S scape 2003'}
     ] 
   erb :'amphibians'
 end
