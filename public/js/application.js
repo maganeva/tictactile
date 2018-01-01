@@ -1,13 +1,17 @@
 $(document).ready(function(){
 
-	$("#MenuIcon").click(function(){
+	window.showMenuSidebar = function () {
 		$("#MainMenu").css("left","0px");
 		function showMenu(){
 			$("#MainMenu").css("-webkit-clip-path","polygon(0 0,100% 0,100% 100%,0% 100%)");
 			$("#MenuIcon").animate({right:'-100'},300);
 		}
 		setTimeout(showMenu,100);
-	});
+	}
+
+	$("#MenuIcon").click(window.showMenuSidebar);
+
+	$("#home").click(window.showMenuSidebar);
 
 	$("#close").click(function(){
 		$("#MainMenu").css("-webkit-clip-path","polygon(0 0,0% 0,100% 100%,0% 100%)");
