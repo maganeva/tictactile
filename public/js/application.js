@@ -28,8 +28,6 @@ $(document).ready(function(){
 	});
 
 
-
-
 	$("li").click(function(){
 		$("#MainMenu").css("-webkit-clip-path","polygon(0 0,0% 0,100% 100%,0% 100%)");
 		function hideMenu(){
@@ -93,8 +91,8 @@ $(document).ready(function(){
  			locationHashParts = locationHashParts[1].split("/s/");
  		}
  		if (locationHashParts.length > 1) {
- 			anchorParts["section"] = locationHashParts[0];
  			locationHashParts = locationHashParts[1].split("/i/");
+ 			anchorParts["section"]=locationHashParts[0]
  		}
  		else {
  			locationHashParts = locationHashParts[0].split("/i/");
@@ -105,7 +103,6 @@ $(document).ready(function(){
  		else {
  			anchorParts["section"] = locationHashParts[0];
  		}
-
  		return anchorParts;
  	}
 
@@ -128,37 +125,12 @@ $(document).ready(function(){
  	}
 
  	window.onVideoModelCancelClick = function (modelDiv) {
- 		var video = $(modelDiv).find('video')
- 		src = video.attr('src');
- 		video.attr('src', '');
- 		video.attr('src', src);
+ 		var videoSource = $(modelDiv).find('source');
+ 		var src = videoSource.attr('src');
+ 		videoSource.attr('src', '');
+ 		videoSource.attr('src', src);
  		onModelCancelClick(modelDiv);
  	}
-
-  window.scrollToSection = function () {
-   	var pathParts = anchorParts(window.location.hash);
-   	if (pathParts["item"] == null) {
-	   	$('.section').each(function(){
-	   		if (
-	   			$(this).offset().top < window.pageYOffset + 10
-				//begins before top
-				&& $(this).offset().top + $(this).height() > window.pageYOffset + 10
-				//but ends in visible area
-				//+ 10 allows you to change hash before it hits the top border
-				){
-	   			var hash = anchor($(this).attr('id'), null);
-	   			if (window.location.hash != hash) {
-	   				if(window.history.pushState) {
-	   					window.history.pushState(null, null, hash);
-	   				}
-	   				else {
-	   				  window.location.hash = hash;
-	   				} 
-	   			}
-	   		}
-	   	});
-   	}
-  }
 
   window.onThumbnailClick = function (section, itemAnchor) {
 		history.pushState(null, null, anchor(section, itemAnchor));
@@ -198,6 +170,7 @@ $(document).ready(function(){
 	  $('.wrapper').find('.w3-modal').each(function(index, modalDiv){
 	  	if(pathParts["item"] == $(modalDiv).attr('id')) {
 	  		var url = window.location.href;
+	  		console.log(111, pathParts["section"]);
 	  		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
 	  		$('#'+pathParts["item"]).show();
 	  		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
@@ -205,7 +178,7 @@ $(document).ready(function(){
 	  });
 	}
 	else if (pathParts["section"] != null) {
-		window.scrollToSection();
+		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
 	}
 
   // open modals if their id is in the url for pages not included in the parallax(installations, bodyscapes, equilibrium)
@@ -217,10 +190,30 @@ $(document).ready(function(){
   	}
   });
 
-
   //changes the url hash for the paralax page
   $(document).bind('scroll', function (e) {
-    scrollToSection();
+   	var pathParts = anchorParts(window.location.hash);
+   	if (pathParts["item"] == null) {
+	   	$('.section').each(function(){
+	   		if (
+	   			$(this).offset().top < window.pageYOffset + 10
+				//begins before top
+				&& $(this).offset().top + $(this).height() > window.pageYOffset + 10
+				//but ends in visible area
+				//+ 10 allows you to change hash before it hits the top border
+				){
+	   			var hash = anchor($(this).attr('id'), null);
+	   			if (window.location.hash != hash) {
+	   				if(window.history.pushState) {
+	   					window.history.pushState(null, null, hash);
+	   				}
+	   				else {
+	   				  window.location.hash = hash;
+	   				} 
+	   			}
+	   		}
+	   	})
+	   }
   });
 
    // $('.w3-hover-opacity').click(function(){
