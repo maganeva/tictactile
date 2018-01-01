@@ -349,7 +349,15 @@ h2 {
   border-radius:3px;
 }
 
-#img01 {
+.thumb01 {
+  width: 10em;
+}
+
+.thumb011 {
+  height: 10em;
+}
+
+.img01 {
   height: 100%;
 }
 
@@ -358,18 +366,18 @@ h2 {
 }
 
 @media screen and (max-width: 800px) {
-  #img01{
+  .img01{
     width:100%;
   }
 
-  #img011{
+  .img011{
     height: 50%;
     width:50%;
   }
 
-.amphibiantext {
-  padding:2em;
-}
+  .amphibiantext {
+    padding:2em;
+  }
 
 
   .equiwrapper{
@@ -396,5 +404,10 @@ h2 {
     padding-right: 0px;
 
   }
+}
+
+
+.w3-modal{
+  background-color: rgba(0,0,0,0.9) !important;
 }
 

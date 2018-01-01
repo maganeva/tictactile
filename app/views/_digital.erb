@@ -4,18 +4,18 @@
 		<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em; font-family: myFirstFont;">digital</h2>
 
 
-	<% @digital.each.with_index do |project, index| %>	
-	<div class='icon'>
-			<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
-			onclick="history.pushState(null, null, window.location.href + '?digitmod<%=index%>al'); document.getElementById('digitmod<%=index%>al').style.display='inline';"  class="w3-hover-opacity">
-	 	</div><div id="digitmod<%=index%>al" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
-			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img01" src=<%=project[:image]%>>
-				<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%=project[:title]%></mark></p>
+			<% @digital.each do |project| %>	
+			<div class='icon'>
+				<img class="<%= if project.include?(:override_thumbnail_class) then project[:override_thumbnail_class] else "thumb01" end %>" style="cursor:pointer" src="<%= project[:thumbnail] %>"
+				onclick="onThumbnailClick('digital', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
+			</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModelCancelClick(this);">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img class="<%= if project.include?(:override_image_class) then project[:overrride_image_class] else "img01" end %>" src="<%= project[:image] %>">
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%= project[:title] %></mark></p>
+				</div>
 			</div>
-	</div>  
-	<%end%>
+			<%end%>
 
 
 	</div>

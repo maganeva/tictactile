@@ -1,41 +1,15 @@
-<div id="MenuIcon">
-	<div id="MenuLine">
-	</div>
-</div>
-
-
-<div id="MainMenu">
-	<div id="logo">
-		<!-- <h4><a href="/"><div class="a">m</div>argarita<div class="a">g</div>aneva</a></h4> -->
-	<h4><a style ="font-size: 83%;" href="/">margaritaganeva</a></h4>
-	</div>
-	<ul>
-
-		<li><a href="/#architecture">architecture</a><div class="line"></div></li>
-		<li><a href="/#installations">installations</a><div class="line"></div></li>
-		<li><a href="/#digital">digital</a><div class="line"></div></li>
-		<li><a href="/#sketches">sketches</a><div class="line"></div></li>
-		<li><a href="/#video">video</a><div class="line"></div></li>
-		<li><a href="/#about">about</a><div class="line"></div></li>
-
-	</ul>
-	<div id="close">
-		<!-- <img src="img/Close.png" height="30px" width="30px"/> -->
-		<a class="button">X</a>
-	</div>   
-</div>
 
 <div id="box2" style="height: 100vh;"">
 <div class="bodywrapper">
 	<p style="color:grey; font-family: myFirstFont; padding-top: 1em;">BodyScapes2006</p>
-				<% (1..4).each do |n|  %>	
+		<% @bodyscapes.each do |project| %>
 		<div class='icon'>
-			<img style="width:10em; cursor:pointer" src="img/Install/bodyscapes2005/<%=n%>.jpg"
-			onclick="history.pushState(null, null, window.location.href + '?bodymod<%=n%>scapes'); document.getElementById('bodymod<%=n%>scapes').style.display='inline';"  class="w3-hover-opacity">
-		</div><div id="bodymod<%=n%>scapes" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
+			<img style="width:10em; cursor:pointer" src="<%= project[:thumbnail] %>"
+			onclick="onThumbnailClick(null, '<%= project[:item_anchor] %>')"  class="w3-hover-opacity">
+		</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModelCancelClick(this);">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-				<img id="img01" src="img/Install/bodyscapes2005/<%=n%>.jpg">
+				<img class="img01" src="<%= project[:image] %>">
 			</div>
 		</div>
 		<%end%>

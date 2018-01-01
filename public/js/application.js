@@ -41,12 +41,6 @@ $(document).ready(function(){
 	});
 
 
-	//modal onclick function
-	function onClick(element) {
-		document.getElementById("img01").src = element.src;
-		document.getElementById("modal01").style.display = "block";
-	}
-
 
 	//Show modal with url
 
@@ -54,65 +48,176 @@ $(document).ready(function(){
   //   	$("#businesscenter").show();
   // 	}
 
-  	if(window.location.href.indexOf('modal0101') != -1) {
-  	
-    	$("#modal0101").show();
-  	}
-
-
-
  	//stop video when modal is clicked by reseting the source
- 	$('#modal033, #modal022, #modal0101, #modalvideo1, #modalvideo2, #modalvideo3').each(function(){
- 		var src = $(this).find('video').find('source').attr('src');
- 		$(this).on('click', function(){
- 			$(this).find('video').attr('src', '');
- 			$(this).find('video').attr('src', src);
- 		});
- 	});
 
+ 	// window.itemRegex = /(?:\/i\/[^/]*)/
+ 	// window.sectionRegex = /(?:\/s\/[^/]*)/
+ 	// window.anchorParts = function (locationHash) {
+ 	// 	var itemMatch = itemRegex.exec(locationHash);
+ 	// 	var sectionMatch = sectionRegex.exec(locationHash);
+ 	// 	var anchorParts = {
+ 	// 		"section": null,
+ 	// 		"item": null
+ 	// 	};
+ 	// 	if (sectionMatch != null) {
+ 	// 		anchorParts["section"] = sectionMatch[0];
+ 	// 	}
+ 	// 	if (itemMatch != null) {
+ 	// 		anchorParts["item"] = itemMatch[0];
+ 	// 	}
+ 	// 	return anchorParts;
+ 	// }
 
-   // open modals if their id is in the url
-  $('.wrapper').find('.w3-modal').each(function(){
-  	var id = $(this).attr('id');
-  	if(window.location.href.indexOf(id) != -1) {
-  		var url = window.location.href;
-  		window.location = url.slice(0, url.indexOf('?'));
-  		$('#'+id).show();	
-  	}
-  });
+ 	// window.anchor = function (section, item) {
+ 	// 	var anchor = "#";
+ 	// 	if (section != null) {
+ 	// 		anchor += "/s/" + section;
+ 	// 	}
+ 	// 	if (item != null) {
+ 	// 		anchor += "/i/" + item;
+ 	// 	}
+ 	// 	return anchor;
+ 	// }
 
+ 	window.anchorParts = function (locationHash) {
+ 		var locationHashParts = locationHash.split('#');
+ 		var anchorParts = {
+ 			"section": null,
+ 			"item": null
+ 		};
+ 		if (locationHashParts.length > 1) {
+ 			locationHashParts = locationHashParts[1].split("/s/");
+ 		}
+ 		if (locationHashParts.length > 1) {
+ 			anchorParts["section"] = locationHashParts[0];
+ 			locationHashParts = locationHashParts[1].split("/i/");
+ 		}
+ 		else {
+ 			locationHashParts = locationHashParts[0].split("/i/");
+ 		}
+ 		if (locationHashParts.length > 1) {
+ 			anchorParts["item"] = locationHashParts[1];
+ 		}
+ 		else {
+ 			anchorParts["section"] = locationHashParts[0];
+ 		}
 
-  	// open modals if their id is in the url for pages not included in the parallax
-  $('.equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(){
-  	var id = $(this).attr('id');
-  	if(window.location.href.indexOf(id) != -1) {
+ 		return anchorParts;
+ 	}
+
+ 	window.anchor = function (section, item) {
+ 		var anchor = "#";
+ 		if (section != null) {
+ 			anchor += "/s/" + section;
+ 		}
+ 		if (item != null) {
+ 			anchor += "/i/" + item;
+ 		}
+ 		return anchor;
+ 	}
+
+ 	window.onModelCancelClick = function (modelDiv) {
+		modelDiv.style.display='none';
+		var pathParts = anchorParts(window.location.hash);
+		history.pushState(null, null, anchor(pathParts["section"], null));
+		scrollToSection();
+ 	}
+
+ 	window.onVideoModelCancelClick = function (modelDiv) {
+ 		var video = $(modelDiv).find('video')
+ 		src = video.attr('src');
+ 		video.attr('src', '');
+ 		video.attr('src', src);
+ 		onModelCancelClick(modelDiv);
+ 	}
+
+  window.scrollToSection = function () {
+   	var pathParts = anchorParts(window.location.hash);
+   	if (pathParts["item"] == null) {
+	   	$('.section').each(function(){
+	   		if (
+	   			$(this).offset().top < window.pageYOffset + 10
+				//begins before top
+				&& $(this).offset().top + $(this).height() > window.pageYOffset + 10
+				//but ends in visible area
+				//+ 10 allows you to change hash before it hits the top border
+				){
+	   			var hash = anchor($(this).attr('id'), null);
+	   			if (window.location.hash != hash) {
+	   				if(window.history.pushState) {
+	   					window.history.pushState(null, null, hash);
+	   				}
+	   				else {
+	   				  window.location.hash = hash;
+	   				} 
+	   			}
+	   		}
+	   	});
+   	}
+  }
+
+  window.onThumbnailClick = function (section, itemAnchor) {
+		history.pushState(null, null, anchor(section, itemAnchor));
+		document.getElementById(itemAnchor).style.display = 'inline';
+  }
+
+ 	// window.anchorParts = function (locationHash) {
+ 	// 	var locationHashParts = locationHash.replace(/^#\//, "").split("/");
+ 	// 	var anchorParts = {
+ 	// 		"section": null,
+ 	// 		"item": null
+ 	// 	};
+ 	// 	if (locationHashParts[0] != "") {
+ 	// 		anchorParts["section"] = locationHashParts[0];
+ 	// 	}
+ 	// 	if (locationHashParts.length >= 2 && locationHashParts[1] != "") {
+ 	// 		anchorParts["item"] = locationHashParts[1];
+ 	// 	}
+ 	// 	return anchorParts;
+ 	// }
+
+ 	// window.anchor = function (section, item) {
+ 	// 	var anchor = "#/";
+ 	// 	if (section != null) {
+ 	// 		anchor += section;
+ 	// 	}
+ 	// 	if (item != null) {
+ 	// 		anchor += "/" + item;
+ 	// 	}
+ 	// 	return anchor;
+ 	// }
+
+  // open modals if their id is in the url
+  var pathParts = window.anchorParts(window.location.hash);
+
+  if (pathParts["item"] != null) {
+	  $('.wrapper').find('.w3-modal').each(function(index, modalDiv){
+	  	if(pathParts["item"] == $(modalDiv).attr('id')) {
+	  		var url = window.location.href;
+	  		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
+	  		$('#'+pathParts["item"]).show();
+	  		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
+	  	}
+	  });
+	}
+	else if (pathParts["section"] != null) {
+		window.scrollToSection();
+	}
+
+  // open modals if their id is in the url for pages not included in the parallax(installations, bodyscapes, equilibrium)
+  $('.equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(index, modalDiv){
+  	var id = $(modalDiv).attr('id');
+  	if(pathParts["item"] == id) {
   		$('#'+id).show();
-  	
+  		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
   	}
   });
 
-    //changes the url hash for the paralax page
-   $(document).bind('scroll',function(e){
-   	$('.section').each(function(){
-   		if (
-   			$(this).offset().top < window.pageYOffset + 10
-			//begins before top
-			&& $(this).offset().top + $(this).height() > window.pageYOffset + 10
-			//but ends in visible area
-			//+ 10 allows you to change hash before it hits the top border
-			){
-   			id = $(this).attr('id');
-   			if ('#' + id != window.location.hash) {
-   				if(history.pushState) {
-   					history.pushState(null, null, '#' + id);
-   				}
-   				else {
-   				window.location.hash = '#' + id;
-   				} 
-   			}
-   		}
-   	});
-   });
+
+  //changes the url hash for the paralax page
+  $(document).bind('scroll', function (e) {
+    scrollToSection();
+  });
 
    // $('.w3-hover-opacity').click(function(){
    // 	var id = $('.w3-modal').attr('id');
@@ -120,6 +225,16 @@ $(document).ready(function(){
    
    // })
    
-
+	$(window).bind('popstate', function(e) {
+		var pathParts = anchorParts(window.location.hash);
+		if (pathParts['item'] == null) {
+			$('.wrapper, .equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(index, modalDiv) {
+				modalDiv.style.display = 'none';
+			});
+		}
+		else {
+			document.getElementById(pathParts['item']).style.display = 'inline';
+		}
+	});
 
 });

@@ -1,49 +1,21 @@
 <div class="section" id="videos">
 <div id="box6" style="margin-top: -0.5em; padding-bottom: 6em;">
 	<div class="wrapper">
-			<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em; font-family: myFirstFont;">videos</h2>
-
-				<div class="icon">
-				<img src="img/videos/anem-th.jpg" style="width:13em; cursor:pointer;"
-				onclick="history.pushState(null, null, window.location.href + '?modalvideo1'); document.getElementById('modalvideo1').style.display='inline';"  class="w3-hover-opacity">
-				</div><div id="modalvideo1" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
-					<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-					<div class="w3-modal-content w3-animate-zoom">
-						<video style="width:100%" controls>
-								<source src="img/videos/a.mp4" type="video/mp4" >
-								Your browser does not support the video tag.
-						</video>	
-					</div>
-				</div>
-
-
-				<div class="icon">
-				<img src="img/videos/haiku-th.jpg" style="width:13em; cursor:pointer;"
-				onclick="history.pushState(null, null, window.location.href + '?modalvideo2'); document.getElementById('modalvideo2').style.display='inline';"  class="w3-hover-opacity">
-				</div><div id="modalvideo2" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
-					<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-					<div class="w3-modal-content w3-animate-zoom">
-						<video style="width:100%" controls>
-						<source src="img/videos/haiku.mp4" type="video/mp4" >
-							Your browser does not support the video tag.
-						</video>	
-					</div>
-				</div>
-
-
-				<div class="icon">
-					<img src="img/videos/robd-th.jpg" style="width:13em; cursor:pointer;"
-					onclick="history.pushState(null, null, window.location.href + '?modalvideo3'); document.getElementById('modalvideo3').style.display='inline';"  class="w3-hover-opacity">
-				</div><div id="modalvideo3" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
-					<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-					<div class="w3-modal-content w3-animate-zoom">
-						<video style="width:100%" controls>
-							<source src="img/videos/0-rob-d.mp4" type="video/mp4" >
-								Your browser does not support the video tag.
-						</video>	
-					</div>
-				</div>
-	
+		<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em; font-family: myFirstFont;">videos</h2>
+		<% @videos.each do |project| %>
+		<div class="icon">
+		<img src="<%= project[:thumbnail] %>" style="width:13em; cursor:pointer;"
+		onclick="onThumbnailClick('videos', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
+		</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onVideoModelCancelClick(this);">
+			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+			<div class="w3-modal-content w3-animate-zoom">
+				<video style="width:100%" controls>
+						<source src="<%= project[:video] %>" type="video/mp4" >
+						Your browser does not support the video tag.
+				</video>	
+			</div>
+		</div>
+		<% end %>
 	</div>
 </div>
 </div>

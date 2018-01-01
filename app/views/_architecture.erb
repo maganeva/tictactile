@@ -1,29 +1,29 @@
 <div class="section" id="architecture">
-<!-- <p>asd</p> -->
+
 	<div id="box2" style="margin-top: -0.5em;">
 		<div class="wrapper">
 			<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em;  font-family: myFirstFont;">architecture</h2>
 
-			<% @arch.each.with_index do |project, index| %>	
+			<% @arch.each do |project| %>
 			<div class='icon'>
-				<img style="width:10em; cursor:pointer" src=<%=project[:thumbnail]%>
-				onclick="history.pushState(null, null, window.location.href + '?mo<%=index%>dal'); document.getElementById('mo<%=index%>dal').style.display='inline';"  class="w3-hover-opacity">
-			</div><div id="mo<%=index%>dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
+				<img class="<%= if project.include?(:override_thumbnail_class) then project[:override_thumbnail_class] else "thumb01" end %>" style="cursor:pointer" src="<%= project[:thumbnail] %>"
+				onclick="onThumbnailClick('architecture', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
+			</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModelCancelClick(this);">
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-					<img id="img01" src=<%=project[:image]%>>
-					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%=project[:title]%></mark></p>
+					<img class="<%= if project.include?(:override_image_class) then project[:overrride_image_class] else "img01" end %>" src="<%= project[:image] %>">
+					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%= project[:title] %></mark></p>
 				</div>
 			</div>
 			<%end%>
 
-			<div class='icon'>
+<!-- 			<div class='icon'>
 				<img style="height:10em; cursor:pointer" src='img/Arch/17.jpg'
 				onclick="history.pushState(null, null, window.location.href + '?mo124dal'); document.getElementById('mo124dal').style.display='inline';" class="w3-hover-opacity">
 			</div><div id="mo124dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-					<img id="img011" src='img/Arch/-17.jpg'>
+					<img class="img011" src='img/Arch/-17.jpg'>
 					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 			</div><div id="mo125dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-					<img id="img011" src='img/Arch/-18.jpg'>
+					<img class="img011" src='img/Arch/-18.jpg'>
 					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
 				</div>
 			</div>
@@ -46,11 +46,11 @@
 			</div><div id="mo126dal" class="w3-modal" onclick="this.style.display='none'; var url = window.location.href; if (url.includes('?')) {var newurl = url.slice(0, url.indexOf('?')); history.pushState(null, null, newurl)};">
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-					<img id="img011" src='img/Arch/-19.jpg'>
+					<img class="img011" src='img/Arch/-19.jpg'>
 					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
 				</div>
 			</div>
-
+ -->
 		</div>
 	</div>
 </div>
