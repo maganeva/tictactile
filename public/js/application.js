@@ -82,26 +82,36 @@ $(document).ready(function(){
  	// }
 
  	window.anchorParts = function (locationHash) {
+ 		const DEBUG = false;
+ 		var debugTrace = [];
  		var locationHashParts = locationHash.split('#');
  		var anchorParts = {
  			"section": null,
  			"item": null
  		};
  		if (locationHashParts.length > 1) {
+ 			debugTrace.push(11);
  			locationHashParts = locationHashParts[1].split("/s/");
  		}
  		if (locationHashParts.length > 1) {
+ 			debugTrace.push(22);
  			locationHashParts = locationHashParts[1].split("/i/");
  			anchorParts["section"]=locationHashParts[0]
  		}
  		else {
+ 			debugTrace.push(33);
  			locationHashParts = locationHashParts[0].split("/i/");
  		}
  		if (locationHashParts.length > 1) {
+ 			debugTrace.push(44);
  			anchorParts["item"] = locationHashParts[1];
  		}
- 		else {
+ 		else if (locationHashParts[0] != "") {
+ 			debugTrace.push(55);
  			anchorParts["section"] = locationHashParts[0];
+ 		}
+ 		if (DEBUG) {
+ 			console.log(debugTrace);
  		}
  		return anchorParts;
  	}
@@ -121,20 +131,44 @@ $(document).ready(function(){
 		modelDiv.style.display='none';
 		var pathParts = anchorParts(window.location.hash);
 		history.pushState(null, null, anchor(pathParts["section"], null));
-		scrollToSection();
+		onScroll();
  	}
 
  	window.onVideoModelCancelClick = function (modelDiv) {
- 		var videoSource = $(modelDiv).find('source');
- 		var src = videoSource.attr('src');
- 		videoSource.attr('src', '');
- 		videoSource.attr('src', src);
+ 		var video = $(modelDiv).find('video').get(0);
+ 		video.pause();
+ 		video.load();
  		onModelCancelClick(modelDiv);
  	}
 
   window.onThumbnailClick = function (section, itemAnchor) {
 		history.pushState(null, null, anchor(section, itemAnchor));
 		document.getElementById(itemAnchor).style.display = 'inline';
+  }
+
+  window.onScroll = function () {
+   	var pathParts = anchorParts(window.location.hash);
+   	if (pathParts["item"] == null) {
+	   	$('.section').each(function(){
+	   		if (
+	   			$(this).offset().top < window.pageYOffset + 10
+				//begins before top
+				&& $(this).offset().top + $(this).height() > window.pageYOffset + 10
+				//but ends in visible area
+				//+ 10 allows you to change hash before it hits the top border
+				){
+	   			var hash = anchor($(this).attr('id'), null);
+	   			if (window.location.hash != hash) {
+	   				if(window.history.pushState) {
+	   					window.history.pushState(null, null, hash);
+	   				}
+	   				else {
+	   				  window.location.hash = hash;
+	   				} 
+	   			}
+	   		}
+	   	})
+	  }
   }
 
  	// window.anchorParts = function (locationHash) {
@@ -170,7 +204,6 @@ $(document).ready(function(){
 	  $('.wrapper').find('.w3-modal').each(function(index, modalDiv){
 	  	if(pathParts["item"] == $(modalDiv).attr('id')) {
 	  		var url = window.location.href;
-	  		console.log(111, pathParts["section"]);
 	  		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
 	  		$('#'+pathParts["item"]).show();
 	  		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
@@ -192,28 +225,7 @@ $(document).ready(function(){
 
   //changes the url hash for the paralax page
   $(document).bind('scroll', function (e) {
-   	var pathParts = anchorParts(window.location.hash);
-   	if (pathParts["item"] == null) {
-	   	$('.section').each(function(){
-	   		if (
-	   			$(this).offset().top < window.pageYOffset + 10
-				//begins before top
-				&& $(this).offset().top + $(this).height() > window.pageYOffset + 10
-				//but ends in visible area
-				//+ 10 allows you to change hash before it hits the top border
-				){
-	   			var hash = anchor($(this).attr('id'), null);
-	   			if (window.location.hash != hash) {
-	   				if(window.history.pushState) {
-	   					window.history.pushState(null, null, hash);
-	   				}
-	   				else {
-	   				  window.location.hash = hash;
-	   				} 
-	   			}
-	   		}
-	   	})
-	   }
+  	window.onScroll();
   });
 
    // $('.w3-hover-opacity').click(function(){
