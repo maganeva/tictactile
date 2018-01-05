@@ -237,7 +237,7 @@ get '/' do
       thumbnail: '/img/Digitalart/11.jpg',
       image: '/img/Digitalart/-11.jpg',
       title: 'Untitled',
-      item_anchor: 'u11',
+      item_anchor: 'eye',
     },
     {
       thumbnail: '/img/Digitalart/12.jpg',

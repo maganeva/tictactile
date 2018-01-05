@@ -411,3 +411,7 @@ h2 {
   background-color: rgba(0,0,0,0.9) !important;
 }
 
+.menuitem {
+  padding-right: 4em;
+  padding-left: 4em;
+  }

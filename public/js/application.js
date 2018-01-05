@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 
 
-	$("li").click(function(){
+	$(".menuitem").click(function(){
 		$("#MainMenu").css("-webkit-clip-path","polygon(0 0,0% 0,100% 100%,0% 100%)");
 		function hideMenu(){
 			$("#MainMenu").css("left","-300px");
