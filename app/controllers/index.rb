@@ -56,7 +56,7 @@ get '/' do
     {
       thumbnail: "/img/Arch/4.jpg",
       image: '/img/Arch/-4.jpg',
-      title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
+      title: 'Residence 2003 / .D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'dd4',
     },
     {

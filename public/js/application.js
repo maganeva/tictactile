@@ -43,43 +43,6 @@ $(document).ready(function(){
 
 
 
-	//Show modal with url
-
-		// if(window.location.href.indexOf('#businesscenter') != -1) {
-  //   	$("#businesscenter").show();
-  // 	}
-
- 	//stop video when modal is clicked by reseting the source
-
- 	// window.itemRegex = /(?:\/i\/[^/]*)/
- 	// window.sectionRegex = /(?:\/s\/[^/]*)/
- 	// window.anchorParts = function (locationHash) {
- 	// 	var itemMatch = itemRegex.exec(locationHash);
- 	// 	var sectionMatch = sectionRegex.exec(locationHash);
- 	// 	var anchorParts = {
- 	// 		"section": null,
- 	// 		"item": null
- 	// 	};
- 	// 	if (sectionMatch != null) {
- 	// 		anchorParts["section"] = sectionMatch[0];
- 	// 	}
- 	// 	if (itemMatch != null) {
- 	// 		anchorParts["item"] = itemMatch[0];
- 	// 	}
- 	// 	return anchorParts;
- 	// }
-
- 	// window.anchor = function (section, item) {
- 	// 	var anchor = "#";
- 	// 	if (section != null) {
- 	// 		anchor += "/s/" + section;
- 	// 	}
- 	// 	if (item != null) {
- 	// 		anchor += "/i/" + item;
- 	// 	}
- 	// 	return anchor;
- 	// }
-
  	window.anchorParts = function (locationHash) {
  		const DEBUG = false;
  		var debugTrace = [];
@@ -170,31 +133,7 @@ $(document).ready(function(){
 	  }
   }
 
- 	// window.anchorParts = function (locationHash) {
- 	// 	var locationHashParts = locationHash.replace(/^#\//, "").split("/");
- 	// 	var anchorParts = {
- 	// 		"section": null,
- 	// 		"item": null
- 	// 	};
- 	// 	if (locationHashParts[0] != "") {
- 	// 		anchorParts["section"] = locationHashParts[0];
- 	// 	}
- 	// 	if (locationHashParts.length >= 2 && locationHashParts[1] != "") {
- 	// 		anchorParts["item"] = locationHashParts[1];
- 	// 	}
- 	// 	return anchorParts;
- 	// }
-
- 	// window.anchor = function (section, item) {
- 	// 	var anchor = "#/";
- 	// 	if (section != null) {
- 	// 		anchor += section;
- 	// 	}
- 	// 	if (item != null) {
- 	// 		anchor += "/" + item;
- 	// 	}
- 	// 	return anchor;
- 	// }
+ 	
 
   // open modals if their id is in the url
   var pathParts = window.anchorParts(window.location.hash);
