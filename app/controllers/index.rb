@@ -400,7 +400,7 @@ get '/' do
     },
     {
       thumbnail: '/img/videos/tuning.jpg',
-      video: '/img/videos/Tuningin.mp4',
+      video: '/img/videos/Tuning.mp4',
       item_anchor: 'tuning',
     },
   ]
