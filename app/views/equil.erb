@@ -1,9 +1,10 @@
 
 <div id="box2">
 	<div class="equiwrapper">
-		<p style="padding-top: 2em; color: grey;font-family: myFirstFont;">EQUILIBerrATIONS 2007</p><br>
+	<!-- 	<p style="padding-top: 2em;padding-left:3em; color: grey;font-family: myFirstFont;">EQUILIBerrATIONS 2007</p><br> -->
 
 		<div class="videoscontainer">
+				<p style="padding-top: 2em; padding-left:0em; color: grey;font-family: myFirstFont;">EQUILIBerrATIONS 2007</p><br>
 			
 			<img src="/img/Install/EQUILIBerrATIONS 2007/th1.jpg" style="width:20em; cursor:pointer; padding-top:3em;"
 			onclick="onThumbnailClick(null, 'bad1');"  class="w3-hover-opacity"><h3 onclick="onThumbnailClick(null, 'bad1');" class="w3-hover-opacity" class="name" style="font-family: myFirstFont; color:grey;font-size: 11px;cursor:pointer">Breathing Assistance Device (BAD), animation</h3><br>
@@ -49,7 +50,7 @@
 				</div>
 			</div> 
 
-			<div class="text">
+			<div class="text" style="padding-top:10em; margin-right: 0em; margin-left: 2em;" load="loadImage()">
 				<p>Equiliberrations is an experimental video installation unfolding dystopian themes of a society, in which breathable air is commercialized. One part of the installation presents the design of the prosthetic Breathing Assistance Device (BAD), the only method of oxygen supply in the futuristic scenario of oxygen depletion. The second part of the installation is a synchronized video, migrating between two projectors. It deals with themes of mutating consciousness developed as a result of a morphological mutation, which provides an alternative to the functions of Breathing Assistance Device.<br><br>
 
 					The design of BAD is structurally based on gills morphology and procedurally on tracheotomy. Tracheotomy is a standard surgical procedure performed on the neck to open a direct airway through an incision in the trachea. The cut is made through the cricothyroid membrane between thyroid cartilage (Adam's apple) and cricoid cartilage. Gills are the structural prototype for providing adequate surface area to the external environment. Thin plates of tissue and branches facilitate exchange of oxygen and carbon dioxide through their thin walls. A network of spiracles filters out larger particle pollutants from the air. Then the air undergoes additional processing through an internal chemical filter. Artificial photosynthesizer compensates for insufficient oxygen supplies. The overall amphibian characteristics of BAD impart both appealing and sinister aura.<br><br>
@@ -61,21 +62,18 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 
-
-	<div id="box2" style="padding-top:2em; margin-top: -0.5em;">
-		<div class="wrapper">
+	<div id="box2" style="padding-top:2em; margin-top: -0.5em;text-align: center;">
+		<div class="equiwrapper">
 			<% (1..5).each do |n| %>	
-			<div class='icon'  style="margin: 2px";>
+			<div class='equiicon'>
 				<img style="width:12em; height: 9em;" src="/img/Install/EQUILIBerrATIONS 2007/<%=n%>.jpg">
 			</div>		
 			<%end%>
 		</div>
 	</div>
-</div>
-
-
 
 
 

@@ -37,7 +37,7 @@ body{
   width: 100%;
   background-image: url("/img/bgrnd/A.jpg");
   background-size: cover;
- /* background-attachment: fixed;*/
+  background-attachment: fixed;
 }
 #box5{
   min-height:100%;
@@ -96,8 +96,8 @@ h4 {
   width: 50px;
   position: fixed;
   top:2em;
-  right:2em;
-  margin-left: 1em;
+  left:2em;
+
   z-index: 1;
 }
 
@@ -271,7 +271,7 @@ iframe {
   min-height: 100%;
   max-width: 90%;
   margin: 0 auto;
-  margin-right: 4em;
+  margin-right: 7em;
   margin-top: -1em;
 }
 
@@ -281,6 +281,15 @@ iframe {
   display: inline-block;
   margin: 3em;
   margin-top: 1em;
+
+}
+
+.equiicon{
+  display: inline-block;
+  text-align: left;
+  margin: 1em;
+  margin-top: 1em;
+  padding-left: 0em;
 
 }
 
@@ -388,20 +397,12 @@ h2 {
     max-width: 95%;
     margin: 0 auto;
    background:rgba(0, 0, 0, 0.0);
+   margin-left: 2em;
   
   }
   
   .text{
-    color:grey;
-    text-align: left;
-    /*background-color:  red;*/
-    margin-left: 0%;
-    margin-right:0%;
-    font-size: 13px;
-    min-height:100%;
-    min-width: 100%; 
-    padding-left: 0px;
-    padding-right: 0px;
+padding:0em;
 
   }
 }

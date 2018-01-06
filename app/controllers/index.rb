@@ -398,6 +398,11 @@ get '/' do
       video: '/img/videos/0-rob-d.mp4',
       item_anchor: 'robd',
     },
+    {
+      thumbnail: '/img/videos/tuning.jpg',
+      video: '/img/videos/Tuningin.mp4',
+      item_anchor: 'tuning',
+    },
   ]
 erb :'index'
 
