@@ -5,53 +5,64 @@
 		<script src="js/three.js"></script>
 		<script>
 
-			var scene = new THREE.Scene();
-			var camera = new THREE.PerspectiveCamera( 50, window.innerWidth/window.innerHeight, 0.1, 1000 );
+			function startAnimation(parent, width, height) {
 
-			//field of view, aspect ratio, near and far clipping plane
+				var scene = new THREE.Scene();
+				var camera = new THREE.PerspectiveCamera( 50, width/height, 0.1, 1000 );
 
-			var renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.getElementById("home").appendChild( renderer.domElement );
+				//field of view, aspect ratio, near and far clipping plane
 
-			var geometry = new THREE.SphereGeometry(20, 3, 60, 50);
-			var material = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00caf5, shading: THREE.SmoothShading, transparent: true, opacity: 0.2 } );
-			var cube = new THREE.Mesh( geometry, material ); 
-			var cube1 = new THREE.Mesh( geometry, material ); 
-			scene.add( cube, cube1 );
+				var renderer = new THREE.WebGLRenderer();
+				renderer.setSize( width, height );
+				while (parent.firstChild) {
+					parent.removeChild(parent.firstChild);
+				}
+				parent.appendChild( renderer.domElement );
 
-
-
-			// 00caf5
-			var geometry = new THREE.TorusKnotGeometry( 10, 10, 200, 16);
-			var material = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00caf5, shading: THREE.SmoothShading, transparent: true, opacity: 0.2 }  );
-			var torusKnot = new THREE.Mesh( geometry, material );
-			scene.add( torusKnot );
+				var geometry = new THREE.SphereGeometry(20, 3, 60, 50);
+				var material = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00caf5, shading: THREE.SmoothShading, transparent: true, opacity: 0.2 } );
+				var cube = new THREE.Mesh( geometry, material ); 
+				var cube1 = new THREE.Mesh( geometry, material ); 
+				scene.add( cube, cube1 );
 
 
 
-			camera.position.z = 15;
-			camera.position.x = -12;
-			camera.position.y = 20;
-
-			var render = function () {
-				requestAnimationFrame( render );
-				//better than setInterval
-				cube1.rotation.x += 0.003;
-				cube1.rotation.x += 0.0012;
-				cube1.rotation.x += 0.002;
-				cube.rotation.x += 0.002;
-				cube.rotation.y += 0.0015;
-				cube.rotation.z += 0.001;
-				torusKnot.rotation.x += 0.0012;
+				// 00caf5
+				var geometry = new THREE.TorusKnotGeometry( 10, 10, 200, 16);
+				var material = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00caf5, shading: THREE.SmoothShading, transparent: true, opacity: 0.2 }  );
+				var torusKnot = new THREE.Mesh( geometry, material );
+				scene.add( torusKnot );
 
 
 
-				renderer.render(scene, camera);
-			};
+				camera.position.z = 15;
+				camera.position.x = -12;
+				camera.position.y = 20;
 
-			window.renderer = renderer;
+				var render = function () {
+					requestAnimationFrame( render );
+					//better than setInterval
+					cube1.rotation.x += 0.003;
+					cube1.rotation.x += 0.0012;
+					cube1.rotation.x += 0.002;
+					cube.rotation.x += 0.002;
+					cube.rotation.y += 0.0015;
+					cube.rotation.z += 0.001;
+					torusKnot.rotation.x += 0.0012;
 
-			render();
+
+
+					renderer.render(scene, camera);
+				};
+
+				window.renderer = renderer;
+
+				render();
+			}
+
+			startAnimation(
+				document.getElementById("home"),
+				window.innerWidth,
+				window.innerHeight);
 
 		</script>
