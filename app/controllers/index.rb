@@ -341,44 +341,74 @@ get '/' do
     {
       thumbnail: '/img/Art/5.jpg',
       image: '/img/Art/-5.jpg',
-      title: 'Untitled',
+      title: 'Untitled 2005',
       item_anchor: 'u5',
     },
     {
       thumbnail: '/img/Art/6.jpg',
       image: '/img/Art/-6.jpg',
-      title: 'Untitled',
+      title: 'Untitled 2006',
       item_anchor: 'u6',
     },
     {
       thumbnail: '/img/Art/7.jpg',
       image: '/img/Art/-7.jpg',
-      title: 'Untitled 2004',
+      title: 'Untitled 2005',
       item_anchor: 'u7',
     },
     {
       thumbnail: '/img/Art/8.jpg',
       image: '/img/Art/-8.jpg',
-      title: 'Untitled',
+      title: 'Untitled 2005',
       item_anchor: 'u8',
     },
     {
       thumbnail: '/img/Art/9.jpg',
       image: '/img/Art/-9.jpg',
-      title: 'Untitled',
+      title: 'Untitled 2006',
       item_anchor: 'u9',
     },
     {
       thumbnail: '/img/Art/10.jpg',
       image: '/img/Art/-10.jpg',
-      title: 'Untitled',
+      title: 'Untitled 2005',
       item_anchor: 'u10',
     },
     {
       thumbnail: '/img/Art/11.jpg',
       image: '/img/Art/-11.jpg',
-      title: 'Untitled',
+      title: 'Untitled 2006',
       item_anchor: 'u11',
+    },
+    {
+      thumbnail: '/img/Art/12.jpg',
+      image: '/img/Art/-12.jpg',
+      title: 'Untitled 2002',
+      item_anchor: 'u12',
+    },
+    {
+      thumbnail: '/img/Art/13.jpg',
+      image: '/img/Art/-13.jpg',
+      title: 'Untitled 2002',
+      item_anchor: 'u13',
+    },
+    {
+      thumbnail: '/img/Art/14.jpg',
+      image: '/img/Art/-14.jpg',
+      title: 'Untitled 2006',
+      item_anchor: 'u14',
+    },
+    {
+      thumbnail: '/img/Art/15.jpg',
+      image: '/img/Art/-15.jpg',
+      title: 'Untitled 2002',
+      item_anchor: 'u15',
+    },
+    {
+      thumbnail: '/img/Art/16.jpg',
+      image: '/img/Art/-16.jpg',
+      title: 'Untitled 2006',
+      item_anchor: 'u16',
     }
     ]
 
@@ -386,21 +416,25 @@ get '/' do
     {
       thumbnail: '/img/videos/anem-th.jpg',
       video: '/img/videos/a.mp4',
+      name: 'Anemic Atrhritic Animathronix 2006',
       item_anchor: 'anem',
     },
     {
       thumbnail: '/img/videos/haiku-th.jpg',
       video: '/img/videos/haiku.mp4',
+      name: 'Chaos Haiku 2002',
       item_anchor: 'haiku',
     },
     {
       thumbnail: '/img/videos/robd-th.jpg',
       video: '/img/videos/0-rob-d.mp4',
+      name: 'Music Video 2003',
       item_anchor: 'robd',
     },
     {
       thumbnail: '/img/videos/tuning.jpg',
       video: '/img/videos/Tuning.mp4',
+      name: 'Tuning In 2006',
       item_anchor: 'tuning',
     },
   ]

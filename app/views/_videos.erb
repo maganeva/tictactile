@@ -4,6 +4,7 @@
 		<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em; font-family: myFirstFont;">videos</h2>
 		<% @videos.each do |project| %>
 		<div class="icon">
+		<h3 class="name" style="font-family: myFirstFont; color:grey;"><%= project[:name] %></h3>
 		<img src="<%= project[:thumbnail] %>" style="width:13em; cursor:pointer;"
 		onclick="onThumbnailClick('videos', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
 		</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onVideoModelCancelClick(this);">
