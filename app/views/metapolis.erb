@@ -4,56 +4,48 @@
 	<div class="equiwrapper">
 		<!-- 	<p style="padding-top: 2em;padding-left:3em; color: grey;font-family: myFirstFont;">EQUILIBerrATIONS 2007</p><br> -->
 
-		<div class="videoscontainer">
-			<p style="padding-top: 2em; padding-left:0em; color: grey;font-family: myFirstFont;">Metapolis 2006</p><br>
+		<div class="videoscontainer" style="padding-top: 5em;">
+			<!-- <p style="padding-top: 2em; padding-left:0em; color: grey;font-family: myFirstFont;">Metapolis 2006</p><br> -->
 
 			<img src="/img/Install/metapolis/META2b.jpg" style="width:20em; cursor:pointer; padding-top:0em;"
 			onclick="onThumbnailClick(null, 'meta1');"  class="w3-hover-opacity"><br>
 			<div id="meta1" class="w3-modal" onclick="onModelCancelClick(this);">>
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);"	class="w3-modal-content w3-animate-zoom">
-					<img style="width:50%" src="/img/Install/metapolis/META2b.jpg" >
+					<img class="metaimage" src="/img/Install/metapolis/-META2b.jpg" >
 				</div>
 			</div>
 			
 
 
-			<img src='/img/Install/metapolis/META1b.jpg'style="width:20em; cursor:pointer; padding-top:3em;"
+			<img src='/img/Install/metapolis/META1b.jpg'style="width:20em; cursor:pointer; padding-top:1em;"
 			onclick="onThumbnailClick(null, 'poli2');"  class="w3-hover-opacity">
 			<div id="poli2" class="w3-modal" onclick="onModelCancelClick(this);">>
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);"	class="w3-modal-content w3-animate-zoom">
-					<img style="width:50%" src="/img/Install/metapolis/META1b.jpg" >
+					<img class="metaimage" src="/img/Install/metapolis/-META1b.jpg" >
 				</div>
 			</div>
 
 		</div>
 	
 
-		<div class="text" style="padding-top:6em;load="loadImage()">
+		<div class="text" style="padding-top:3em;"load="loadImage()">
 			<p style="line-height:1.8;"><br>
+				<span>METAPOLIS 2006 </span><br>
+				<span>REWALKED_-_-_-_-_-RESURFACED </span><br><br>
 				<span>PREMISES</span><br>
-				:: PASS-THROUGH ZONE ALONG SERVICE AREAS OF ACTIVE NEARBY RESTAURANTS, PARKING LOTS, GARBAGE.<br>:: SHIFTING BUILDING FUNCTIONS- DEFUNCT THEATER AND LIBRARY.<br>:: REAWAKEN MEMORY OF UNDERGROUND STREAM.<br>:: RICHNESS OF OVERLAYING SURFACES, COLORS, FUNCTIONS.<br>
+				:: Pass-through zone along service areas of active nearby restaurants, parking lots, garbage.<br>:: Shifting building functions- defunct theater and library.<br>:: Reawaken memory of underground stream.<br>:: Richness of overlaying surfaces, colors, functions.<br><br>
 				<span>GOALS</span>
-				<br>:: NON-PASSIVE PASSING BY.<br>:: REDIRECT ATTENTION TO COMPLEXITY OF SITE LAYERS.<br>:: CATALYZE BEHAVIORAL PATTERN SHIFTS.<br>:: CURIOSITY IN REWALKING-RESURFACING.<br>:: REAWAKEN MEMORY OF THE PLACE.<br>:: ADAPTIVE DEPLOYMENT ACCORDING TO SITE CONDITIONS.<br>:: CONTINUOUS TRANSITION BETWEEN GROUND AND WALLS SURFACES.<br>:: INTERPLAY BETWEEN LIGHT AND SHADOW.<br>
+				<br>:: Non-passive passing by.<br>:: Redirect attention to complexity of site layers.<br>:: Catalyze behavioral pattern shifts.<br>:: Curiosity in rewalking-resurfacing.<br>:: Reawaken memory of the place.<br>:: Aaptive deployment according to site conditions.<br>:: Continuous transition between ground and walls surfaces.<br>:: Interplay between light and shadow.<br><br>
 				<span>DESIGN</span>
-				<br>:: STAGING INTERACTIVE LIGHT AND SOUND RESURFACING MEMORY OF THEATER AND WATER STREAM.<br>:: RANDOMIZED PROGRESSION OF SIMPLE FOLDING SURFACE ALLOWS ADAPTIVE DEPLOYMENT.<br>:: FLEXIBILITY WITHIN SIMPLE INITIAL GEOMETRIES THROUGH VARIABLE  REARANGEMENTS OF TOPOLOGIES.<br>:: OPEN AND EXPANSIVE GEOMETRIES SUGGESTIVE OF ORGANIC GROUTH, PUZZLE PASSING-BY.<br>
+				<br>:: Staging interactive light and sound resurfacing memory of theater and water stream.<br>:: Randomized progression of simple folding surface allows adaptive deployment.<br>:: Flexibility within simple initial geometries through variable  rearangements of topologies.<br>:: Open and expansive geometries suggestive of organic grouth, puzzle passing-by.<br><br>
 				<span>IMPLEMENTATION</span>
-				<br>:: FOOTSTEPS ARE CONVERT INTO LIGHTS AND SOUNDS THROUGH PRESSURE SENSORS.<br>:: RUBBER-METAL QUILT HOSTS ELECTRONIC EQUIPMENT.<br>:: FLEXIBLE AND OPEN.  
+				<br>:: Footsteps are convert into lights and sounds through pressure sensors.<br>:: Rubber-metal quilt hosts electronic equipment.<br>:: Flexible and open.  
 			</p>
-		</div>
-	</div>
-</div>
 
 
-
-
-<div id="box2" style="padding-top:2em;">
-	<div class="equiwrapper1" >
-
-
-
-			<% @metapolis.each do |project| %>
+<!-- 			<% @metapolis.each do |project| %>
 			
 			<div class='equiicon2'>
 				<img style="width:14em; height: 10em; cursor:pointer;" src="<%= project[:thumbnail]%>"
@@ -62,12 +54,42 @@
 			<div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModelCancelClick(this);">
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
-					<img style="width:70%"  src="<%= project[:image] %>">
+					<img style="width:50%;"  src="<%= project[:image] %>">
 			</div>
 			</div>
-			<%end%>
+			<%end%> -->
+
+
+
+		</div>
 	</div>
 </div>
+
+
+
+
+<div id="box2" style="padding-top:1em;">
+	<div class="equiwrapper1" >
+
+
+			<% @metapolis.each do |project| %>
+			
+			<div class='equiicon2'>
+				<img style="width:14em; height: 10em; cursor:pointer;" src="<%= project[:thumbnail]%>"
+				onclick="onThumbnailClick(null, '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
+			</div>
+
+
+			<div style="text-align: center;" id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModelCancelClick(this);">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+			<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+					<img class="metaimage"  src="<%= project[:image] %>">
+			</div>
+			</div>
+
+			<%end%>
+	</div>
+</div> 
 
 
 
@@ -106,7 +128,7 @@
 				<div style="background:rgba(0, 0, 0, 0.0);"	class="w3-modal-content w3-animate-zoom">
 					<img style="width:50%" src="/img/Install/metapolis/3.jpg" >
 				</div>
-			</div> -->
+			</div> 
 
 
 	</div>

@@ -1,40 +1,19 @@
 get '/' do
 
-  # def architecture
-  #   @arch = []
-  #   @title = ['zero','Residence 2003 / D&D Harvey Architects, East Hampton, NY',
-  #     'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
-  #     'Residence 2005 / D&D Harvey Architects, East Hampton, NY',
-  #     'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
-  #     'Residence 2004 / D&D Harvey Architects, East Hampton, NY',
-  #     'Watch Store / Project with Genius Mad Architects, Sofia, Bulgaria',
-  #     'Watch Store 1999 / Project with Genius Mad Architects, Sofia, Bulgaria',
-  #     'Residence / Project with Genius Mad Architects, Sofia, Bulgaria',
-  #     'Residence / Project by Genius Mad Architects, Sofia, Bulgaria',
-  #     'Business Center / GM Architects, Sofia, Bulgaria',
-  #     'Lighthouse Cafe',
-  #     'HHJA - poster 2009',
-  #     'Restaurant',
-  #     'Business Center',
-  #     'Memorial Building'
-  #     ]
-
-
-  #     (1..15).each do |n|
-  #       @arch << {thumbnail: "img/Arch/#{n}.jpg",
-  #               image: "img/Arch/-#{n}.jpg",
-  #               title: @title[n]
-  #               }
-  #     end
-  #     p @arch
-  # end
-
-  # @arch = architecture
-
-
-
 
   @arch = [
+     {
+      thumbnail: '/img/Arch/Hotel_AXIS_GFA_2016.jpg',
+      image: '/img/Arch/-Hotel_AXIS_GFA_2016.jpg',
+      title: 'Hotel AXIS GFA 2016',
+      item_anchor: 'axis1',
+    }, 
+      {
+      thumbnail: '/img/Arch/Multifamily_Housing_AXIS_GFA_2017.jpg',
+      image: '/img/Arch/-Multifamily_Housing_AXIS_GFA_2017.jpg',
+      title: 'Multifamily Housing AXIS GFA 2017',
+      item_anchor: 'axis2',
+    }, 
     {
       thumbnail: '/img/Arch/1.jpg',
       image: '/img/Arch/-1.jpg',
@@ -56,7 +35,7 @@ get '/' do
     {
       thumbnail: "/img/Arch/4.jpg",
       image: '/img/Arch/-4.jpg',
-      title: 'Residence 2003 / .D&D Harvey Architects, East Hampton, NY',
+      title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'dd4',
     },
     {
@@ -591,19 +570,19 @@ get '/metapolis/' do
 @metapolis = [
     {
       thumbnail: '/img/Install/metapolis/1.jpg',
-      image: '/img/Install/metapolis/1.jpg',
+      image: '/img/Install/metapolis/-1.jpg',
       item_anchor: 'meta12',
       override_image_class: 'img011',
     },
     {
       thumbnail: '/img/Install/metapolis/2.jpg',
-      image: '/img/Install/metapolis/2.jpg',
+      image: '/img/Install/metapolis/-2.jpg',
       item_anchor: 'meta13',
       override_image_class: 'img011',
     },
     {
       thumbnail: '/img/Install/metapolis/3.jpg',
-      image: '/img/Install/metapolis/3.jpg',
+      image: '/img/Install/metapolis/-3.jpg',
       item_anchor: 'meta14',
       override_image_class: 'img011',
     },

@@ -254,25 +254,23 @@ iframe {
 
 }
 
-
-
 .equiwrapper{
   text-align: center;
   width: 75%;
   min-height: 100%;
   max-width: 90%;
   margin: 0 auto;
-  margin-right: 7em;
+  margin-right: 4em;
 }
 
 .equiwrapper1{
-  text-align: center;
+  text-align: left;
   width: 75%;
   min-height: 100%;
   max-width: 90%;
   margin: 0 auto;
-  margin-right: 7em;
-  padding-bottom: 3em;
+  margin-right: 4em;
+  margin-bottom: 3em;
 }
 
 .equiicon{
@@ -283,8 +281,8 @@ iframe {
 
 .equiicon2{
   display: inline-block;
-  text-align: center;
-  margin:3em;
+  margin:0em;
+  margin-right: 0.5em;
 }
 
 .icon{
@@ -310,6 +308,7 @@ h6 {
   min-height:100%;
   min-width: 35%;
   font-family: myFirstFont;
+
   
 }
 
@@ -319,9 +318,11 @@ h6 {
   float: left;
   overflow: auto
   min-height:100%;
-  min-width: 35%;
-  margin-right: 1em;
-  padding-bottom: 3em;
+  /*min-width: 35%;*/
+  margin-right: 3em;
+  padding-bottom: 1em;
+  padding:0em;
+
 }
 
 
@@ -362,12 +363,24 @@ h2 {
 .amphibiantext {
   padding:6em;
 }
-span{
-  font-size: 18px;
+
+.metaimage{
+  width: 50%;
 }
 
 
+
 @media screen and (max-width: 800px) {
+ .equiicon2{
+  padding-bottom: 0.5em;
+ }
+  .invain{
+  width: 100%;
+  }
+
+ .metaimage{
+  width: 100%;
+  }
   .img01{
     width:100%;
   }
