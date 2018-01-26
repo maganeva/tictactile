@@ -581,3 +581,33 @@ end
 get '/equil/' do
   erb :'equil'
 end
+
+get '/metapolis' do
+  redirect('/metapolis/', 301)
+end
+
+get '/metapolis/' do
+
+@metapolis = [
+    {
+      thumbnail: '/img/Install/metapolis/1.jpg',
+      image: '/img/Install/metapolis/1.jpg',
+      item_anchor: 'meta12',
+      override_image_class: 'img011',
+    },
+    {
+      thumbnail: '/img/Install/metapolis/2.jpg',
+      image: '/img/Install/metapolis/2.jpg',
+      item_anchor: 'meta13',
+      override_image_class: 'img011',
+    },
+    {
+      thumbnail: '/img/Install/metapolis/3.jpg',
+      image: '/img/Install/metapolis/3.jpg',
+      item_anchor: 'meta14',
+      override_image_class: 'img011',
+    },
+  ]
+
+  erb :'metapolis'
+end
