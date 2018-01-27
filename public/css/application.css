@@ -365,9 +365,14 @@ h2 {
 }
 
 .metaimage{
-  width: 50%;
+  width: 80%;
 }
-
+.metaimage1{
+  width: 90%;
+}
+.img0111{
+  width: 100%;
+}
 
 
 @media screen and (max-width: 800px) {

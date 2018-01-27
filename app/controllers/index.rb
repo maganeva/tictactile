@@ -5,14 +5,16 @@ get '/' do
      {
       thumbnail: '/img/Arch/Hotel_AXIS_GFA_2016.jpg',
       image: '/img/Arch/-Hotel_AXIS_GFA_2016.jpg',
-      title: 'Hotel AXIS GFA 2016',
+      title: 'Hotel 2016 / AXIS/GFA, Healdsburg, CA',
       item_anchor: 'axis1',
+      override_image_class: 'img0111'
     }, 
       {
       thumbnail: '/img/Arch/Multifamily_Housing_AXIS_GFA_2017.jpg',
       image: '/img/Arch/-Multifamily_Housing_AXIS_GFA_2017.jpg',
-      title: 'Multifamily Housing AXIS GFA 2017',
+      title: 'Multifamily Housing 2017 / AXIS/GFA, Los Angeles, CA',
       item_anchor: 'axis2',
+      override_image_class: 'img0111'
     }, 
     {
       thumbnail: '/img/Arch/1.jpg',
@@ -47,7 +49,7 @@ get '/' do
     {
       thumbnail: "/img/Arch/6.jpg",
       image: '/img/Arch/-6.jpg',
-      title: 'Watch Store / Project with Genius Mad Architects, Sofia, Bulgaria',
+      title: 'Watch Store 1999 / Project with Genius Mad Architects, Sofia, Bulgaria',
       item_anchor: 'gma1',
     },
     {
@@ -59,25 +61,25 @@ get '/' do
     {
       thumbnail: "/img/Arch/8.jpg",
       image: '/img/Arch/-8.jpg',
-      title: 'Residence / Project with Genius Mad Architects, Sofia, Bulgaria',
+      title: 'Residence 1999 / Project with Genius Mad Architects, Sofia, Bulgaria',
       item_anchor: 'gma3',
     },
     {
       thumbnail: "/img/Arch/9.jpg",
       image: '/img/Arch/-9.jpg',
-      title: 'Residence / Project by Genius Mad Architects, Sofia, Bulgaria',
+      title: 'Residence 1999 / Project by Genius Mad Architects, Sofia, Bulgaria',
       item_anchor: 'gma4',
     },
     {
       thumbnail: "/img/Arch/10.jpg",
       image: '/img/Arch/-10.jpg',
-      title: 'Business Center / GM Architects, Sofia, Bulgaria',
+      title: 'Business Center 1999 / GM Architects, Sofia, Bulgaria',
       item_anchor: 'gma5',
     },
     {
       thumbnail: "/img/Arch/11.jpg",
       image: '/img/Arch/-11.jpg',
-      title: 'Lighthouse Cafe',
+      title: 'Lighthouse Cafe 1999',
       item_anchor: 'lighthousecafe',
     },
     {
@@ -89,25 +91,25 @@ get '/' do
     {
       thumbnail: '/img/Arch/13.jpg',
       image: '/img/Arch/-13.jpg',
-      title: 'Restaurant',
+      title: 'Restaurant 1998',
       item_anchor: 'restaurant',
     },
     {
       thumbnail: '/img/Arch/14.jpg',
       image: '/img/Arch/-14.jpg',
-      title: 'Business Center',
+      title: 'Business Center 1999',
       item_anchor: 'businesscenter',
     },
     {
       thumbnail: '/img/Arch/15.jpg',
       image: '/img/Arch/-15.jpg',
-      title: 'Parametric Experiment',
+      title: 'Parametric Experiment 2017',
       item_anchor: 'parametric15',
     },
     {
       thumbnail: '/img/Arch/16.jpg',
       image: '/img/Arch/-16.jpg',
-      title: 'Memorial Building',
+      title: 'Memorial Building 2000',
       item_anchor: 'memorialbuilding',
     },
     {
@@ -125,7 +127,7 @@ get '/' do
     {
       thumbnail: '/img/Arch/17.jpg',
       image: '/img/Arch/-17.jpg',
-      title: 'Parametric Experiment',
+      title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
       override_thumbnail_class: 'thumb011',
       override_image_class: 'img011',
@@ -133,7 +135,7 @@ get '/' do
     {
       thumbnail: '/img/Arch/18.jpg',
       image: '/img/Arch/-18.jpg',
-      title: 'Parametric Experiment',
+      title: 'Parametric Experiment 2017',
       item_anchor: 'parametric18',
       override_thumbnail_class: 'thumb011',
       override_image_class: 'img011',
@@ -141,7 +143,7 @@ get '/' do
     {
       thumbnail: '/img/Arch/19.jpg',
       image: '/img/Arch/-19.jpg',
-      title: 'Parametric Experiment',
+      title: 'Parametric Experiment 2017',
       item_anchor: 'parametric19',
       override_thumbnail_class: 'thumb011',
       override_image_class: 'img011',
