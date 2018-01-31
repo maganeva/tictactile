@@ -14,7 +14,7 @@
 		</p>
 
 
-				<% @amphibians.each do |project| %>	
+<!-- 		<% @amphibians.each do |project| %>	
 		<div class='icon'>
 			<img style="width:10em; cursor:pointer" src="<%= project[:thumbnail] %>"
 			onclick="onThumbnailClick(null, '<%= project[:item_anchor] %>');" class="w3-hover-opacity">
@@ -26,7 +26,23 @@
 				<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%= project[:title] %></mark><p>
 			</div>
 		</div>
-		<%end%>
+		<%end%> -->
+
+
+		<img class="amphvid" src="/img/Install/amphibians2002/-5a.jpg" style=" cursor:pointer; padding-top:0em;"
+			onclick="onThumbnailClick(null, 'amhivid');"  class="w3-hover-opacity"><h3 onclick="onThumbnailClick(null, 'amphivid');" class="w3-hover-opacity" class="name" style="font-family: myFirstFont; color:grey;font-size: 11px;cursor:pointer">Amphibians 2003, video</h3><br>
+
+			<div id="amhivid" class="w3-modal" onclick="onVideoModelCancelClick(this);">
+				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+				<div class="w3-modal-content w3-animate-zoom">
+					<video style="width:100%" controls>
+						<source src="/img/Install/amphibians2002/amph-suit-re.mp4" type="video/mp4" >
+							Your browser does not support the video tag.
+						</video>	
+				</div>
+			</div>
+
+
 	
 	</div>
 </div>

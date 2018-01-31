@@ -375,7 +375,17 @@ h2 {
 }
 
 
+.amphvid{
+  width:30em;
+}
+
+
 @media screen and (max-width: 800px) {
+
+  .amphvid{
+  width: 20em;
+}
+
  .equiicon2{
   padding-bottom: 0.5em;
  }
