@@ -16,6 +16,65 @@ get '/' do
       item_anchor: 'axis2',
       override_image_class: 'img0111'
     }, 
+      {
+      thumbnail: '/img/Arch/attractor-d-th.jpg',
+      image: '/img/Arch/shell-14.jpg',
+      title: 'Parametric experiment 2017',
+      item_anchor: 'param2017',
+      override_image_class: 'paramimg'
+    },
+      {
+      thumbnail: '/img/Arch/15.jpg',
+      image: '/img/Arch/-15.jpg',
+      title: 'Parametric Experiment 2017',
+      override_thumbnail_class: 'thumb011',
+      item_anchor: 'parametric15',
+    },
+      {
+      thumbnail: '/img/Arch/17.jpg',
+      image: '/img/Arch/-17.jpg',
+      title: 'Parametric Experiment 2017',
+      item_anchor: 'parametric17',
+      override_thumbnail_class: 'thumb011',
+      override_image_class: 'img011',
+    }, 
+      {
+      thumbnail: '/img/Arch/16.jpg',
+      image: '/img/Arch/-16.jpg',
+      title: 'Memorial Building 2000',
+      item_anchor: 'memorialbuilding',
+      override_thumbnail_class: 'thumb011'
+    },
+      {
+      thumbnail: '/img/Arch/20.jpg',
+      image: '/img/Arch/-20.jpg',
+      title: 'Avila Design 2013',
+      item_anchor: 'ad1',
+    },
+      {
+      thumbnail: "/img/Arch/11.jpg",
+      image: '/img/Arch/-11.jpg',
+      title: 'Lighthouse Cafe 1999',
+      item_anchor: 'lighthousecafe',
+    },
+    {
+      thumbnail: '/img/Arch/12.jpg',
+      image: '/img/Arch/-12.jpg',
+      title: 'HHJA - poster 2009',
+      item_anchor: 'hhjaposter',
+    },
+    {
+      thumbnail: '/img/Arch/13.jpg',
+      image: '/img/Arch/-13.jpg',
+      title: 'Restaurant 1998',
+      item_anchor: 'restaurant',
+    },
+    {
+      thumbnail: '/img/Arch/14.jpg',
+      image: '/img/Arch/-14.jpg',
+      title: 'Business Center 1999',
+      item_anchor: 'businesscenter',
+    },
     {
       thumbnail: '/img/Arch/1.jpg',
       image: '/img/Arch/-1.jpg',
@@ -33,12 +92,6 @@ get '/' do
       image: '/img/Arch/-3.jpg',
       title: 'Residence 2005 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'dd3',
-    },
-    {
-      thumbnail: "/img/Arch/4.jpg",
-      image: '/img/Arch/-4.jpg',
-      title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
-      item_anchor: 'dd4',
     },
     {
       thumbnail: "/img/Arch/5.jpg",
@@ -77,79 +130,17 @@ get '/' do
       item_anchor: 'gma5',
     },
     {
-      thumbnail: "/img/Arch/11.jpg",
-      image: '/img/Arch/-11.jpg',
-      title: 'Lighthouse Cafe 1999',
-      item_anchor: 'lighthousecafe',
-    },
-    {
-      thumbnail: '/img/Arch/12.jpg',
-      image: '/img/Arch/-12.jpg',
-      title: 'HHJA - poster 2009',
-      item_anchor: 'hhjaposter',
-    },
-    {
-      thumbnail: '/img/Arch/13.jpg',
-      image: '/img/Arch/-13.jpg',
-      title: 'Restaurant 1998',
-      item_anchor: 'restaurant',
-    },
-    {
-      thumbnail: '/img/Arch/14.jpg',
-      image: '/img/Arch/-14.jpg',
-      title: 'Business Center 1999',
-      item_anchor: 'businesscenter',
-    },
-    {
-      thumbnail: '/img/Arch/15.jpg',
-      image: '/img/Arch/-15.jpg',
-      title: 'Parametric Experiment 2017',
-      item_anchor: 'parametric15',
-    },
-    {
-      thumbnail: '/img/Arch/16.jpg',
-      image: '/img/Arch/-16.jpg',
-      title: 'Memorial Building 2000',
-      item_anchor: 'memorialbuilding',
-    },
-    {
-      thumbnail: '/img/Arch/20.jpg',
-      image: '/img/Arch/-20.jpg',
-      title: 'Avila Design 2013',
-      item_anchor: 'ad1',
-    },
-    {
       thumbnail: '/img/Arch/21.jpg',
       image: '/img/Arch/-21.jpg',
       title: 'Avila Design 2013',
       item_anchor: 'ad2',
-    },
+    }, 
     {
-      thumbnail: '/img/Arch/17.jpg',
-      image: '/img/Arch/-17.jpg',
-      title: 'Parametric Experiment 2017',
-      item_anchor: 'parametric17',
-      override_thumbnail_class: 'thumb011',
-      override_image_class: 'img011',
+      thumbnail: "/img/Arch/4.jpg",
+      image: '/img/Arch/-4.jpg',
+      title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'dd4',
     },
-    {
-      thumbnail: '/img/Arch/18.jpg',
-      image: '/img/Arch/-18.jpg',
-      title: 'Parametric Experiment 2017',
-      item_anchor: 'parametric18',
-      override_thumbnail_class: 'thumb011',
-      override_image_class: 'img011',
-    },
-    {
-      thumbnail: '/img/Arch/19.jpg',
-      image: '/img/Arch/-19.jpg',
-      title: 'Parametric Experiment 2017',
-      item_anchor: 'parametric19',
-      override_thumbnail_class: 'thumb011',
-      override_image_class: 'img011',
-    },
-    
-    
     ]
 
 
