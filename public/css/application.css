@@ -379,13 +379,12 @@ h2 {
   width:30em;
 }
 
-.paramimg{
-  image-resolution: 144dpi;
-}
 
 
 @media screen and (max-width: 800px) {
-
+.paramimg{
+  width: 100%;
+}
   .amphvid{
   width: 20em;
 }

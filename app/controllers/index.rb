@@ -36,7 +36,7 @@ get '/' do
       title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
       override_thumbnail_class: 'thumb011',
-      override_image_class: 'img011',
+      override_image_class: 'img0111',
     }, 
       {
       thumbnail: '/img/Arch/16.jpg',
@@ -50,18 +50,21 @@ get '/' do
       image: '/img/Arch/-20.jpg',
       title: 'Avila Design 2013',
       item_anchor: 'ad1',
+      override_thumbnail_class: 'thumb011'
     },
       {
       thumbnail: "/img/Arch/11.jpg",
       image: '/img/Arch/-11.jpg',
       title: 'Lighthouse Cafe 1999',
       item_anchor: 'lighthousecafe',
+      override_thumbnail_class: 'thumb011'
     },
     {
       thumbnail: '/img/Arch/12.jpg',
       image: '/img/Arch/-12.jpg',
       title: 'HHJA - poster 2009',
       item_anchor: 'hhjaposter',
+
     },
     {
       thumbnail: '/img/Arch/13.jpg',
