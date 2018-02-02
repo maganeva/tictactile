@@ -55,7 +55,7 @@ get '/' do
       {
       thumbnail: "/img/Arch/11.jpg",
       image: '/img/Arch/-11.jpg',
-      title: 'Lighthouse Cafe 1999',
+      title: 'Lighthouse Cafe 1998',
       item_anchor: 'lighthousecafe',
       override_thumbnail_class: 'thumb011'
     },
@@ -138,6 +138,60 @@ get '/' do
       title: 'Avila Design 2013',
       item_anchor: 'ad2',
     }, 
+    {
+      thumbnail: "/img/Arch/18.jpg",
+      image: '/img/Arch/-18.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarch5',
+    },
+      {
+      thumbnail: "/img/Arch/18a.jpg",
+      image: '/img/Arch/-18a.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarch18',
+    },
+      {
+      thumbnail: "/img/Arch/18b.jpg",
+      image: '/img/Arch/-18b.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarc51',
+    },
+      {
+      thumbnail: "/img/Arch/19.jpg",
+      image: '/img/Arch/-19.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarch4',
+    },
+      {
+      thumbnail: "/img/Arch/25.jpg",
+      image: '/img/Arch/-25.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddar14',
+    },
+      {
+      thumbnail: "/img/Arch/26.jpg",
+      image: '/img/Arch/-26.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarc004',
+    },
+     {
+      thumbnail: "/img/Arch/27.jpg",
+      image: '/img/Arch/-27.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarch43',
+    },
+    {
+      thumbnail: "/img/Arch/24.jpg",
+      image: '/img/Arch/-24.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'dda434',
+    },
+          {
+      thumbnail: "/img/Arch/28.jpg",
+      image: '/img/Arch/-28.jpg',
+      title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
+      item_anchor: 'ddarch456',
+    },
     {
       thumbnail: "/img/Arch/4.jpg",
       image: '/img/Arch/-4.jpg',
