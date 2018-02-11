@@ -90,7 +90,7 @@ Now confirm that only the expected files have been added or modified using the f
 git status
 ```
 
-The colored text in the output fo the previous command should identify the added and modified files.  `modified:  Gemfile.lock` should be red.  If `Gemfile.lock` isn't red or if unexpected filenames appear, something has gone wrong.  It would be best to ask for assistance.
+The colored text in the output of the previous command should identify the added and modified files.  `modified:  Gemfile.lock` should be red.  If `Gemfile.lock` isn't red or if unexpected filenames appear, something has gone wrong.  It would be best to ask for assistance.
 
 If the output of `git status` looks reasonable, create the commit using a command like the following.  You can specify any message in the quotes.
 ```
