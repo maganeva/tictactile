@@ -22,6 +22,11 @@ d:
 cd \website\git\tictactile
 ```
 
+Ensure that you have the latest changes by pulling from Heroku using the following command:
+```
+git pull heroku master
+```
+
 Open the Sublime Text editor by entering the following command:
 ```
 subl .
