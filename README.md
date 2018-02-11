@@ -80,12 +80,17 @@ Now stage a commit of the changed files using the following command:
 git add .
 ```
 
+Now remove `Gemfile.lock` from the staged commit using:
+```
+git reset Gemfile.lock
+```
+
 Now confirm that only the expected files have been added or modified using the following command:
 ```
 git status
 ```
 
-The colored text in the output fo the previous command should identify the added and modified files.  If a huge number of files appears, something has gone wrong.  It would be best to ask for assistance.
+The colored text in the output fo the previous command should identify the added and modified files.  `modified:  Gemfile.lock` should be red.  If `Gemfile.lock` isn't red or if unexpected filenames appear, something has gone wrong.  It would be best to ask for assistance.
 
 If the output of `git status` looks reasonable, create the commit using a command like the following.  You can specify any message in the quotes.
 ```
@@ -118,4 +123,4 @@ If the video doesn't play on the website, you may need to transcode it with the 
 
 If the wrong image opens when you click a thumbnail, ensure that the `item_anchor` values for the two items are different.
 
-If either the thumbnail or the image is renders too big or too small, you may have to add or remove the `override_thumbnail_class` or `override_image_class` properties for the item.  Try to follow the example of another item that's tall or wide.
+If either the thumbnail or the image renders too big or too small, you may have to add or remove the `override_thumbnail_class` or `override_image_class` properties for the item.  Try to follow the example of another item that's tall or wide.
