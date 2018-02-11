@@ -53,7 +53,7 @@ Change the `thumbnail` filename.
 
 Change the `image` or `video` filename.
 
-Change the `title`
+Change the `title`.
 
 Change the `item_anchor`.  This is the text that will appear at the end of the URL when you've clicked the item.  It should be unique.  Scan all of the lists to ensure that your new value hadn't been used for another item's `item_anchor`.
 
@@ -69,6 +69,42 @@ http://localhost:3000
 If you had the relevant page open already in Chrome, use Shift+Reload to reload the page fully.
 
 If the image or video doesn't display as you expect, see the [troubleshooting](#troubleshooting) section.
+
+
+### to deploy changes to the website
+
+In the Command Prompt with Ruby and Rails window, ensure that you're in the correct directory.  Enter `pwd`.  It should print `/d/website/git/tictactile`.  If it doesn't, follow the first few steps in the [development](#development) section to get to open the correct directory.
+
+Now stage a commit of the changed files using the following command:
+```
+git add .
+```
+
+Now confirm that only the expected files have been added or modified using the following command:
+```
+git status
+```
+
+The colored text in the output fo the previous command should identify the added and modified files.  If a huge number of files appears, something has gone wrong.  It would be best to ask for assistance.
+
+If the output of `git status` looks reasonable, create the commit using a command like the following.  You can specify any message in the quotes.
+```
+git commit -m "added digital art item"
+```
+
+Push the change to Heroku using:
+```
+git push heroku master
+```
+
+That command will take some time, and it prints out a lot of stuff as it's working.  It should finish with text like this:
+```
+remote: Verifying deploy... done.
+To https://git.heroku.com/tictactile.git
+   5708ace..3521a1a  master -> master
+```
+
+Now confirm that the change is live by visiting the website in Chrome and doing Shift+Reload to load the page.
 
 ### troubleshooting
 
