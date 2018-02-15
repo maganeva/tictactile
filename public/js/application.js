@@ -103,6 +103,7 @@ $(document).ready(function(){
  	}
 
  	window.onModelCancelClick = function (modelDiv) {
+ 		
 		modelDiv.style.display='none';
 		var pathParts = anchorParts(window.location.hash);
 		history.pushState(null, null, anchor(pathParts["section"], null));
@@ -120,6 +121,18 @@ $(document).ready(function(){
 		history.pushState(null, null, anchor(section, itemAnchor));
 		document.getElementById(itemAnchor).style.display = 'inline';
   }
+
+
+
+  window.onNextModalClick = function (event, section, currentItemAnchor, newItemAnchor) {
+  	event.stopPropagation();
+    document.getElementById(currentItemAnchor).style.display = 'none';
+		document.getElementById(newItemAnchor).style.display = 'inline';
+  	history.pushState(null, null, anchor(section, newItemAnchor));
+ 
+  }
+
+
 
   window.onScroll = function () {
    	var pathParts = anchorParts(window.location.hash);

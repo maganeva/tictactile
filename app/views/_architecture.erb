@@ -4,18 +4,36 @@
 		<div class="wrapper">
 			<h2 style="font-size: 20px; padding-top: 4em; padding-bottom: 3em;  font-family: myFirstFont;">architecture</h2>
 
-			<% @arch.each do |project| %>
+			<% ([nil] + @arch + [nil]).each_cons(3) do |previous_project, project, next_project| %>
 			<div class='icon'>
 				<img class="<%= if project.include?(:override_thumbnail_class) then project[:override_thumbnail_class] else 'thumb01'  end %>" style="cursor:pointer" src="<%= project[:thumbnail] %>"
 				onclick="onThumbnailClick('architecture', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
 			</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModelCancelClick(this);">
 				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
+
+					
 					<img class="<%= if project.include?(:override_image_class) then project[:override_image_class] else 'img01' end %>"  src="<%= project[:image] %>">
-					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark"><%= project[:title] %></mark></p>
+
+
+					<p id="caption" style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;">
+
+					<% if !previous_project.nil? %>
+						<span><button style='background:rgba(0, 0, 0, 0.0);color:#00caf5;border:black;' onclick="onNextModalClick(event,'architecture', '<%= project[:item_anchor] %>', '<%= previous_project[:item_anchor] %>');">&#10094;</button></span>
+					<% end %>
+
+					<mark class="mark"><%= project[:title] %></mark>
+
+					<% if !next_project.nil? %>
+						<span><button style='background:rgba(0, 0, 0, 0.0);color:#00caf5;border:black;' onclick="onNextModalClick(event, 'architecture', '<%= project[:item_anchor] %>', '<%= next_project[:item_anchor] %>');">&#10095;</button></span>
+					<% end %>
+
+					</p>
+					
 				</div>
 			</div>
 			<%end%>
+
 
 <!-- 			<div class='icon'>
 				<img style="height:10em; cursor:pointer" src='img/Arch/17.jpg'
@@ -50,9 +68,9 @@
 					<p style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;"><mark class="mark">Parametric Experiment</mark></p>
 				</div>
 			</div>
- -->
-		</div>
+		-->
 	</div>
+</div>
 </div>
 
 
