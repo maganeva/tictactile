@@ -2,6 +2,13 @@ get '/' do
 
 
   @arch = [
+    {
+      thumbnail: '/img/Arch/Shell shelter.jpg',
+      image: '/img/Arch/-Shell shelter.jpg',
+      title: 'Shell Shelter 2018 / Sofia, project with DesignMorphine, Zdravka, Iva, Snejina',
+      item_anchor: 'shelter1',
+      override_image_class: 'img0111'
+    },
      {
       thumbnail: '/img/Arch/Hotel_AXIS_GFA_2016.jpg',
       image: '/img/Arch/-Hotel_AXIS_GFA_2016.jpg',
@@ -197,14 +204,7 @@ get '/' do
       image: '/img/Arch/-4.jpg',
       title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'dd4',
-    },
-    {
-      thumbnail: '/img/Arch/Shell shelter.jpg',
-      image: '/img/Arch/-Shell shelter.jpg',
-      title: 'Shell Shelter 2018 / Sofia, project with DesignMorphine, Zdravka, Iva, Snejina',
-      item_anchor: 'shelter1',
-      override_image_class: 'img0111'
-    },
+    }
     ]
 
 
