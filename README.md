@@ -129,3 +129,87 @@ If the video doesn't play on the website, you may need to transcode it with the 
 If the wrong image opens when you click a thumbnail, ensure that the `item_anchor` values for the two items are different.
 
 If either the thumbnail or the image renders too big or too small, you may have to add or remove the `override_thumbnail_class` or `override_image_class` properties for the item.  Try to follow the example of another item that's tall or wide.
+
+### development environment setup on Ubuntu
+
+Install heroku and clone the repo
+
+```
+curl https://cli-assets.heroku.com/install.sh | sh
+
+heroku login -i
+
+heroku git:clone -a tictactile
+```
+
+Install a ruby version manager.  This example uses `asdf`.
+
+```
+echo 'Follow instructions at https://asdf-vm.com/#/core-manage-asdf-vm ...'
+
+git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
+cd $HOME/.asdf
+git checkout "$(git describe --abbrev=0 --tags)"
+
+echo 'Ensure that the OS is up-to-date...'
+
+sudo apt update
+
+sudo apt upgrade
+
+echo 'Install plugin dependencies...'
+
+sudo apt install \
+  automake autoconf libreadline-dev \
+  libncurses-dev libssl-dev libyaml-dev \
+  libxslt-dev libffi-dev libtool unixodbc-dev \
+  unzip curl build-essential ruby-build
+
+echo 'Enable asdf plugin for oh-my-zsh...'
+
+sed -i '/^plugins=(/a \ \ asdf' $HOME/.zshrc
+
+echo 'Restart the shell...'
+
+exit
+
+echo 'Install asdf-ruby...'
+
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+
+echo 'Configure asdf-ruby to install bundler and pry automatically for each ruby version...'
+cat << EOF >$HOME/.default-gems
+bundler
+pry
+EOF
+
+echo 'Configure asdf to obey common environment configuration files...'
+
+cat << EOF >$HOME/.asdfrc
+legacy_version_file = yes
+EOF
+
+echo 'Install ruby and rails...'
+
+asdf install ruby 2.5.1
+
+echo 'Install postgres gem dependency...'
+
+sudo apt install libpq-dev
+
+echo 'Install gems...'
+
+bundle install
+
+echo 'Start the puma server...'
+
+bundle exec puma
+
+echo 'If you haven't set your git identity, do so using commands like the following...'
+
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+git config --global core.editor "vim"
+```
+
+
