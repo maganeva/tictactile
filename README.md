@@ -191,7 +191,7 @@ EOF
 
 echo 'Install ruby and rails...'
 
-asdf install ruby 2.5.1
+asdf install ruby $(cat ./.ruby-version)
 
 echo 'Install postgres gem dependency...'
 
@@ -205,11 +205,14 @@ echo 'Start the puma server...'
 
 bundle exec puma
 
-echo 'If you haven't set your git identity, do so using commands like the following...'
+echo 'If you haven't set your git config, do so using commands like the following...'
 
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
 git config --global core.editor "vim"
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
 ```
-
 
