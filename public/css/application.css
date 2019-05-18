@@ -191,11 +191,16 @@ ul li:hover .line{
   cursor: pointer;
 }
 
+div .menuitem {
+  text-decoration: none;
+  font-family: myFirstFont;
+  color:#00caf5;
+}
+
 a {
   text-decoration: none;
   font-family: myFirstFont;
   color: #1fcaa7;
- 
 }
 
 .button {

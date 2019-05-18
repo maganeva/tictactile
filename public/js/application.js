@@ -118,21 +118,60 @@ $(document).ready(function(){
  	}
 
   window.onThumbnailClick = function (section, itemAnchor) {
-		history.pushState(null, null, anchor(section, itemAnchor));
-		document.getElementById(itemAnchor).style.display = 'inline';
+    history.pushState(null, null, anchor(section, itemAnchor));
+    window.showModalItem(itemAnchor);
   }
-
-
 
   window.onNextModalClick = function (event, section, currentItemAnchor, newItemAnchor) {
-  	event.stopPropagation();
-    document.getElementById(currentItemAnchor).style.display = 'none';
-		document.getElementById(newItemAnchor).style.display = 'inline';
-  	history.pushState(null, null, anchor(section, newItemAnchor));
- 
+	if (event != null) {  
+	  event.stopPropagation();
+	}
+	window.showNextModalItem(section, currentItemAnchor, newItemAnchor);
   }
 
+  window.isIndexPage = function () {
+	return (window.location.pathname == '/');
+  }
 
+  window.onMenuClick = function (event, section) {
+	if (window.isIndexPage()) {
+	  document.getElementById(section).scrollIntoView({behavior: "smooth"});
+	  window.setTimeout(function () { window.onScroll() }, 500)
+	}
+	else {
+	  window.location.href = '/' + anchor(section);
+	}
+  }
+
+  window.showNextModalItem = function (section, currentItemAnchor, newItemAnchor) {
+	document.getElementById(currentItemAnchor).style.display = 'none';
+	window.showModalItem(newItemAnchor);
+  	history.pushState(null, null, anchor(section, newItemAnchor));
+  }
+
+  window.showNextModalItemViaKeydown = function (newItemAnchorAttributeName) {
+	if (displayedAnchor in window) {
+	  var displayedItem = document.getElementById(window.displayedAnchor)
+	  var section = displayedItem.getAttribute("data-section");
+	  var newItemAnchor = displayedItem.getAttribute(newItemAnchorAttributeName);
+	  if (newItemAnchor != '') {
+	    window.showNextModalItem(section, window.displayedAnchor, newItemAnchor);
+	  }
+	}
+  }
+
+  window.showModalItem = function (itemAnchor) {
+	document.getElementById(itemAnchor).style.display = 'inline';
+	window.displayedAnchor = itemAnchor;
+  }
+
+  $(window).on('hashchange', function() {
+	if (displayedAnchor in window) {
+	  var pathParts = anchorParts(window.location.hash);
+	  document.getElementById(window.displayedAnchor).style.display = 'none';
+	  window.showModalItem(pathParts.item);
+	}
+  });
 
   window.onScroll = function () {
    	var pathParts = anchorParts(window.location.hash);
@@ -169,7 +208,7 @@ $(document).ready(function(){
 	  	if(pathParts["item"] == $(modalDiv).attr('id')) {
 	  		var url = window.location.href;
 	  		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
-	  		$('#'+pathParts["item"]).show();
+			window.showModalItem(pathParts["item"]);
 	  		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
 	  	}
 	  });
@@ -182,7 +221,7 @@ $(document).ready(function(){
   $('.equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(index, modalDiv){
   	var id = $(modalDiv).attr('id');
   	if(pathParts["item"] == id) {
-  		$('#'+id).show();
+		window.showModalItem(pathParts["item"]);
   		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
   	}
   });
@@ -190,6 +229,19 @@ $(document).ready(function(){
   //changes the url hash for the paralax page
   $(document).bind('scroll', function (e) {
   	window.onScroll();
+  });
+
+  $(document).bind('keydown', function (e) {
+    var arrow = { left: 37, right: 39 };
+
+    switch (e.which) {
+      case arrow.left:
+		window.showNextModalItemViaKeydown("data-previous-item-anchor");
+        break;
+	  case arrow.right:
+		window.showNextModalItemViaKeydown("data-next-item-anchor");
+        break;
+    }
   });
 
    // $('.w3-hover-opacity').click(function(){
@@ -206,7 +258,7 @@ $(document).ready(function(){
 			});
 		}
 		else {
-			document.getElementById(pathParts['item']).style.display = 'inline';
+			window.showModalItem(pathParts["item"]);  
 		}
 	});
 
