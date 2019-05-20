@@ -338,12 +338,106 @@ h2 {
   border-radius:3px;
 }
 
+.thumb-wide-left {
+  width: 10em;
+  height: 10em;
+  cursor: pointer;
+  background-size: auto 10em;
+  background-repeat: no-repeat;
+  background-position: left;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb-wide-left:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+.thumb-wide-center {
+  width: 10em;
+  height: 10em;
+  cursor: pointer;
+  background-size: auto 10em;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb-wide-center:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+.thumb-wide-right {
+  width: 10em;
+  height: 10em;
+  cursor: pointer;
+  background-size: auto 10em;
+  background-repeat: no-repeat;
+  background-position: right;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb-wide-right:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+.thumb-tall-top {
+  width: 10em;
+  height: 10em;
+  cursor: pointer;
+  background-size: 10em auto;
+  background-repeat: no-repeat;
+  background-position: top;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb-tall-top:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+.thumb-tall-center {
+  width: 10em;
+  height: 10em;
+  cursor: pointer;
+  background-size: 10em auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb-tall-center:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
 .thumb01 {
   width: 10em;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb01:hover {
+  -webkit-filter: none;
+  filter: none;
 }
 
 .thumb011 {
   height: 10em;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.thumb011:hover {
+  -webkit-filter: none;
+  filter: none;
 }
 
 .img01 {
