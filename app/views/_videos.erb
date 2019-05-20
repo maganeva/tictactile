@@ -5,7 +5,7 @@
 		<% @videos.each do |project| %>
 		<div class="icon">
 		<h3 class="name" style="font-family: myFirstFont; color:grey;"><%= project[:name] %></h3>
-		<img src="<%= project[:thumbnail] %>" style="width:13em; cursor:pointer;"
+		<img class="video-thumb" src="<%= project[:thumbnail] %>"
 		onclick="onVideoThumbnailClick('videos', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
 		</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onVideoModelCancelClick(this);">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>

@@ -443,6 +443,31 @@ h2 {
   filter: none;
 }
 
+.installation-thumb {
+  width:12em;
+  height:8em;
+  cursor:pointer;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.installation-thumb:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+.video-thumb {
+  width:13em;
+  cursor:pointer;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.video-thumb:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
 .img01 {
   height: 100%;
 }
