@@ -339,10 +339,10 @@ h2 {
 }
 
 .thumb-wide-left {
-  width: 10em;
-  height: 10em;
+  width: 15em;
+  height: 15em;
   cursor: pointer;
-  background-size: auto 10em;
+  background-size: auto 15em;
   background-repeat: no-repeat;
   background-position: left;
   -webkit-filter: grayscale(100%);
@@ -355,10 +355,10 @@ h2 {
 }
 
 .thumb-wide-center {
-  width: 10em;
-  height: 10em;
+  width: 15em;
+  height: 15em;
   cursor: pointer;
-  background-size: auto 10em;
+  background-size: auto 15em;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-filter: grayscale(100%);
@@ -371,10 +371,10 @@ h2 {
 }
 
 .thumb-wide-right {
-  width: 10em;
-  height: 10em;
+  width: 15em;
+  height: 15em;
   cursor: pointer;
-  background-size: auto 10em;
+  background-size: auto 15em;
   background-repeat: no-repeat;
   background-position: right;
   -webkit-filter: grayscale(100%);
@@ -387,10 +387,10 @@ h2 {
 }
 
 .thumb-tall-top {
-  width: 10em;
-  height: 10em;
+  width: 15em;
+  height: 15em;
   cursor: pointer;
-  background-size: 10em auto;
+  background-size: 15em auto;
   background-repeat: no-repeat;
   background-position: top;
   -webkit-filter: grayscale(100%);
@@ -403,10 +403,10 @@ h2 {
 }
 
 .thumb-tall-center {
-  width: 10em;
-  height: 10em;
+  width: 15em;
+  height: 15em;
   cursor: pointer;
-  background-size: 10em auto;
+  background-size: 15em auto;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-filter: grayscale(100%);
