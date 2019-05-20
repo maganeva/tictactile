@@ -3,25 +3,40 @@ get '/' do
 
   @arch = [
     {
+      thumbnail: '/img/Arch/ShellShelters1.jpg',
+      image: '/img/Arch/ShellShelters1.jpg',
+      title: 'Shell Shelters 2018',
+      item_anchor: 'shell1',
+      override_thumbnail_class: 'thumb-wide-left',
+      override_image_class: 'img0111',
+    },
+    {
+      thumbnail: '/img/Arch/ShellShelters2.jpg',
+      image: '/img/Arch/ShellShelters2.jpg',
+      title: 'Shell Shelters 2018',
+      item_anchor: 'shell2',
+      override_image_class: 'img0111',
+    },
+    {
       thumbnail: '/img/Arch/-Shell shelter.jpg',
       image: '/img/Arch/-Shell shelter.jpg',
-      title: 'Shell Shelter 2018 / Sofia, project with DesignMorphine, Zdravka, Iva, Snejina',
+      title: 'Urban Connection 2018 / Sofia, project with DesignMorphine, Zdravka, Iva, Snejina',
       item_anchor: 'shelter1',
-      override_image_class: 'img0111'
+      override_image_class: 'img0111',
     },
      {
-      thumbnail: '/img/Arch/-Hotel_AXIS_GFA_2016.jpg',
-      image: '/img/Arch/-Hotel_AXIS_GFA_2016.jpg',
+      thumbnail: '/img/Arch/-Hotel AXIS.jpg',
+      image: '/img/Arch/-Hotel AXIS.jpg',
       title: 'Hotel 2016 / AXIS/GFA, Healdsburg, CA',
       item_anchor: 'axis1',
-      override_image_class: 'img0111'
+      override_image_class: 'img0111',
     }, 
       {
       thumbnail: '/img/Arch/-Multifamily_Housing_AXIS_GFA_2017.jpg',
       image: '/img/Arch/-Multifamily_Housing_AXIS_GFA_2017.jpg',
       title: 'Multifamily Housing 2017 / AXIS/GFA, Los Angeles, CA',
       item_anchor: 'axis2',
-      override_image_class: 'img0111'
+      override_image_class: 'img0111',
     }, 
       {
       thumbnail: '/img/Arch/shell-14.jpg',
@@ -30,7 +45,7 @@ get '/' do
       title: 'Parametric experiment 2017',
       item_anchor: 'param2017',
       override_thumbnail_class: 'thumb-wide-left',
-      override_image_class: 'paramimg'
+      override_image_class: 'paramimg',
     },
       {
       thumbnail: '/img/Arch/-15.jpg',
