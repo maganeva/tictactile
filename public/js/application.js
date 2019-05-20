@@ -237,14 +237,18 @@ $(document).ready(function(){
 	  	}
 	  });
 	}
-	else if (pathParts["section"] != null) {
-		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
-		if (pathParts["section"] == "home") {
+	else if (window.location.pathname == '/') {
+		// ^^^ Open menu only on the index page, not on 'installations' pages
+		// Open menu for empty section or 'home' section
+		if (pathParts["section"] != null) {
+			$(window).scrollTop($("#"+pathParts["section"]).offset().top);
+			if (pathParts["section"] == "home") {
+				window.showMenuSidebar();
+			}
+		}
+		else {
 			window.showMenuSidebar();
 		}
-	}
-	else {
-		window.showMenuSidebar();
 	}
 
   // open modals if their id is in the url for pages not included in the parallax(installations, bodyscapes, equilibrium)
