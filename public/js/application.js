@@ -138,7 +138,7 @@ $(document).ready(function(){
     return (window.location.pathname == '/');
   }
 
-  window.onMenuClick = function (event, section) {
+  window.onMenuItemClick = function (event, section) {
     if (window.isIndexPage()) {
       document.getElementById(section).scrollIntoView({behavior: "smooth"});
       window.setTimeout(function () { window.onScroll() }, 500)
@@ -239,6 +239,12 @@ $(document).ready(function(){
 	}
 	else if (pathParts["section"] != null) {
 		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
+		if (pathParts["section"] == "home") {
+			window.showMenuSidebar();
+		}
+	}
+	else {
+		window.showMenuSidebar();
 	}
 
   // open modals if their id is in the url for pages not included in the parallax(installations, bodyscapes, equilibrium)
