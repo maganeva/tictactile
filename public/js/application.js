@@ -111,58 +111,76 @@ $(document).ready(function(){
  	}
 
  	window.onVideoModelCancelClick = function (modelDiv) {
- 		var video = $(modelDiv).find('video').get(0);
- 		video.pause();
- 		video.load();
- 		onModelCancelClick(modelDiv);
+ 	  var video = $(modelDiv).find('video').get(0);
+ 	  video.pause();
+ 	  video.load();
+ 	  onModelCancelClick(modelDiv);
  	}
 
   window.onThumbnailClick = function (section, itemAnchor) {
     history.pushState(null, null, anchor(section, itemAnchor));
     window.showModalItem(itemAnchor);
   }
+	
+  window.onVideoThumbnailClick = function (section, itemAnchor) {
+    history.pushState(null, null, anchor(section, itemAnchor));
+		window.showModalVideoItem(itemAnchor);
+  }
 
   window.onNextModalClick = function (event, section, currentItemAnchor, newItemAnchor) {
-	if (event != null) {  
-	  event.stopPropagation();
-	}
-	window.showNextModalItem(section, currentItemAnchor, newItemAnchor);
+    if (event != null) {  
+      event.stopPropagation();
+    }
+    window.showNextModalItem(section, currentItemAnchor, newItemAnchor);
   }
 
   window.isIndexPage = function () {
-	return (window.location.pathname == '/');
+    return (window.location.pathname == '/');
   }
 
   window.onMenuClick = function (event, section) {
-	if (window.isIndexPage()) {
-	  document.getElementById(section).scrollIntoView({behavior: "smooth"});
-	  window.setTimeout(function () { window.onScroll() }, 500)
-	}
-	else {
-	  window.location.href = '/' + anchor(section);
-	}
+    if (window.isIndexPage()) {
+      document.getElementById(section).scrollIntoView({behavior: "smooth"});
+      window.setTimeout(function () { window.onScroll() }, 500)
+    }
+    else {
+      window.location.href = '/' + anchor(section);
+    }
   }
 
   window.showNextModalItem = function (section, currentItemAnchor, newItemAnchor) {
-	document.getElementById(currentItemAnchor).style.display = 'none';
-	window.showModalItem(newItemAnchor);
-  	history.pushState(null, null, anchor(section, newItemAnchor));
+    document.getElementById(currentItemAnchor).style.display = 'none';
+    window.showModalItem(newItemAnchor);
+    history.pushState(null, null, anchor(section, newItemAnchor));
   }
 
   window.showNextModalItemViaKeydown = function (newItemAnchorAttributeName) {
-	if (displayedAnchor in window) {
-	  var displayedItem = document.getElementById(window.displayedAnchor)
-	  var section = displayedItem.getAttribute("data-section");
-	  var newItemAnchor = displayedItem.getAttribute(newItemAnchorAttributeName);
-	  if (newItemAnchor != '') {
-	    window.showNextModalItem(section, window.displayedAnchor, newItemAnchor);
-	  }
-	}
+    if (displayedAnchor in window) {
+      var displayedItem = document.getElementById(window.displayedAnchor)
+      var section = displayedItem.getAttribute("data-section");
+      var newItemAnchor = displayedItem.getAttribute(newItemAnchorAttributeName);
+      if (newItemAnchor != '') {
+        window.showNextModalItem(section, window.displayedAnchor, newItemAnchor);
+      }
+    }
   }
 
   window.showModalItem = function (itemAnchor) {
-	document.getElementById(itemAnchor).style.display = 'inline';
-	window.displayedAnchor = itemAnchor;
+	  document.getElementById(itemAnchor).style.display = 'inline';
+	  window.displayedAnchor = itemAnchor;
+	}
+
+  window.showModalVideoItem = function (itemAnchor) {
+    var modelDiv = document.getElementById(itemAnchor);
+		var source = $(modelDiv).find('source').get(0);
+		var videoUrl = source.getAttribute("data-video-url");
+    if (source.getAttribute("src") != videoUrl) {
+      var video = $(modelDiv).find('video').get(0);
+      video.pause();
+      source.setAttribute("src", videoUrl);
+      video.load();		
+    }
+    window.showModalItem(itemAnchor);
   }
 
   $(window).on('hashchange', function() {
@@ -205,10 +223,16 @@ $(document).ready(function(){
 
   if (pathParts["item"] != null) {
 	  $('.wrapper').find('.w3-modal').each(function(index, modalDiv){
-	  	if(pathParts["item"] == $(modalDiv).attr('id')) {
+	  	if (pathParts["item"] == $(modalDiv).attr('id')) {
 	  		var url = window.location.href;
 	  		$(window).scrollTop($("#"+pathParts["section"]).offset().top);
-			window.showModalItem(pathParts["item"]);
+				if (pathParts["section"] == "videos") {
+					window.showModalVideoItem(pathParts["item"]);
+				}
+				else {
+					window.showModalItem(pathParts["item"]);
+				}
+				
 	  		history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
 	  	}
 	  });
