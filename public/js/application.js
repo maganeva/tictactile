@@ -119,19 +119,19 @@ $(document).ready(function(){
 
   window.onThumbnailClick = function (section, itemAnchor) {
     history.pushState(null, null, anchor(section, itemAnchor));
-    window.showModalItem(itemAnchor);
+    showModalItem(itemAnchor);
   }
 	
   window.onVideoThumbnailClick = function (section, itemAnchor) {
     history.pushState(null, null, anchor(section, itemAnchor));
-		window.showModalVideoItem(itemAnchor);
+		showModalVideoItem(itemAnchor);
   }
 
   window.onNextModalClick = function (event, section, currentItemAnchor, newItemAnchor) {
     if (event != null) {  
       event.stopPropagation();
     }
-    window.showNextModalItem(section, currentItemAnchor, newItemAnchor);
+    showNextModalItem(section, currentItemAnchor, newItemAnchor);
   }
 
   window.isIndexPage = function () {
@@ -139,9 +139,8 @@ $(document).ready(function(){
   }
 
   window.onMenuItemClick = function (event, section) {
-    if (window.isIndexPage()) {
+    if (isIndexPage()) {
       document.getElementById(section).scrollIntoView({behavior: "smooth"});
-      window.setTimeout(function () { window.onScroll() }, 500)
     }
     else {
       window.location.href = '/' + anchor(section);
@@ -150,7 +149,7 @@ $(document).ready(function(){
 
   window.showNextModalItem = function (section, currentItemAnchor, newItemAnchor) {
     document.getElementById(currentItemAnchor).style.display = 'none';
-    window.showModalItem(newItemAnchor);
+    showModalItem(newItemAnchor);
     history.pushState(null, null, anchor(section, newItemAnchor));
   }
 
@@ -160,7 +159,7 @@ $(document).ready(function(){
       var section = displayedItem.getAttribute("data-section");
       var newItemAnchor = displayedItem.getAttribute(newItemAnchorAttributeName);
       if (newItemAnchor != '') {
-        window.showNextModalItem(section, window.displayedAnchor, newItemAnchor);
+        showNextModalItem(section, window.displayedAnchor, newItemAnchor);
       }
     }
   }
@@ -180,7 +179,7 @@ $(document).ready(function(){
       source.setAttribute("src", videoUrl);
       video.load();		
     }
-    window.showModalItem(itemAnchor);
+    showModalItem(itemAnchor);
   }
 
   $(window).on('hashchange', function() {
@@ -237,17 +236,17 @@ $(document).ready(function(){
 	  	}
 	  });
 	}
-	else if (window.location.pathname == '/') {
+	else if (window.isIndexPage()) {
 		// ^^^ Open menu only on the index page, not on 'installations' pages
 		// Open menu for empty section or 'home' section
-		if (pathParts["section"] != null) {
+		if (pathParts["section"] == null) {
+			window.showMenuSidebar();
+		}
+		else {
 			$(window).scrollTop($("#"+pathParts["section"]).offset().top);
 			if (pathParts["section"] == "home") {
 				window.showMenuSidebar();
 			}
-		}
-		else {
-			window.showMenuSidebar();
 		}
 	}
 
