@@ -48,11 +48,12 @@ get '/' do
       override_image_class: 'paramimg',
     },
       {
-      thumbnail: '/img/Arch/-15.jpg',
-      image: '/img/Arch/-15.jpg',
+      thumbnail: '/img/Arch/Runway.jpg',
+      image: '/img/Arch/Runway.jpg',
       title: 'Parametric Experiment 2017',
-      override_thumbnail_class: 'thumb-wide-right',
+      override_thumbnail_class: 'thumb-wide-left',
       item_anchor: 'parametric15',
+      override_image_class: 'img0111',
     },
       {
       thumbnail: '/img/Arch/-17.jpg',
