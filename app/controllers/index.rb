@@ -52,7 +52,7 @@ get '/' do
       image: '/img/Arch/-16.jpg',
       title: 'Memorial Building 2000',
       item_anchor: 'memorialbuilding',
-      override_thumbnail_class: 'thumb-wide-right',
+      override_thumbnail_class: 'thumb-wide-left',
     },
       {
       thumbnail: '/img/Arch/-20.jpg',
