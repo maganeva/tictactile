@@ -13,8 +13,11 @@
 				<div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-zoom">
 
 					
-					<img class="<%= if project.include?(:override_image_class) then project[:override_image_class] else 'img01' end %>"  src="<%= project[:image] %>">
-
+					<% if next_project.nil? %>
+						<img class="<%= if project.include?(:override_image_class) then project[:override_image_class] else 'img01' end %>"  src="<%= project[:image] %>">
+					<% else %>
+						<img class="<%= if project.include?(:override_image_class) then project[:override_image_class] else 'img01' end %>"  src="<%= project[:image] %>" onclick="onNextModalClick(event, 'architecture', '<%= project[:item_anchor] %>', '<%= next_project[:item_anchor] %>');">
+					<% end %>
 
 					<p id="caption" style="font-family: myFirstFont; color: grey; background:rgba(0, 0, 0, 0.0); margin-top: 0px; font-size: 13px;">
 
