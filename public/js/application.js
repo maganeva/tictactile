@@ -139,6 +139,7 @@ $(document).ready(function(){
   }
 
   window.onMenuItemClick = function (event, section) {
+    event.preventDefault();
     if (isIndexPage()) {
       document.getElementById(section).scrollIntoView({behavior: "smooth"});
     }
