@@ -24,21 +24,21 @@ get '/' do
       item_anchor: 'shelter1',
       override_image_class: 'img0111',
     },
-     {
+    {
       thumbnail: '/img/Arch/Hotel AXIS.jpg',
       image: '/img/Arch/Hotel AXIS.jpg',
       title: 'Hotel 2016 / AXIS/GFA, Healdsburg, CA',
       item_anchor: 'axis1',
       override_image_class: 'img0111',
     }, 
-      {
+    {
       thumbnail: '/img/Arch/Multifamily_Housing_AXIS_GFA_2017.jpg',
       image: '/img/Arch/Multifamily_Housing_AXIS_GFA_2017.jpg',
       title: 'Multifamily Housing 2017 / AXIS/GFA, Los Angeles, CA',
       item_anchor: 'axis2',
       override_image_class: 'img0111',
     }, 
-      {
+    {
       thumbnail: '/img/Arch/shell-14.jpg',
       image: '/img/Arch/shell-14.jpg',
       title: 'Parametric experiment 2017',
@@ -46,7 +46,7 @@ get '/' do
       override_thumbnail_class: 'thumb-wide-left',
       override_image_class: 'paramimg',
     },
-      {
+    {
       thumbnail: '/img/Arch/Runway.jpg',
       image: '/img/Arch/Runway.jpg',
       title: 'Parametric Experiment 2017',
@@ -54,28 +54,28 @@ get '/' do
       item_anchor: 'parametric15',
       override_image_class: 'img0111',
     },
-      {
+    {
       thumbnail: '/img/Arch/17.jpg',
       image: '/img/Arch/17.jpg',
       title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
       override_thumbnail_class: 'thumb-wide-left',
       override_image_class: 'img0111',
-    }, 
-      {
+    },
+    {
       thumbnail: '/img/Arch/16.jpg',
       image: '/img/Arch/16.jpg',
       title: 'Memorial Building 2000',
       item_anchor: 'memorialbuilding',
       override_thumbnail_class: 'thumb-wide-left',
     },
-      {
+    {
       thumbnail: '/img/Arch/20.jpg',
       image: '/img/Arch/20.jpg',
       title: 'Avila Design 2013',
       item_anchor: 'ad1',
     },
-      {
+    {
       thumbnail: "/img/Arch/11.jpg",
       image: '/img/Arch/11.jpg',
       title: 'Lighthouse Cafe 1998',
@@ -106,7 +106,7 @@ get '/' do
       image: '/img/Arch/1.jpg',
       title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'dd1',
-    }, 
+    },
     {
       thumbnail: "/img/Arch/2.jpg",
       image: '/img/Arch/2.jpg',
@@ -161,44 +161,44 @@ get '/' do
       image: '/img/Arch/21.jpg',
       title: 'Avila Design 2013',
       item_anchor: 'ad2',
-    }, 
+    },
     {
       thumbnail: "/img/Arch/18.jpg",
       image: '/img/Arch/18.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarch5',
     },
-      {
+    {
       thumbnail: "/img/Arch/18a.jpg",
       image: '/img/Arch/-18a.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarch18',
     },
-      {
+    {
       thumbnail: "/img/Arch/18b.jpg",
       image: '/img/Arch/-18b.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarc51',
     },
-      {
+    {
       thumbnail: "/img/Arch/19.jpg",
       image: '/img/Arch/19.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarch4',
     },
-      {
+    {
       thumbnail: "/img/Arch/25.jpg",
       image: '/img/Arch/25.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddar14',
     },
-      {
+    {
       thumbnail: "/img/Arch/26.jpg",
       image: '/img/Arch/26.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarc004',
     },
-     {
+    {
       thumbnail: "/img/Arch/27.jpg",
       image: '/img/Arch/27.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
@@ -222,10 +222,10 @@ get '/' do
       title: 'Residence 2003 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'dd4',
     }
-    ]
+  ]
 
 
-    @digital = [
+  @digital = [
     {
       thumbnail: '/img/Digitalart/1.jpg',
       image: '/img/Digitalart/1.jpg',
@@ -375,9 +375,9 @@ get '/' do
       item_anchor: 'distopia',
       override_thumbnail_class: 'thumb-tall-top',
     }
-    ]
+  ]
 
-    @sketches = [
+  @sketches = [
     {
       thumbnail: '/img/Art/1.jpg',
       image: '/img/Art/1.jpg',
@@ -478,7 +478,7 @@ get '/' do
       item_anchor: 'u16',
       override_thumbnail_class: 'thumb-wide-center',
     }
-    ]
+  ]
 
   @videos = [
     {
@@ -517,7 +517,7 @@ end
 
 get '/amphibians/' do
 
-@amphibians = [
+  @amphibians = [
     {
       thumbnail: '/img/Install/amphibians2002/2.jpg',
       image: '/img/Install/amphibians2002/-2.jpg',
@@ -656,7 +656,7 @@ end
 
 get '/metapolis/' do
 
-@metapolis = [
+  @metapolis = [
     {
       thumbnail: '/img/Install/metapolis/1.jpg',
       image: '/img/Install/metapolis/-1.jpg',

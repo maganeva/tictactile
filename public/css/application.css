@@ -47,7 +47,6 @@ body{
 }
 
 h1{
-  
   font-size: 50px;
   color: white;
   margin: 0px;
@@ -56,8 +55,6 @@ h1{
   vertical-align: middle;
 }
 h4 {
-  
-    
   color: white;
   margin: 0px;
   text-align: center;
@@ -68,7 +65,6 @@ h4 {
 .a{
   border: 1px solid white ;
   border-radius: 0.15em;
-
 }
 
 #MenuIcon{
@@ -77,7 +73,6 @@ h4 {
   position: fixed;
   top:2em;
   left:2em;
-
   z-index: 1;
 }
 
@@ -128,7 +123,7 @@ h4 {
   height: 100vh;
   width: 300px;
   background-color: rgba(0, 0, 0, 0.5);
-  -webkit-clip-path:polygon(0 0,100% 0,0% 100%,0% 100%);
+  -webkit-clip-path: polygon(0 0,100% 0,0% 100%,0% 100%);
   position: fixed;
   top:0;
   left: -300px;
@@ -180,7 +175,6 @@ ul li:hover .line{
   top: 2em;
   left: 50%;
   transform: translate(-50%);
-
 }
 
 #close{
@@ -189,7 +183,6 @@ ul li:hover .line{
   left: 50%;
   transform: translate(-50%);
   color:#00caf5;
- 
 }
 #close:hover{
   cursor: pointer;
@@ -301,8 +294,6 @@ h6 {
   min-height:100%;
   min-width: 35%;
   font-family: myFirstFont;
-
-  
 }
 
 .videoscontainer {
@@ -319,17 +310,16 @@ h6 {
 
 
 @font-face {
-    font-family: myFirstFont;
-    src: url("/img/BankGothic Regular.ttf");
-
+  font-family: myFirstFont;
+  src: url("/img/BankGothic Regular.ttf");
 }
 
 
 h2 {
-   font-family: myFirstFont;
-   letter-spacing: 10px;
-   color: grey;
-   font-size: 5px;
+  font-family: myFirstFont;
+  letter-spacing: 10px;
+  color: grey;
+  font-size: 5px;
 }
 
 .mark{
@@ -476,41 +466,52 @@ h2 {
   padding-bottom: 1em;
 }
 
-.metaimage{
+.metaimage {
   width: 80%;
 }
-.metaimage1{
+
+.metaimage1 {
   width: 90%;
 }
-.img0111{
+
+.img0111 {
   width: 100%;
 }
 
-.amphvid{
+.amphvid {
   width:30em;
 }
 
+.w3-modal{
+  background-color: rgba(0,0,0,0.9) !important;
+}
+
+.menuitem {
+  padding-right: 4em;
+  padding-left: 4em;
+}
 
 
 @media screen and (max-width: 800px) {
-.paramimg{
-  width: 100%;
-}
+  .paramimg{
+    width: 100%;
+  }
   .amphvid{
-  width: 20em;
-}
+    width: 20em;
+  }
 
- .equiicon2{
-  padding-bottom: 0.5em;
- }
+  .equiicon2{
+    padding-bottom: 0.5em;
+  }
   .invain{
-  width: 100%;
+    width: 100%;
   }
 
- .metaimage{
-  width: 100%;
+  .metaimage{
+    width: 100%;
   }
-  .img01{
+
+  .img01 {
     width:100%;
   }
 
@@ -524,29 +525,20 @@ h2 {
   }
 
   .text{
-  padding:0em;
+    padding:0em;
   }
 
   .wrapper, .amphiwrapper, .bodywrapper {
-   margin: 0 auto;
-   width: 90%;
-
+    margin: 0 auto;
+    width: 90%;
   }
+
   .equiwrapper, .equiwrapper1 {
-  text-align: center;
-  position: relative;
-  width: 80%;
-  min-height: 100%;
-  max-width: 90%;
-  margin: 0 auto; 
+    text-align: center;
+    position: relative;
+    width: 80%;
+    min-height: 100%;
+    max-width: 90%;
+    margin: 0 auto; 
   }
 }
-
-.w3-modal{
-  background-color: rgba(0,0,0,0.9) !important;
-}
-
-.menuitem {
-  padding-right: 4em;
-  padding-left: 4em;
-  }
