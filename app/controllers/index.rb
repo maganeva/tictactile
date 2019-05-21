@@ -170,13 +170,13 @@ get '/' do
     },
     {
       thumbnail: "/img/Arch/18a.jpg",
-      image: '/img/Arch/-18a.jpg',
+      image: '/img/Arch/18a.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarch18',
     },
     {
       thumbnail: "/img/Arch/18b.jpg",
-      image: '/img/Arch/-18b.jpg',
+      image: '/img/Arch/18b.jpg',
       title: 'Residence 2010 / D&D Harvey Architects, East Hampton, NY',
       item_anchor: 'ddarc51',
     },
