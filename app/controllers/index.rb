@@ -54,7 +54,7 @@ get '/' do
       override_image_class: 'img0111',
     },
     {
-      thumbnail: '/img/Arch/17.jpg',
+      thumbnail: '/img/Arch/twisted tower.jpg',
       image: '/img/Arch/17.jpg',
       title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
@@ -62,7 +62,7 @@ get '/' do
       override_image_class: 'img0111',
     },
     {
-      thumbnail: '/img/Arch/16.jpg',
+      thumbnail: '/img/Arch/x-PLAN1B.jpg',
       image: '/img/Arch/16.jpg',
       title: 'Memorial Building 2000',
       item_anchor: 'memorialbuilding',
@@ -72,6 +72,7 @@ get '/' do
       thumbnail: '/img/Arch/20.jpg',
       image: '/img/Arch/20.jpg',
       title: 'Avila Design 2013',
+      override_thumbnail_class: 'thumb-tall-center',
       item_anchor: 'ad1',
     },
     {
