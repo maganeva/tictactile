@@ -39,12 +39,11 @@ get '/' do
       override_image_class: 'img0111',
     }, 
     {
-      thumbnail: '/img/Arch/shell-14.jpg',
-      image: '/img/Arch/shell-14.jpg',
-      title: 'Parametric experiment 2017',
-      item_anchor: 'param2017',
-      override_thumbnail_class: 'thumb-wide-left',
-      override_image_class: 'paramimg',
+      thumbnail: '/img/Arch/Image Sampler.jpg',
+      image: '/img/Arch/Image Sampler.jpg',
+      title: 'Parametric Experiment 2019',
+      item_anchor: 'parametric19',
+      override_image_class: 'img0111',
     },
     {
       thumbnail: '/img/Arch/Runway.jpg',
