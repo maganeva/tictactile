@@ -1,15 +1,29 @@
 <%= erb :_three %>
 
-<%= erb :_architecture %>
+<%= erb :_gallery_section, :locals => {
+  :section => "architecture",
+  :projects => @arch,
+  :wrapperId => "box2",
+  :defaultThumbnailClass => 'thumb-wide-center',
+} %>
 
 <%= erb :_installations %>
 
-<%= erb :_digital %>
+<%= erb :_gallery_section, :locals => {
+  :section => "digital",
+  :projects => @digital,
+  :wrapperId => "box4",
+  :defaultThumbnailClass => 'thumb-wide-center',
+} %>
 
-<%= erb :_sketches %>
+<%= erb :_gallery_section, :locals => {
+  :section => "sketches",
+  :projects => @sketches,
+  :wrapperId => "box5",
+  :defaultThumbnailClass => 'thumb-tall-top',
+} %>
 
 <%= erb :_videos %>
-
 
 <div class="section" id="contact">
 <div id="box7">

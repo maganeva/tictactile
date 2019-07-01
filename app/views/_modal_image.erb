@@ -1,0 +1,8 @@
+<% if next_project.nil? %>
+  <img class="<%= if project.include?(:override_image_class) then project[:override_image_class] else 'img01' end %>"
+    src="<%= project[:image] %>">
+<% else %>
+  <img class="<%= if project.include?(:override_image_class) then project[:override_image_class] else 'img01' end %>"
+    src="<%= project[:image] %>"
+    onclick="onNextModalClick(event, '<%= section %>', '<%= project[:item_anchor] %>', '<%= next_project[:item_anchor] %>');">
+<% end %>

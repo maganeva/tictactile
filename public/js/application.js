@@ -102,7 +102,7 @@ $(document).ready(function(){
  	  return anchor;
  	}
 
- 	window.onModelCancelClick = function (modelDiv) {
+ 	window.onModalCancelClick = function (modelDiv) {
     modelDiv.style.display='none';
     var pathParts = anchorParts(window.location.hash);
     history.pushState(null, null, anchor(pathParts["section"], null));
@@ -113,7 +113,7 @@ $(document).ready(function(){
  	  var video = $(modelDiv).find('video').get(0);
  	  video.pause();
  	  video.load();
- 	  onModelCancelClick(modelDiv);
+ 	  onModalCancelClick(modelDiv);
  	}
 
   window.onThumbnailClick = function (section, itemAnchor) {
@@ -131,6 +131,12 @@ $(document).ready(function(){
       event.stopPropagation();
     }
     showNextModalItem(section, currentItemAnchor, newItemAnchor);
+  }
+
+  window.onDisabledModalClick = function (event) {
+    if (event != null) {
+      event.stopPropagation();
+    }
   }
 
   window.isIndexPage = function () {

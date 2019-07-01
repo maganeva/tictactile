@@ -1,0 +1,32 @@
+<div class="section" id="<%= section %>">
+	<div id="<%= wrapperId %>" style="margin-top: -0.5em;">
+		<div class="wrapper">
+			<h2 class="section-header"><%= section %></h2>
+      <% ([nil] + projects + [nil]).each_cons(3) do |previous_project, project, next_project| %>
+      <div class='icon'>
+        <div class="<%= if project.include?(:override_thumbnail_class) then project[:override_thumbnail_class] else defaultThumbnailClass end %>" style="background-image: url('<%= project[:thumbnail] %>');"
+        onclick="onThumbnailClick('<%= section %>', '<%= project[:item_anchor] %>');"></div>
+      </div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModalCancelClick(this);" data-section="<%= section %>" data-previous-item-anchor="<%= if previous_project.nil? then '' else previous_project[:item_anchor] end %>" data-next-item-anchor="<%= if next_project.nil? then '' else next_project[:item_anchor] end %>">
+        <%= erb :_modal_navigation, :locals => {
+            :section => section,
+            :previous_project => previous_project,
+            :project => project,
+            :next_project => next_project,
+          } %>
+      <div style="background:rgba(0, 0, 0, 0.0);" class="w3-modal-content w3-animate-opacity">
+        <%= erb :_modal_image, :locals => {
+            :section => section,
+            :project => project,
+            :next_project => next_project,
+          } %>
+          <p class="modal-image-caption">
+            <mark class="mark"><%= project[:title] %></mark>
+          </p>
+        </div>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+
