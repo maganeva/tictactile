@@ -335,18 +335,37 @@ h2 {
   border-radius:3px;
 }
 
-.modal-nav {
+.modal-nav-left {
   display: inline-block;
-  width: 1.5em;
+  width: 2.5em;
   cursor: pointer;
   color: #00caf5;
+  padding-left: 1em;
 }
 
-.modal-nav-disabled {
+.modal-nav-right {
   display: inline-block;
-  width: 1.5em;
+  width: 2.5em;
+  cursor: pointer;
+  color: #00caf5;
+  padding-right: 1em;
+}
+
+
+.modal-nav-disabled-left {
+  display: inline-block;
+  width: 2.5em;
   cursor: default;
   color: grey;
+  padding-left: 1em;
+}
+
+.modal-nav-disabled-right {
+  display: inline-block;
+  width: 2.5em;
+  cursor: default;
+  color: grey;
+  padding-left: 1em;
 }
 
 .thumb-wide-left {
