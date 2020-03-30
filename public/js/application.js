@@ -179,13 +179,14 @@ $(document).ready(function(){
     var modelDiv = document.getElementById(itemAnchor);
     var source = $(modelDiv).find('source').get(0);
     var videoUrl = source.getAttribute("data-video-url");
+    var video = $(modelDiv).find('video').get(0);
     if (source.getAttribute("src") != videoUrl) {
-      var video = $(modelDiv).find('video').get(0);
       video.pause();
       source.setAttribute("src", videoUrl);
-      video.load();		
+      video.load();
     }
     showModalItem(itemAnchor);
+    video.play();
   }
 
   $(window).on('hashchange', function() {
