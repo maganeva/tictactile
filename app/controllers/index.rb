@@ -58,7 +58,7 @@ get '/' do
       image: '/img/Arch/17.jpg',
       title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
-      override_thumbnail_class: 'thumb-wide-left',
+      override_thumbnail_class: 'thumb-tall-top',
     },
     {
       thumbnail: '/img/Arch/x-PLAN1B.jpg',
