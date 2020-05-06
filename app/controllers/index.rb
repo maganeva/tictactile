@@ -59,7 +59,6 @@ get '/' do
       title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
       override_thumbnail_class: 'thumb-wide-left',
-      override_image_class: 'img0111',
     },
     {
       thumbnail: '/img/Arch/x-PLAN1B.jpg',
