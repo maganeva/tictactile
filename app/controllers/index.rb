@@ -54,7 +54,7 @@ get '/' do
       override_image_class: 'img0111',
     },
     {
-      thumbnail: '/img/Arch/twisted tower.jpg',
+      thumbnail: '/img/Arch/17.jpg',
       image: '/img/Arch/17.jpg',
       title: 'Parametric Experiment 2017',
       item_anchor: 'parametric17',
