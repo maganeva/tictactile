@@ -678,3 +678,12 @@ get '/metapolis/' do
 
   erb :'metapolis'
 end
+
+get '/showcase-June-2020' do
+  redirect('/showcase-June-2020/', 301)
+end
+
+get '/showcase-June-2020/' do
+  erb :'showcase-2020-06', :layout => false
+end
+
