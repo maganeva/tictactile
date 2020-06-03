@@ -715,6 +715,10 @@ get '/EquilibERRations-2.0/' do
   redirect('/equilibERRations-2.0/', 301)
 end
 
+get '/equilibERRations-2.0' do
+  redirect('/equilibERRations-2.0/', 301)
+end
+
 get '/equilibERRations-2.0/' do
   erb :'showcase-2020-06', :layout => false
 end
