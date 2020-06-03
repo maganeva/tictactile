@@ -680,34 +680,42 @@ get '/metapolis/' do
 end
 
 get '/equilliberrations-2.0' do
-  redirect('/EquilibERRations-2.0/', 301)
+  redirect('/equilibERRations-2.0/', 301)
 end
 
 get '/equilliberrations-2.0/' do
-  redirect('/EquilibERRations-2.0/', 301)
+  redirect('/equilibERRations-2.0/', 301)
 end
 
 get '/equilliberations-2.0' do
-  redirect('/EquilibERRations-2.0/', 301)
+  redirect('/equilibERRations-2.0/', 301)
 end
 
 get '/equilliberations-2.0/' do
-  redirect('/EquilibERRations-2.0/', 301)
+  redirect('/equilibERRations-2.0/', 301)
 end
 
 get '/equiliberrations-2.0' do
-  redirect('/EquilibERRations-2.0/', 301)
+  redirect('/equilibERRations-2.0/', 301)
 end
 
 get '/equiliberrations-2.0/' do
-  redirect('/EquilibERRations-2.0/', 301)
+  redirect('/equilibERRations-2.0/', 301)
 end
 
-get '/EquilibERRations-2.0' do
-  redirect('/EquilibERRations-2.0/', 301)
+get '/equiliberrations-2.0' do
+  redirect('/equiliberrations-2.0/', 301)
+end
+
+get '/equiliberrations-2.0/' do
+  redirect('/equiliberrations-2.0/', 301)
 end
 
 get '/EquilibERRations-2.0/' do
+  redirect('/equilibERRations-2.0/', 301)
+end
+
+get '/equilibERRations-2.0/' do
   erb :'showcase-2020-06', :layout => false
 end
 
