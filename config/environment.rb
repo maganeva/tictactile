@@ -20,6 +20,11 @@ configure do
 
   # Set the views to app/views
   set :views, File.join(Sinatra::Application.root, 'app', 'views')
+
+  # Without this, static responses carry Last-Modified but no Cache-Control,
+  # so every repeat view of the ~87 assets the home page references costs a
+  # revalidation round-trip against the (small) Puma thread pool.
+  set :static_cache_control, [:public, max_age: 86_400]
 end
 
 # Set up the controllers and helpers
