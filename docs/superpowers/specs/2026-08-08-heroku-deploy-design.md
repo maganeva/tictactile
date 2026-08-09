@@ -6,9 +6,10 @@
 ## Context
 
 tictactile is a portfolio site for an architect/artist. It is a **Sinatra**
-application, not Rails: `app/controllers/index.rb` defines 22 static `GET`
-routes that render ERB views from hardcoded gallery arrays. There are no
-models, no migrations, no seeds, and no tests.
+application, not Rails: `app/controllers/index.rb` defines 20 `GET` route
+declarations that render ERB views from hardcoded gallery arrays. Two are exact
+duplicates that Sinatra never reaches, so there are 18 reachable paths. There
+are no models, no migrations, no seeds, and no tests.
 
 The application has not been modernized since 2019. It pins Ruby 2.5.5 (EOL
 March 2021), which no current Heroku stack can build, so deploying it at all
@@ -42,14 +43,14 @@ a new Heroku app and making `main` on GitHub the source of truth for deploys.
 | CI gate | GitHub Actions smoke test | Heroku's "Wait for CI to pass before deploy" keys off GitHub commit statuses. This is where a GitHub Action earns its place in the design. |
 | Upgrade scope | Upgrade and strip | ActiveRecord/`pg` serve a database with zero tables; the test gems have no tests. Removing them shrinks the upgrade surface and eliminates a paid Postgres addon. |
 | Local Ruby management | chruby + ruby-install | Minimal, no shims, transparent. Reads `.ruby-version` via `auto.sh`. |
-| Ruby version | 3.4.9 | Current stable; ahead of Heroku's 3.3.9 default for new apps. |
+| Ruby version | 3.4.10 | Current stable; ahead of Heroku's 3.3.9 default for new apps. |
 | Heroku app | New app | The previous app is dead, so there is no cutover risk and no live traffic to protect. |
 
 ## Ruby version declaration
 
 One source of truth, three consumers:
 
-- `.ruby-version` contains `3.4.9`. chruby reads it locally; `ruby/setup-ruby`
+- `.ruby-version` contains `3.4.10`. chruby reads it locally; `ruby/setup-ruby`
   reads it in CI via `ruby-version-file`.
 - `Gemfile` declares `ruby file: '.ruby-version'` (Bundler 2.3+) instead of
   repeating the literal version.
@@ -58,7 +59,7 @@ One source of truth, three consumers:
   be committed, and re-locked with `bundle update --ruby` whenever the version
   changes. `bundle platform --ruby` reports what Heroku will use.
 
-Heroku requires a full three-digit version. `~> 3.4.9` is valid; `~> 3.4` is
+Heroku requires a full three-digit version. `~> 3.4.10` is valid; `~> 3.4` is
 not.
 
 ## Application changes
@@ -67,22 +68,22 @@ not.
 
 From 14 gems to 6:
 
-Gem version pins below are the expected current majors; exact patch versions are
-resolved and confirmed at implementation time.
+Pins below are the current released versions as of 2026-08-08, confirmed against
+the RubyGems API.
 
 ```ruby
 source 'https://rubygems.org'
 ruby file: '.ruby-version'
 
-gem 'sinatra', '~> 4.1'
-gem 'puma',    '~> 6.6'
+gem 'sinatra', '~> 4.2'
+gem 'puma',    '~> 8.0'
 
 group :development do
-  gem 'sinatra-contrib', '~> 4.1'   # sinatra/reloader only
+  gem 'sinatra-contrib', '~> 4.2'   # sinatra/reloader only
 end
 
 group :test do
-  gem 'minitest',  '~> 5.25'
+  gem 'minitest',  '~> 6.0'
   gem 'rack-test', '~> 2.2'
 end
 ```
@@ -98,8 +99,8 @@ only Sinatra, Puma, and their dependencies.
 
 Two required fixes:
 
-1. Delete the `rackup DefaultRackup` line. Puma 6 removed that constant; the
-   line raises `NameError` on boot.
+1. Delete the `rackup DefaultRackup` line. Puma removed that constant in 6.0 and
+   we are installing 8.x, so the line raises `NameError` on boot.
 2. Replace `workers Integer(ENV['WEB_CONCURRENCY'] || 16)` and 32 threads with
    2 workers and 5 threads. A Basic dyno has 512 MB of RAM; 16 preloaded Puma
    workers will trigger R14/R15 memory errors immediately. Both stay
@@ -145,7 +146,7 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version-file: .ruby-version
@@ -160,7 +161,7 @@ commit, the deploy waits indefinitely rather than failing visibly.
 ### test/smoke_test.rb
 
 Enumerates `Sinatra::Application.routes['GET']` rather than hardcoding paths, so
-all 22 routes are covered and future routes are covered automatically. For each
+all 18 unique routes are covered and future routes are covered automatically. For each
 route: assert a 200 response and a non-empty body. Plus one assertion that an
 unknown path returns 404.
 
@@ -196,11 +197,11 @@ No addons. Dropping ActiveRecord means there is no database to provision.
 1. Create a branch; apply the application changes.
 2. Install the local toolchain: build dependencies (`build-essential`,
    `libssl-dev`, `libyaml-dev`, `zlib1g-dev`, `libffi-dev`, `libreadline-dev`),
-   then `ruby-install ruby 3.4.9` into `~/.rubies`, and source `chruby.sh` and
+   then `ruby-install ruby 3.4.10` into `~/.rubies`, and source `chruby.sh` and
    `auto.sh` from the shell rc.
 3. Iterate locally until `bundle exec rake test` is green.
 4. Commit the regenerated `Gemfile.lock`; confirm `bundle platform --ruby`
-   reports 3.4.9.
+   reports 3.4.10.
 5. Push the branch; confirm CI is green.
 6. Rebase onto `main` and fast-forward merge (project convention: no merge
    commits). This triggers the first deploy.
@@ -231,4 +232,4 @@ disappoint.
 
 **Sinatra 1 to 4 is a four-major-version jump**, alongside Rack 1 to 3. The
 three known breakages are enumerated above, but the local loop exists because
-others may surface. All 22 routes are static renders, which bounds the risk.
+others may surface. All 18 routes are static renders, which bounds the risk.
