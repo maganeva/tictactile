@@ -695,17 +695,20 @@ heroku logs --tail --app tictactile-web
 
 Expected sequence: `Building on Heroku-24`, `Installing dependencies using bundler`, `Compressing`, `Launching`, then `State changed from starting to up`. Watch for `Ruby version change detected` confirming 3.4.10.
 
-- [ ] **Step 5b: Set the dyno type (moved here from Task 6)**
-
-Now that the first release has created a `web` process type, this succeeds:
+- [ ] **Step 5b: Confirm the dyno type**
 
 ```bash
-heroku ps:type basic --app tictactile-web
 heroku ps --app tictactile-web
 ```
 
-Expected: `heroku ps` reports a `web.1` dyno of type `Basic`, state `up`. This is a
-paid plan and requires the user's explicit authorization before running.
+Expected: `=== web (Basic): bundle exec puma -C config/puma.rb (1)` and `web.1: up`.
+
+**Verified on the real deploy: `heroku ps:type basic` is not needed.** The `web`
+dyno came up as Basic automatically on the first release — the scale event fires
+as part of the deploy, not as a separate command. Earlier drafts of this plan ran
+`ps:type basic` in Task 6 (where it fails, since no process type exists yet) and
+then here; neither was necessary. Basic is a paid plan, so if `heroku ps` reports
+some other type, changing it requires the user's explicit authorization first.
 
 - [ ] **Step 6: Verify the live site**
 
