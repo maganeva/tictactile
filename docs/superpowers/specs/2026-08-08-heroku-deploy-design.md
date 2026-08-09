@@ -23,7 +23,8 @@ a new Heroku app and making `main` on GitHub the source of truth for deploys.
 ## Goals
 
 1. The app builds and runs on a supported Ruby on a Heroku Cedar Basic dyno.
-2. Pushing to `main` deploys automatically, gated on a passing CI check.
+2. Deploying is one repeatable command from a checkout of `main`, run once CI on
+   that commit is green.
 3. Dead weight (database layer, unused test harness, abandoned gems) is removed
    rather than upgraded.
 
@@ -39,8 +40,8 @@ a new Heroku app and making `main` on GitHub the source of truth for deploys.
 
 | Decision | Choice | Rationale |
 |---|---|---|
-| Deploy mechanism | Heroku's native GitHub integration | Chosen over an Actions-driven `git push heroku`. No deploy credentials in the repo; no full-history clone (Heroku's git endpoint rejects shallow clones, so a push-based workflow would need `fetch-depth: 0` on a ~380 MB repo). Trade-off accepted: deploy config lives in Heroku's dashboard, not in version control. |
-| CI gate | GitHub Actions smoke test | Heroku's "Wait for CI to pass before deploy" keys off GitHub commit statuses. This is where a GitHub Action earns its place in the design. |
+| Deploy mechanism | `git push heroku main` from a local checkout | Forced by a permissions wall (see below). Needs no GitHub permissions at all, since GitHub is not in the deploy path. Trade-off accepted: deploys are manual, so nothing mechanically prevents deploying a commit whose CI is red. |
+| CI gate | GitHub Actions smoke test, checked before deploying | Runs on pull requests and on pushes to `main`. With the integration route gone it is an advisory gate rather than an enforced one: the deploy procedure requires confirming the check is green on the commit being deployed. |
 | Upgrade scope | Upgrade and strip | ActiveRecord/`pg` serve a database with zero tables; the test gems have no tests. Removing them shrinks the upgrade surface and eliminates a paid Postgres addon. |
 | Local Ruby management | chruby + ruby-install | Minimal, no shims, transparent. Reads `.ruby-version` via `auto.sh`. |
 | Ruby version | 3.4.10 | Current stable; ahead of Heroku's 3.3.9 default for new apps. |
@@ -155,9 +156,11 @@ jobs:
       - run: bundle exec rake test
 ```
 
-The workflow must trigger on pushes to `main`, not only on pull requests. Heroku
-waits for commit statuses to succeed; if no check ever reports on a `main`
-commit, the deploy waits indefinitely rather than failing visibly.
+The workflow triggers on pushes to `main` as well as on pull requests. That
+trigger was originally mandatory because Heroku's integration waited for commit
+statuses on the deploy branch. With deploys now driven from the CLI, it remains
+worth keeping: it is what lets you confirm `main` is green before pushing to
+Heroku, rather than inferring it from the PR that preceded the merge.
 
 ### test/smoke_test.rb
 
@@ -186,18 +189,47 @@ heroku ps:type basic --app tictactile-web
 heroku config:set RACK_ENV=production WEB_CONCURRENCY=2 --app tictactile-web
 ```
 
-(Cedar is the default generation; `--generation cedar` is stated explicitly
-because Fir now exists. Confirm the flag against the installed CLI version —
-the Heroku CLI is not currently installed on this machine.)
+Then add the Heroku git remote, which is the deploy path:
 
-Then in the dashboard's Deploy tab:
-
-1. Connect to the `maganeva/tictactile` GitHub repository (requires authorizing
-   Heroku's OAuth app against the GitHub account).
-2. Enable automatic deploys from `main`.
-3. Tick **Wait for CI to pass before deploy**.
+```bash
+heroku git:remote --app tictactile-web
+```
 
 No addons. Dropping ActiveRecord means there is no database to provision.
+
+### Why not Heroku's GitHub integration
+
+The original design used Heroku's native GitHub integration with "Wait for CI to
+pass before deploy". It is not achievable for this repository:
+
+- Heroku's integration installs a repository webhook, and GitHub permits only
+  repo **admins** to create webhooks.
+- `maganeva` is a **personal** GitHub account, not an organization. Personal
+  repositories have no admin role for collaborators — admin belongs solely to the
+  owner. `joewalp` is a collaborator with `push` but `admin: false`, and no
+  setting change can lift that.
+- Authorizing Heroku's OAuth app as `maganeva` requires MFA through an email
+  account that is not currently accessible.
+
+Transferring the repo to an organization would restore the option, since org
+repos support an admin role for collaborators. That is a larger change than this
+work justifies.
+
+Note that the same wall blocks an Actions-driven deploy: adding the
+`HEROKU_API_KEY` repository secret that approach needs also requires repo admin.
+
+### Deploy procedure
+
+```bash
+git checkout main && git pull
+gh pr checks   # or: gh run list --branch main --limit 1
+git push heroku main
+```
+
+The CI check is advisory here rather than enforced — confirming it is green
+before pushing to Heroku is a step in the procedure, not something the platform
+guarantees. This is the cost of the permissions wall, and it is the single
+meaningful regression against the original design.
 
 ## Rollout
 
@@ -227,6 +259,11 @@ off-repo is the eventual fix.
 **No rollback on the first deploy.** A brand-new app has no prior release, so
 `heroku rollback` is unavailable until a second release exists. If the first
 deploy is broken, the fix is forward.
+
+**Deploying is manual, so it can be skipped or forgotten.** Merging to `main` no
+longer ships anything by itself. Whoever merges must also push to Heroku, and
+must check CI first. A red commit can reach production if that step is skipped —
+the platform will not stop it.
 
 **Slug size.** `public/img` is 197 MB, giving a slug around 200 MB against
 Heroku's 500 MB limit. Builds will take several minutes and every deploy

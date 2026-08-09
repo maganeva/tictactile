@@ -448,7 +448,7 @@ git commit -m "fix: size Puma for a 512MB Basic dyno and drop removed DefaultRac
 
 **Interfaces:**
 - Consumes: `bundle exec rake test` from Task 2
-- Produces: a commit status named `smoke` on every push to `main`, which Heroku's "Wait for CI to pass" setting gates on in Task 6
+- Produces: a commit status named `smoke` on every push to `main` and on pull requests, checked by hand before each deploy in Task 7
 
 - [ ] **Step 1: Create the workflow**
 
@@ -476,7 +476,7 @@ jobs:
 
 `ruby-version-file` reads the same `.ruby-version` chruby uses, so local and CI cannot drift. `bundler-cache: true` runs `bundle install` and caches the result.
 
-The `push.branches: [main]` trigger is mandatory, not stylistic: Heroku waits for commit statuses on the deploy branch. If no check ever reports on a `main` commit, deploys hang silently rather than failing.
+The `push.branches: [main]` trigger was originally mandatory because Heroku's GitHub integration waited for commit statuses on the deploy branch. That integration is not available for this repo (see Task 6), so deploys are manual — but keep the trigger. It is what lets you confirm `main` itself is green before pushing to Heroku, instead of inferring it from the PR that preceded the merge.
 
 - [ ] **Step 2: Push the branch and open a PR**
 
@@ -497,15 +497,25 @@ Expected: the `smoke` check reports success. If `bundle install` fails in CI but
 
 ---
 
-### Task 6: Create the Heroku app and connect GitHub
+### Task 6: Create the Heroku app and add the deploy remote
 
-Manual infrastructure work. Nothing here is committed to the repo — that is the accepted trade-off of the native-integration approach.
+Manual infrastructure work. Nothing here is committed to the repo.
 
 **Files:** none
 
 **Interfaces:**
 - Consumes: the green `smoke` check from Task 5
-- Produces: a running app at `https://tictactile-web.herokuapp.com`
+- Produces: a Heroku app plus a `heroku` git remote, which is the deploy path used in Task 7
+
+> **Revised mid-execution.** This task originally connected Heroku's native
+> GitHub integration for automatic deploys. That route is unavailable: Heroku's
+> integration installs a repository webhook, GitHub allows only repo **admins**
+> to create webhooks, and `maganeva` is a personal account whose repositories
+> have no admin role for collaborators — `joewalp` has `push` but `admin: false`.
+> Authorizing Heroku's OAuth app as `maganeva` requires MFA through an
+> inaccessible email account. Deploys therefore run from the Heroku CLI.
+> The same wall blocks an Actions-driven deploy, which would need a
+> `HEROKU_API_KEY` repository secret — also admin-gated.
 
 - [ ] **Step 1: Install the Heroku CLI**
 
@@ -527,29 +537,38 @@ heroku login
 - [ ] **Step 3: Create the app**
 
 ```bash
-heroku create tictactile-web --generation cedar
+heroku create tictactile-web
 ```
 
-If `--generation` is rejected by the installed CLI version, drop the flag — Cedar is the default. If the app name is taken, pick another and use it consistently for the rest of the task.
+Verified against the installed CLI (heroku/11.9.0): there is **no** `--generation`
+flag — `heroku create` offers `--stack` but not `--generation`. Cedar is what this
+command produces. If the app name is taken, pick another and use it consistently
+for the rest of the task.
 
-- [ ] **Step 4: Set the dyno type and config vars**
+- [ ] **Step 4: Set the config vars**
 
 ```bash
-heroku ps:type basic --app tictactile-web
 heroku config:set RACK_ENV=production WEB_CONCURRENCY=2 --app tictactile-web
 ```
 
+**Do not run `heroku ps:type basic` here.** Process types are created by the first
+deploy, so before one exists the command fails with "No process types on
+tictactile-web. Upload a Procfile to add process types." Setting the dyno type
+moves to Task 7, immediately after the first release. This ordering was verified
+against a real app, not assumed.
+
 `heroku ps:type basic` incurs charges (Basic is a paid plan). Confirm with the user before running if that has not already been agreed.
 
-- [ ] **Step 5: Connect GitHub in the dashboard**
+- [ ] **Step 5: Add the Heroku git remote**
 
-This has no CLI equivalent; it must be done at `https://dashboard.heroku.com/apps/tictactile-web/deploy/github`:
+This replaces the dashboard GitHub connection. It is the deploy path.
 
-1. Click **Connect to GitHub** and authorize Heroku's OAuth app if prompted
-2. Search for `tictactile` and connect `maganeva/tictactile`
-3. Under Automatic deploys, select branch `main`
-4. Tick **Wait for CI to pass before deploy**
-5. Click **Enable Automatic Deploys**
+```bash
+heroku git:remote --app tictactile-web
+git remote -v
+```
+
+Expected: a `heroku` remote pointing at `https://git.heroku.com/tictactile-web.git`, alongside the existing `origin`.
 
 - [ ] **Step 6: Verify no addons were provisioned**
 
@@ -569,8 +588,8 @@ The README currently instructs the reader to open a Windows "Command Prompt with
 - Modify: `README.md`
 
 **Interfaces:**
-- Consumes: everything above
-- Produces: the merge to `main` that triggers the first real deploy
+- Consumes: everything above, including the `heroku` git remote from Task 6
+- Produces: the merge to `main`, followed by the first deploy pushed by hand
 
 - [ ] **Step 1: Replace the development section of README.md**
 
@@ -600,9 +619,18 @@ bundle exec rake test
 
 ### deployment
 
-Pushing to `main` deploys automatically. GitHub Actions runs the smoke test
-first, and Heroku only builds once that check is green — see
-`docs/superpowers/specs/2026-08-08-heroku-deploy-design.md`.
+Deploys are manual, from a local checkout of `main`:
+
+```bash
+git checkout main && git pull
+gh run list --branch main --limit 1   # confirm the smoke check is green
+git push heroku main
+```
+
+GitHub Actions runs the smoke test on every pull request and every push to
+`main`, but nothing enforces it at deploy time — checking it is a step in the
+procedure. See `docs/superpowers/specs/2026-08-08-heroku-deploy-design.md` for
+why Heroku's automatic GitHub deploys are not available for this repository.
 
 Note: `public/img/videos/0-rob-d.mp4` is not in the repository (it exceeds
 GitHub's 100 MB file limit), so the "Music Video 2003" entry does not play in
@@ -638,7 +666,28 @@ git push
 
 If the rebase conflicts, stop and surface each conflict for the user to resolve rather than guessing.
 
-- [ ] **Step 5: Watch the first deploy**
+- [ ] **Step 4b: Confirm CI is green on the `main` commit itself**
+
+The merge pushes `main`, which fires the workflow's `push` trigger for the first
+time. This is also the first exercise of that trigger, so confirm a check
+actually appears — deploying is gated on it by procedure, not by the platform.
+
+```bash
+gh run list --branch main --limit 3
+gh run watch
+```
+
+Expected: a `CI` run on the `main` commit, event `push`, concluding `success`. If no run appears at all, stop — the `push.branches: [main]` trigger is not working, and every future deploy would be unverified.
+
+- [ ] **Step 5: Deploy**
+
+```bash
+git push heroku main
+```
+
+This is the deploy. Expect several minutes: the push transfers ~380 MB of history, then Heroku builds the slug. Watch the build output for `Building on Heroku-24`, `Installing dependencies using bundler`, the detected Ruby version (should read 3.4.10), `Compressing`, and `Launching`.
+
+- [ ] **Step 5a: Watch the dyno come up**
 
 ```bash
 heroku logs --tail --app tictactile-web
@@ -646,17 +695,35 @@ heroku logs --tail --app tictactile-web
 
 Expected sequence: `Building on Heroku-24`, `Installing dependencies using bundler`, `Compressing`, `Launching`, then `State changed from starting to up`. Watch for `Ruby version change detected` confirming 3.4.10.
 
-- [ ] **Step 6: Verify the live site**
+- [ ] **Step 5b: Set the dyno type (moved here from Task 6)**
+
+Now that the first release has created a `web` process type, this succeeds:
 
 ```bash
-curl -s -o /dev/null -w '%{http_code}\n' https://tictactile-web.herokuapp.com/
-curl -s -o /dev/null -w '%{http_code}\n' https://tictactile-web.herokuapp.com/equil
-curl -s -o /dev/null -w '%{http_code}\n' https://tictactile-web.herokuapp.com/img/videos/haiku-th.jpg
+heroku ps:type basic --app tictactile-web
+heroku ps --app tictactile-web
 ```
 
-Expected: `200` three times. Then open the site in a browser and confirm the home page renders with images.
+Expected: `heroku ps` reports a `web.1` dyno of type `Basic`, state `up`. This is a
+paid plan and requires the user's explicit authorization before running.
 
-Known and accepted: `https://tictactile-web.herokuapp.com/img/videos/0-rob-d.mp4` returns 404. That is the deliberate breakage recorded in the spec.
+- [ ] **Step 6: Verify the live site**
+
+The real hostname carries a generated suffix — `heroku create` reported
+`https://tictactile-web-b7da95331725.herokuapp.com/`, not the bare
+`tictactile-web.herokuapp.com` this plan originally assumed. Confirm it with
+`heroku apps:info --app tictactile-web` before substituting below.
+
+```bash
+APP_URL=https://tictactile-web-b7da95331725.herokuapp.com
+curl -sL -o /dev/null -w '%{http_code}\n' $APP_URL/
+curl -sL -o /dev/null -w '%{http_code}\n' $APP_URL/equil
+curl -sL -o /dev/null -w '%{http_code}\n' $APP_URL/img/videos/haiku-th.jpg
+```
+
+Expected: `200` three times. Note `-L` again — `/equil` is one of the 301 canonicalization routes. Then open the site in a browser and confirm the home page renders with images.
+
+Known and accepted: `$APP_URL/img/videos/0-rob-d.mp4` returns 404. That is the deliberate breakage recorded in the spec.
 
 - [ ] **Step 7: Delete the branch**
 
@@ -673,5 +740,7 @@ These are named in the spec's non-goals and must not be attempted as part of thi
 
 - Pointing `tictactile.net` at the new app (domains, ACM certificates, DNS)
 - Restoring `0-rob-d.mp4` by any means
+- Restoring Heroku's automatic GitHub deploys (would require transferring the
+  repo to an organization, or MFA access to the `maganeva` account)
 - Moving `public/img` to a CDN or object storage
 - Deduplicating the two dead `/equiliberrations-2.0` route declarations, or any other change to `app/controllers/index.rb`
