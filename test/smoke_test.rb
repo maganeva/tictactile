@@ -32,10 +32,19 @@ class SmokeTest < Minitest::Test
   reachable_paths.each do |path|
     define_method("test_get_#{path.gsub(/[^a-zA-Z0-9]/, '_')}") do
       get path
+
+      hops = 0
+      while last_response.redirect?
+        hops += 1
+        assert_operator hops, :<=, 5,
+                        "GET #{path} exceeded 5 redirects — possible redirect loop"
+        follow_redirect!
+      end
+
       assert_equal 200, last_response.status,
-                   "GET #{path} returned #{last_response.status}"
+                   "GET #{path} ended at #{last_request.path} with #{last_response.status}"
       refute_empty last_response.body.strip,
-                   "GET #{path} returned an empty body"
+                   "GET #{path} ended at #{last_request.path} with an empty body"
     end
   end
 
