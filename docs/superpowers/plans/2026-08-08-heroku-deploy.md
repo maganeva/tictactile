@@ -147,8 +147,13 @@ end
 group :test do
   gem 'minitest',  '~> 6.0'
   gem 'rack-test', '~> 2.2'
+  gem 'rake',      '~> 13.4'
 end
 ```
+
+`rake` is required because `bundle exec rake test` is the verification command
+for Task 2, Task 3, and the CI workflow. It belongs in `:test` because Heroku's
+`BUNDLE_WITHOUT` defaults to `development:test` and production never runs rake.
 
 - [ ] **Step 9: Regenerate the lockfile**
 
@@ -247,10 +252,19 @@ class SmokeTest < Minitest::Test
   reachable_paths.each do |path|
     define_method("test_get_#{path.gsub(/[^a-zA-Z0-9]/, '_')}") do
       get path
+
+      hops = 0
+      while last_response.redirect?
+        hops += 1
+        assert_operator hops, :<=, 5,
+                        "GET #{path} exceeded 5 redirects — possible redirect loop"
+        follow_redirect!
+      end
+
       assert_equal 200, last_response.status,
-                   "GET #{path} returned #{last_response.status}"
+                   "GET #{path} ended at #{last_request.path} with #{last_response.status}"
       refute_empty last_response.body.strip,
-                   "GET #{path} returned an empty body"
+                   "GET #{path} ended at #{last_request.path} with an empty body"
     end
   end
 
@@ -269,7 +283,9 @@ end
 bundle exec rake test
 ```
 
-Expected: FAIL during load with `LoadError: cannot load such file -- pg`, raised from `config/environment.rb`. If it fails for any other reason, stop and investigate before proceeding — a different error means a different problem than this plan anticipates.
+Expected: FAIL during load, raised from `config/environment.rb`. The first error encountered is `NoMethodError: undefined method 'exists?' for class File` at `config/environment.rb:6` — `File.exists?` was removed in modern Ruby and that line runs before the `require 'pg'` on line 14, so the pg `LoadError` is never reached. Either way the suite fails at app boot, which is the point: it proves the test exercises boot. Task 3 fixes both causes at once.
+
+If it fails for some third reason, stop and investigate — that would mean a problem this plan does not anticipate.
 
 - [ ] **Step 4: Commit the failing test**
 
@@ -409,12 +425,12 @@ Expected: Puma reports `Use Ctrl-C to stop` and `* Workers: 2`. A `NameError` he
 In a second terminal:
 
 ```bash
-curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3000/
-curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3000/amphibians
-curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3000/img/videos/haiku-th.jpg
+curl -sL -o /dev/null -w '%{http_code}\n' http://localhost:3000/
+curl -sL -o /dev/null -w '%{http_code}\n' http://localhost:3000/amphibians
+curl -sL -o /dev/null -w '%{http_code}\n' http://localhost:3000/img/videos/haiku-th.jpg
 ```
 
-Expected: `200` three times. The third confirms static asset serving out of `public/` still resolves after the `set :root` change survived. Stop the server with Ctrl-C.
+Expected: `200` three times. Note the `-L`: `/amphibians` is one of the 14 routes that issues a `redirect(..., 301)` to its trailing-slash twin, so without following redirects it reports `301`, not `200`. The third check confirms static asset serving out of `public/` still resolves after the `set :root` handling changed. Stop the server with Ctrl-C.
 
 - [ ] **Step 4: Commit**
 

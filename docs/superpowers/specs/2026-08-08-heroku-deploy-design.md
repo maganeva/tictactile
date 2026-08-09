@@ -85,6 +85,7 @@ end
 group :test do
   gem 'minitest',  '~> 6.0'
   gem 'rack-test', '~> 2.2'
+  gem 'rake',      '~> 13.4'
 end
 ```
 
@@ -161,9 +162,15 @@ commit, the deploy waits indefinitely rather than failing visibly.
 ### test/smoke_test.rb
 
 Enumerates `Sinatra::Application.routes['GET']` rather than hardcoding paths, so
-all 18 unique routes are covered and future routes are covered automatically. For each
-route: assert a 200 response and a non-empty body. Plus one assertion that an
-unknown path returns 404.
+all 18 unique routes are covered and future routes are covered automatically. For
+each route: follow any redirects to their destination, then assert a 200 response
+and a non-empty body. Plus one assertion that an unknown path returns 404.
+
+Following redirects is required, not incidental: 14 of the route declarations are
+`redirect(..., 301)` URL canonicalizations to a trailing-slash twin. Asserting a
+flat 200 would fail on all of them; accepting a bare 301 without following it
+would let a redirect pointing at a dead page pass the gate. A five-hop cap turns
+a redirect loop into a clear failure rather than a hang.
 
 The test is deliberately shallow. Its job is to catch this upgrade's actual
 risks — Rack 3 breaking ERB rendering, or a removed gem still being required at
