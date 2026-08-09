@@ -13,9 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # No ruby-version input on purpose: setup-ruby's default already reads
+      # .ruby-version, which is the single source of truth shared with chruby
+      # locally and with Heroku via Gemfile.lock. An earlier `ruby-version-file:`
+      # input here was silently ignored — it is not valid on setup-ruby@v1 — so
+      # the correct version was coming from this default all along.
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version-file: .ruby-version
           bundler-cache: true
       - run: bundle exec rake test
       - name: Boot the production server
