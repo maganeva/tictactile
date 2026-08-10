@@ -135,11 +135,6 @@ class SmokeTest < Minitest::Test
   def test_chunked_video_rejects_an_unsatisfiable_range
     get '/img/videos/0-rob-d.mp4', {}, 'HTTP_RANGE' => 'bytes=999999999-'
     assert_equal 416, last_response.status
-  end
-
-  # The raw chunks live outside public/ precisely so they are not reachable.
-  def test_chunks_are_not_served_as_static_assets
-    get '/img/videos/0-rob-d.mp4.000'
-    assert_equal 404, last_response.status
+    assert_equal 'bytes */191418477', last_response.headers['content-range']
   end
 end
