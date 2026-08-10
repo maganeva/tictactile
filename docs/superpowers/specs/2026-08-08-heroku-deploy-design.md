@@ -249,12 +249,15 @@ meaningful regression against the original design.
 
 ## Risks and accepted breakage
 
-**The "Music Video 2003" tile will 404.** `app/controllers/index.rb:497`
+**The "Music Video 2003" tile will 404.** ~~`app/controllers/index.rb:497`
 references `/img/videos/0-rob-d.mp4`, which was purged from git history (it
 exceeded GitHub's 100 MB file limit) and now exists only as a local copy at
 `../tictactile-stashed/`. Since the deploy source is now the GitHub repo, the
-file will not be in the slug. Accepted deliberately; hosting the video
-off-repo is the eventual fix.
+file will not be in the slug.~~ **Resolved 2026-08-09** by committing the file
+as chunks and reassembling at boot — see
+[2026-08-09-rob-d-video-design.md](2026-08-09-rob-d-video-design.md). Note that
+this spec expected off-repo hosting to be the fix; it was not, and slug size is
+now ~380 MB of the 500 MB limit.
 
 **No rollback on the first deploy.** A brand-new app has no prior release, so
 `heroku rollback` is unavailable until a second release exists. If the first
@@ -268,7 +271,10 @@ the platform will not stop it.
 **Slug size.** `public/img` is 197 MB, giving a slug around 200 MB against
 Heroku's 500 MB limit. Builds will take several minutes and every deploy
 re-uploads all assets. Not blocking, but it caps how much more media can be
-committed to the repo.
+committed to the repo. Updated 2026-08-09: the committed video chunks add
+~183 MB, bringing the slug to roughly 380 MB. The remaining headroom is now
+small enough that the next large asset will force the move to off-repo
+hosting.
 
 **Static asset serving.** Puma serves all 197 MB of images directly. Adequate
 for a portfolio site's traffic; the first thing to revisit if response times

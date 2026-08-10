@@ -1,4 +1,4 @@
-> **Note**: Portfolio site of the world acclaimed architect and artist 'tictactile'. Images and videos are tracked in this repository, with one exception: `0-rob-d.mp4` exceeds GitHub's 100 MB file limit and therefore does not play in production.
+> **Note**: Portfolio site of the world acclaimed architect and artist 'tictactile'. Images and videos are tracked in this repository. One exception: `0-rob-d.mp4` is 183 MB, over GitHub's 100 MB per-file limit, so it is committed as chunks under `assets/video-chunks/` and reassembled into `public/` at boot. See "large video assets" below.
 
 ### [tictactile.com](http://www.tictactile.net)
 
@@ -40,6 +40,27 @@ Gallery items are Ruby hashes in lists inside `app/controllers/index.rb`
   classes (e.g. `thumb-wide-left`, `thumb-tall-top`, `img0111`) that control
   how the thumbnail or full image is sized/cropped in the grid; omit them to
   get the default sizing.
+
+### large video assets
+
+`0-rob-d.mp4` is 183 MB, which exceeds GitHub's 100 MB per-file limit. It is
+committed as four 48 MiB chunks in `assets/video-chunks/`, plus a manifest
+recording the original's size and SHA-256. `config/environment.rb` reassembles
+them into `public/img/videos/0-rob-d.mp4` at boot, where Sinatra's ordinary
+static handler serves it — which is what gives it HTTP Range support, and so
+seeking, for free. The assembled file is gitignored; never commit it.
+
+If the master ever changes, re-chunk it and commit the result:
+
+```bash
+bundle exec rake video:split                 # reads ../tictactile-stashed/0-rob-d.mp4
+SOURCE=/path/to/new.mp4 bundle exec rake video:split   # or point it elsewhere
+bundle exec rake video:verify                # confirms the round trip is byte-identical
+git add assets/video-chunks/
+```
+
+If assembly fails at boot, the app logs `[chunked-asset] ...` and starts
+anyway; that one video 404s and nothing else is affected.
 
 ### deployment
 
