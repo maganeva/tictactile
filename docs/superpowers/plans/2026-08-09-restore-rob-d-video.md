@@ -463,12 +463,19 @@ Create `lib/tasks/video.rake`:
 ```ruby
 require_relative '../chunked_asset'
 
+# NOTE ON THE PATH DEPTH: this file is two directories deep (lib/tasks/), so
+# reaching the repo root takes three '..' segments, not the two that
+# config/environment.rb uses from one level down. Getting this wrong resolves
+# silently to lib/ rather than failing loudly.
+APP_ROOT_FROM_TASKS = File.expand_path('../../../', __FILE__)
+
 # The master is intentionally not in the repository: at 183 MB it exceeds
-# GitHub's 100 MB per-file limit. Override with SOURCE= if it lives elsewhere.
-DEFAULT_VIDEO_SOURCE = File.expand_path('../../../tictactile-stashed/0-rob-d.mp4', __FILE__)
+# GitHub's 100 MB per-file limit. It sits beside the repo, not inside it.
+# Override with SOURCE= if it lives elsewhere.
+DEFAULT_VIDEO_SOURCE = File.expand_path('../tictactile-stashed/0-rob-d.mp4', APP_ROOT_FROM_TASKS)
 
 def rob_d_video
-  root = File.expand_path('../../', __FILE__)
+  root = APP_ROOT_FROM_TASKS
   ChunkedAsset.new(
     chunk_dir: File.join(root, 'assets', 'video-chunks'),
     basename: '0-rob-d.mp4',
