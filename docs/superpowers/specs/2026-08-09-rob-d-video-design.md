@@ -186,9 +186,18 @@ behaviour that actually matters:
 ```
 GET /img/videos/0-rob-d.mp4  Range: bytes=0-99
   -> 206, Content-Range: bytes 0-99/191418477, body 100 bytes
+GET /img/videos/0-rob-d.mp4  Range: bytes=50331640-50331659   (spans a chunk boundary)
+  -> 206, Content-Range: bytes 50331640-50331659/191418477, body 20 bytes
+GET /img/videos/0-rob-d.mp4  Range: bytes=999999999-
+  -> 416, Content-Range: bytes */191418477
 GET /img/videos/0-rob-d.mp4
-  -> 200, Accept-Ranges: bytes
+  -> 200, Content-Length: 191418477
 ```
+
+Note: `Rack::Files` does **not** emit an `Accept-Ranges` header — verified by
+probing this app's static handler against an existing asset. It answers Range
+requests with `206` regardless, which is what browsers act on, so no test
+asserts that header.
 
 This runs against the genuinely assembled file, since `environment.rb` has
 already merged it by the time the suite loads, so it exercises the real boot
