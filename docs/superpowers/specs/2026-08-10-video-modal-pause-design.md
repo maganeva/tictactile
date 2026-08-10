@@ -213,19 +213,51 @@ audio bug behind a test-infrastructure project.
 1. Open a gallery video, press Back — audio stops and the modal hides.
 2. Open a gallery video, click `X` — audio stops (regression check on the path
    that already worked).
-3. Open a gallery video, press the left or right arrow key — the first video's
-   audio stops as the next item appears.
+3. Open a gallery video, press the left or right arrow key — audio stops, the
+   modal closes, no next item appears, and the URL becomes bare `#` (video
+   modals carry no `data-next-item-anchor`, so this is pre-existing behavior of
+   the keydown path, not something this change introduced — this is what the
+   tester should expect).
 4. Open a gallery video, press Back, then Forward — the video reopens *and*
-   plays.
+   plays. Acceptable alternative: the modal reopens showing a paused video with
+   visible controls — Back/Forward is browser-chrome activation, not document
+   user-activation, so Chrome's autoplay policy may block `play()` and the
+   `.catch()` swallows the rejection; that is a policy block, not a code
+   failure.
 5. Deep-link to `/#/s/videos/i/<anchor>` — the modal opens, and blocked autoplay
    produces no unhandled rejection in the console.
-6. Open an image modal on `metapolis` or `bodyscapes`, press Back — it still
-   closes normally.
+6. Open an image modal on `bodyscapes`, press Back — it still closes normally.
 7. Load a page fresh and press an arrow key before opening anything — no
    `ReferenceError` in the console.
-8. Repeat step 1 for the `equil` and `amphibians` videos.
+8. Repeat steps 1 and 2 for the `equil` and `amphibians` videos.
+9. Open an image modal in any index gallery section, click ❯ three times, then
+   ❮ three times, then press → and ← — each step advances or retreats one item
+   and the URL hash tracks the current item (`showNextModalItem` drives the
+   ❮/❯ buttons in `app/views/_modal_navigation.erb`, the image-click advance in
+   `app/views/_modal_image.erb`, and arrow keys on gallery items — the
+   highest-traffic path the change touches, currently untested elsewhere).
+10. Open an image modal, click `X`, then press an arrow key — nothing happens
+    (before this change it reopened the last-viewed modal, because a stale
+    `window.displayedAnchor` was never cleared; this step verifies an intended
+    behavior change).
+11. Load `/equil/#/i/bad1` and `/amphibians/#/i/amhivid` — the modal opens and
+    no unhandled rejection appears in the console (step 5 only covers the index
+    page; the boot path on these standalone pages newly attempts autoplay where
+    it previously did nothing).
 
 Steps 5 and 7 also confirm the pre-existing console errors described above.
+
+Known, pre-existing, out-of-scope gap: `app/views/metapolis.erb:71` wraps its
+twelve-item gallery in `class="equiwrapper1"`, which the `.equiwrapper` selector
+in `syncModalsToHash` does not match (class selectors match whole tokens). Those
+modals are invisible to Back/Forward handling — the old `popstate` handler used
+the identical selector list, so this is not introduced by this change.
+
+Tester's note: in `app/views/_videos.erb` the `.w3-modal-content` wrapper has no
+click handler, so clicking the `<video controls>` play/pause bar bubbles to the
+modal div and closes the modal. This is pre-existing and unrelated to this
+change — flagged so a tester working steps 2 and 3 does not mistake it for a
+regression.
 
 ### Risk note
 
