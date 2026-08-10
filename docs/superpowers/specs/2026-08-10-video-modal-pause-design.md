@@ -244,14 +244,35 @@ audio bug behind a test-infrastructure project.
     no unhandled rejection appears in the console (step 5 only covers the index
     page; the boot path on these standalone pages newly attempts autoplay where
     it previously did nothing).
+12. On `/metapolis`, open a modal from the **lower** gallery (the second block,
+    below the first group), press Back — it closes. Then open one from the
+    upper gallery and press Back — it still closes. Covers the `.equiwrapper1`
+    selector addition on both the newly-included wrapper and the one that
+    already worked.
+13. On `/metapolis`, deep-link to a lower-gallery item by copying its URL after
+    opening it, then reload the page at that URL — the modal opens on load.
+    The boot loop at `public/js/application.js:242` shares the selector, so
+    this path changed too and is not covered by step 12.
 
 Steps 5 and 7 also confirm the pre-existing console errors described above.
 
-Known, pre-existing, out-of-scope gap: `app/views/metapolis.erb:71` wraps its
-twelve-item gallery in `class="equiwrapper1"`, which the `.equiwrapper` selector
-in `syncModalsToHash` does not match (class selectors match whole tokens). Those
-modals are invisible to Back/Forward handling — the old `popstate` handler used
-the identical selector list, so this is not introduced by this change.
+Fixed as a follow-on: `app/views/metapolis.erb:71` wraps six of that page's
+eleven modals in `class="equiwrapper1"`, which the `.equiwrapper` selector did
+not match — class selectors match whole tokens, and `equiwrapper1` is a
+different token, not a prefix. Those six were invisible to both the boot loop
+and `syncModalsToHash`, so Back would not close them and a deep link would not
+open them. This was pre-existing: `main`'s `popstate` handler used a
+byte-identical selector list. `.equiwrapper1` has been added to both selectors
+(`public/js/application.js:242` and `:270`).
+
+The gap was an asymmetry rather than a wrapper problem: showing a modal is
+global (`showModalItem` uses `document.getElementById`), while hiding it is
+wrapper-scoped. Any modal outside every listed wrapper could be opened but
+never closed by navigation. Multiple matched wrappers on one page is already
+routine — the index page matches five `.wrapper` divs — and jQuery's `.find()`
+returns a de-duplicated set, so the addition introduces no new pattern.
+`app/views/equil.erb:73` also has an `.equiwrapper1`, containing no modals, so
+the change is a no-op there.
 
 Tester's note: in `app/views/_videos.erb` the `.w3-modal-content` wrapper has no
 click handler, so clicking the `<video controls>` play/pause bar bubbles to the

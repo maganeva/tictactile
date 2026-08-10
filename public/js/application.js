@@ -239,7 +239,7 @@ $(document).ready(function(){
   }
 
   // open modals if their id is in the url for pages not included in the parallax(installations, bodyscapes, equilibrium)
-  $('.equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(index, modalDiv){
+  $('.equiwrapper, .equiwrapper1, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(index, modalDiv){
     var id = $(modalDiv).attr('id');
     if(pathParts["item"] == id) {
     window.showModalItem(pathParts["item"]);
@@ -267,7 +267,7 @@ $(document).ready(function(){
 
   window.syncModalsToHash = function () {
     var pathParts = anchorParts(window.location.hash);
-    $('.wrapper, .equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function (index, modalDiv) {
+    $('.wrapper, .equiwrapper, .equiwrapper1, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function (index, modalDiv) {
       if (modalDiv.id != pathParts["item"]) {
         hideModalItem(modalDiv);
       }
