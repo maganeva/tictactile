@@ -442,7 +442,7 @@ git commit -m "feat: add ChunkedAsset for splitting and reassembling large files
 
 **Interfaces:**
 - Consumes: `ChunkedAsset.split!`, `#verify!` from Task 1.
-- Produces: `ROB_D_VIDEO` — a module-level helper in `lib/tasks/video.rake` returning a configured `ChunkedAsset` for the real video. Task 3 does **not** use it (rake files are not loaded by the app); Task 3 constructs its own instance with the same arguments.
+- Produces: `rob_d_video` — a method in `lib/tasks/video.rake` returning a configured `ChunkedAsset` for the real video, plus the `APP_ROOT_FROM_TASKS` constant. Task 3 does **not** use either (rake files are not loaded by the app); Task 3 constructs its own instance with the same arguments.
 
 **This task's `.gitignore` step must come before anything that runs `assemble!`.** Once the merged 183 MB file exists in `public/`, an unguarded `git add` would try to commit it.
 
