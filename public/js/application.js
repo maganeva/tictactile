@@ -121,18 +121,9 @@ $(document).ready(function(){
     onScroll();
   }
 
-  window.onVideoModelCancelClick = function (modalDiv) {
-    onModalCancelClick(modalDiv);
-  }
-
   window.onThumbnailClick = function (section, itemAnchor) {
     history.pushState(null, null, anchor(section, itemAnchor));
     showModalItem(itemAnchor);
-  }
-
-  window.onVideoThumbnailClick = function (section, itemAnchor) {
-    history.pushState(null, null, anchor(section, itemAnchor));
-    showModalVideoItem(itemAnchor);
   }
 
   window.onNextModalClick = function (event, section, currentItemAnchor, newItemAnchor) {
@@ -196,20 +187,6 @@ $(document).ready(function(){
     }
   }
 
-  window.showModalVideoItem = function (itemAnchor) {
-    var modelDiv = document.getElementById(itemAnchor);
-    var source = $(modelDiv).find('source').get(0);
-    var videoUrl = source.getAttribute("data-video-url");
-    var video = $(modelDiv).find('video').get(0);
-    if (source.getAttribute("src") != videoUrl) {
-      video.pause();
-      source.setAttribute("src", videoUrl);
-      video.load();
-    }
-    showModalItem(itemAnchor);
-    video.play();
-  }
-
   window.onScroll = function () {
    	var pathParts = anchorParts(window.location.hash);
    	if (pathParts["item"] == null) {
@@ -242,12 +219,7 @@ $(document).ready(function(){
       if (pathParts["item"] == $(modalDiv).attr('id')) {
    	  var url = window.location.href;
         $(window).scrollTop($("#"+pathParts["section"]).offset().top);
-        if (pathParts["section"] == "videos") {
-          window.showModalVideoItem(pathParts["item"]);
-        }
-        else {
-          window.showModalItem(pathParts["item"]);
-        }
+        window.showModalItem(pathParts["item"]);
         history.pushState(null, null, window.anchor(pathParts["section"], pathParts["item"]));
       }
     });

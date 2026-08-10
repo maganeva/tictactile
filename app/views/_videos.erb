@@ -6,8 +6,8 @@
 		<div class="icon">
 		<h3 class="name" style="font-family: myFirstFont; color:grey;"><%= project[:name] %></h3>
 		<img class="video-thumb" src="<%= project[:thumbnail] %>"
-		onclick="onVideoThumbnailClick('videos', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
-		</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onVideoModelCancelClick(this);">
+		onclick="onThumbnailClick('videos', '<%= project[:item_anchor] %>');"  class="w3-hover-opacity">
+		</div><div id="<%= project[:item_anchor] %>" class="w3-modal" onclick="onModalCancelClick(this);">
 			<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
 			<div class="w3-modal-content w3-animate-zoom">
 				<video style="width:100%" controls>
