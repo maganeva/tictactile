@@ -93,4 +93,53 @@ class SmokeTest < Minitest::Test
     get '/img/definitely-not-a-real-asset.jpg'
     assert_equal 404, last_response.status
   end
+
+  # 0-rob-d.mp4 is not in the repository as a single file (183 MB exceeds
+  # GitHub's per-file limit); config/environment.rb reassembles it from
+  # assets/video-chunks/ at load. If that failed, this 404s.
+  def test_chunked_video_is_assembled_and_served
+    get '/img/videos/0-rob-d.mp4'
+    assert_equal 200, last_response.status
+    assert_equal '191418477', last_response.headers['content-length']
+  end
+
+  # The gallery plays this through a <video> element, and browsers fetch video
+  # with Range headers -- Safari refuses a source that answers 200 with a full
+  # body, and without Range every seek re-downloads from byte zero. Serving
+  # from public/ is what buys this: Sinatra's static! delegates to send_file to
+  # Rack::Files, which implements Range. This test is what proves that holds.
+  def test_chunked_video_honours_range_requests
+    get '/img/videos/0-rob-d.mp4', {}, 'HTTP_RANGE' => 'bytes=0-99'
+
+    assert_equal 206, last_response.status
+    assert_equal 'bytes 0-99/191418477', last_response.headers['content-range']
+    assert_equal 100, last_response.body.bytesize
+  end
+
+  # Chunk .000 ends at byte 50331647, so this range straddles the first chunk
+  # boundary. It fails if chunks were concatenated out of order or a boundary
+  # was mishandled -- the failure mode a single from-byte-zero test would miss.
+  def test_chunked_video_serves_a_range_across_a_chunk_boundary
+    get '/img/videos/0-rob-d.mp4', {}, 'HTTP_RANGE' => 'bytes=50331640-50331659'
+
+    assert_equal 206, last_response.status
+    assert_equal 'bytes 50331640-50331659/191418477', last_response.headers['content-range']
+    assert_equal 20, last_response.body.bytesize
+  end
+
+  # Note: no test asserts an `Accept-Ranges` header. Rack::Files does not emit
+  # one -- verified against this app by probing an existing static asset. It
+  # answers Range requests with 206 regardless, which is what browsers act on.
+  #
+  # A range starting past the end of the file must be rejected, not clamped.
+  def test_chunked_video_rejects_an_unsatisfiable_range
+    get '/img/videos/0-rob-d.mp4', {}, 'HTTP_RANGE' => 'bytes=999999999-'
+    assert_equal 416, last_response.status
+  end
+
+  # The raw chunks live outside public/ precisely so they are not reachable.
+  def test_chunks_are_not_served_as_static_assets
+    get '/img/videos/0-rob-d.mp4.000'
+    assert_equal 404, last_response.status
+  end
 end
