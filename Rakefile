@@ -6,4 +6,6 @@ Rake::TestTask.new(:test) do |t|
   t.warning = false
 end
 
+Dir.glob('lib/tasks/*.rake').each { |rakefile| load rakefile }
+
 task default: :test

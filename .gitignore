@@ -1,1 +1,5 @@
 .vscode
+
+# Reassembled at boot from assets/video-chunks/ by ChunkedAsset. 183 MB, and
+# larger than GitHub's per-file limit -- it must never be committed.
+/public/img/videos/0-rob-d.mp4
