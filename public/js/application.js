@@ -210,14 +210,6 @@ $(document).ready(function(){
     video.play();
   }
 
-  $(window).on('hashchange', function() {
-    if (displayedAnchor in window) {
-      var pathParts = anchorParts(window.location.hash);
-      document.getElementById(window.displayedAnchor).style.display = 'none';
-      window.showModalItem(pathParts.item);
-    }
-  });
-
   window.onScroll = function () {
    	var pathParts = anchorParts(window.location.hash);
    	if (pathParts["item"] == null) {
@@ -301,16 +293,19 @@ $(document).ready(function(){
     }
   });
 
-  $(window).bind('popstate', function(e) {
+  window.syncModalsToHash = function () {
     var pathParts = anchorParts(window.location.hash);
-    if (pathParts['item'] == null) {
-      $('.wrapper, .equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function(index, modalDiv) {
-        modalDiv.style.display = 'none';
-      });
+    $('.wrapper, .equiwrapper, .amphiwrapper, .bodywrapper').find('.w3-modal').each(function (index, modalDiv) {
+      if (modalDiv.id != pathParts["item"]) {
+        hideModalItem(modalDiv);
+      }
+    });
+    if (pathParts["item"] != null) {
+      showModalItem(pathParts["item"]);
     }
-    else {
-      window.showModalItem(pathParts["item"]);  
-    }
-  });
+  }
+
+  $(window).bind('popstate', window.syncModalsToHash);
+  $(window).on('hashchange', window.syncModalsToHash);
 
 });
