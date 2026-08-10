@@ -21,12 +21,22 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - run: bundle exec rake test
       # The expensive integrity check, kept off the application's boot path so
       # dyno restarts stay well inside Heroku's 60s R10 budget. Running it here
       # means no commit can ship a chunk set that does not reassemble to the
       # original 183 MB master byte for byte.
+      #
+      # Must run after `rake test`, not before: `video:verify` calls
+      # `assemble!`, which creates public/img/videos/0-rob-d.mp4. On a fresh
+      # checkout that file is gitignored and never committed, so if this ran
+      # first, `rake test` would load config/environment.rb against an
+      # already-assembled file, `assemble!` would short-circuit to :cached,
+      # and every Range/serving test in test/smoke_test.rb would pass even
+      # with the boot-time assembly deleted entirely. Running `rake test`
+      # first forces it to perform the real merge through the boot path, and
+      # `video:verify` then SHA-256s the exact artifact that boot produced.
       - run: bundle exec rake video:verify
-      - run: bundle exec rake test
       - name: Boot the production server
         run: |
           RACK_ENV=production PORT=3000 bundle exec puma -C config/puma.rb &

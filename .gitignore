@@ -1,5 +1,9 @@
 .vscode
 
 # Reassembled at boot from assets/video-chunks/ by ChunkedAsset. 183 MB, and
-# larger than GitHub's per-file limit -- it must never be committed.
+# larger than GitHub's per-file limit -- it must never be committed. The
+# .tmp sibling is where ChunkedAsset#write_atomically writes before the
+# atomic rename; a crash or Ctrl-C mid-assembly can leave up to the same
+# 183 MB behind under that name, so it needs the same treatment.
 /public/img/videos/0-rob-d.mp4
+/public/img/videos/0-rob-d.mp4.tmp

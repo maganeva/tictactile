@@ -40,11 +40,17 @@ end
 # Rescued deliberately: a failure here should cost one 404 video tile, which is
 # the status quo, not a site that will not boot.
 begin
-  ChunkedAsset.new(
+  video_target = APP_ROOT.join('public', 'img', 'videos', '0-rob-d.mp4')
+  started_at = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  result = ChunkedAsset.new(
     chunk_dir: APP_ROOT.join('assets', 'video-chunks'),
     basename: '0-rob-d.mp4',
-    target: APP_ROOT.join('public', 'img', 'videos', '0-rob-d.mp4')
+    target: video_target
   ).assemble!
+  if result == :assembled
+    elapsed_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - started_at) * 1000).round
+    warn "[chunked-asset] 0-rob-d.mp4 assembled: #{File.size(video_target)} bytes in #{elapsed_ms}ms"
+  end
 rescue StandardError => e
   warn "[chunked-asset] 0-rob-d.mp4 unavailable: #{e.class}: #{e.message}"
 end
