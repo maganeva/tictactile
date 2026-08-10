@@ -163,13 +163,13 @@ $(document).ready(function(){
   }
 
   window.showNextModalItem = function (section, currentItemAnchor, newItemAnchor) {
-    document.getElementById(currentItemAnchor).style.display = 'none';
+    hideModalItem(document.getElementById(currentItemAnchor));
     showModalItem(newItemAnchor);
     history.pushState(null, null, anchor(section, newItemAnchor));
   }
 
   window.showNextModalItemViaKeydown = function (newItemAnchorAttributeName) {
-    if (displayedAnchor in window) {
+    if (window.displayedAnchor != null) {
       var displayedItem = document.getElementById(window.displayedAnchor)
       var section = displayedItem.getAttribute("data-section");
       var newItemAnchor = displayedItem.getAttribute(newItemAnchorAttributeName);
