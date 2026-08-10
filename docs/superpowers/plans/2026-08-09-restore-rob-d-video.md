@@ -833,8 +833,10 @@ exceeded GitHub's 100 MB file limit) and now exists only as a local copy at
 file will not be in the slug.~~ **Resolved 2026-08-09** by committing the file
 as chunks and reassembling at boot — see
 [2026-08-09-rob-d-video-design.md](2026-08-09-rob-d-video-design.md). Note that
-this spec expected off-repo hosting to be the fix; it was not, and slug size is
-now ~380 MB of the 500 MB limit.
+this spec expected off-repo hosting to be the fix; it was not. The compressed
+slug is comfortably inside Heroku's 1000 MB limit; the binding constraint is
+the separate 1 GB uncompressed HEAD-checkout limit, against which this branch
+sits at ~381 MB.
 ```
 
 - [ ] **Step 4: Also correct the stale slug-size figure**
@@ -842,9 +844,11 @@ now ~380 MB of the 500 MB limit.
 In the same "Risks and accepted breakage" section, the **Slug size** paragraph states "`public/img` is 197 MB, giving a slug around 200 MB". Append to it:
 
 ```markdown
-Updated 2026-08-09: the committed video chunks add ~183 MB, bringing the slug
-to roughly 380 MB. The remaining headroom is now small enough that the next
-large asset will force the move to off-repo hosting.
+Updated 2026-08-09: the committed video chunks add ~183 MB, bringing the
+uncompressed HEAD checkout to roughly 381 MB against Heroku's 1 GB
+uncompressed-checkout limit — a separate, tighter constraint than the
+1000 MB compressed-slug limit this section originally cited as 500 MB. There
+is more headroom than originally assumed.
 ```
 
 - [ ] **Step 5: Commit**
@@ -871,8 +875,9 @@ Not a task — this is the operator procedure, run by a human from a checkout of
 3. Watch the boot in `heroku logs --tail`. There should be **no** `[chunked-asset]` warning. Note the time between the dyno starting and the first request served — that is the merge cost, and the number to watch against Heroku's 60-second R10 timeout.
 4. Check the dyno's disk headroom, which the spec flags as unmeasured (slug plus the 183 MB assembled copy is ~563 MB):
    ```bash
-   heroku run 'df -h /app && du -sh /app/public /app/assets' --app tictactile-web
+   heroku ps:exec --dyno=web.1 -- 'df -h /app && du -sh /app/public /app/assets'
    ```
+   `heroku run` is the wrong tool here: it starts a separate one-off dyno with its own filesystem, on which the app never booted and the merge never happened, so it would measure the pre-merge slug instead of what the running web dyno actually holds.
 5. Verify Range works in production:
    ```bash
    curl -s -r 0-99 -o /dev/null -w '%{http_code}\n' https://tictactile-web-b7da95331725.herokuapp.com/img/videos/0-rob-d.mp4

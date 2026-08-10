@@ -27,11 +27,16 @@ Safari and iOS in practice refuse a source that answers `200` with a full body,
 and without Range every seek re-downloads from byte zero. Any solution must
 speak `206`, `Content-Range`, `416`, `If-Range`, and `HEAD` correctly.
 
-**That protocol work is already done, and reachable for free.** Sinatra's static
-handler (`sinatra-4.2.1/lib/sinatra/base.rb:1163`, `static!`) ends in
+**Most of that protocol work is already done, and reachable for free.** Sinatra's
+static handler (`sinatra-4.2.1/lib/sinatra/base.rb:1163`, `static!`) ends in
 `send_file`, which delegates to `Rack::Files#serving`
-(`rack-3.2.6/lib/rack/files.rb:85-115`) — a complete Range implementation
-including multipart byteranges and `416` with `Content-Range: bytes */size`.
+(`rack-3.2.6/lib/rack/files.rb:85-115`) — a Range implementation covering
+`206`, multipart byteranges, and `416` with `Content-Range: bytes */size`. The
+one gap: `rack-3.2.6/lib/rack/files.rb` contains no `If-Range` handling —
+Rack honours `Range` unconditionally regardless of any validator the client
+attaches. That's harmless here because the assembled file's content never
+changes, so always returning `206` for a Range request still yields correct
+bytes; there is no stale-validator case to protect against.
 Therefore: **if the assembled file simply exists at
 `public/img/videos/0-rob-d.mp4`, the existing static path serves it correctly
 with no new route, controller, or view code.**
@@ -214,10 +219,15 @@ the video is right.
 
 ## Risks and accepted costs
 
-**Slug size.** ~200 MB to ~380 MB of largely incompressible media against
-Heroku's 500 MB limit. The Heroku deploy spec already named slug size as the cap
-on committing more media; this spends most of what remained. The next large
-asset will force the off-repo conversation this spec defers.
+**Slug size.** ~200 MB to ~380 MB of largely incompressible media, comfortably
+inside Heroku's compressed slug limit, which is 1000 MB, not the 500 MB this
+spec originally assumed. The binding constraint is a different, tighter one
+Heroku enforces before compression: the uncompressed size of a checkout of
+`HEAD`, combined with any restored submodules, cannot exceed 1 GB. Measured on
+this branch (excluding `.git`): 381 MB total — `public/` 198 MB, `assets/`
+183 MB. That leaves meaningfully more headroom than the original 500 MB
+framing implied; the off-repo conversation is not as close as this spec
+previously suggested.
 
 **Repository size.** `.git` grows from 377 MB to roughly 560 MB. Every future
 clone and CI checkout pays it.

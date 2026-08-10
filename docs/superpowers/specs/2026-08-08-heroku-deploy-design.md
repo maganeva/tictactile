@@ -256,8 +256,10 @@ exceeded GitHub's 100 MB file limit) and now exists only as a local copy at
 file will not be in the slug.~~ **Resolved 2026-08-09** by committing the file
 as chunks and reassembling at boot — see
 [2026-08-09-rob-d-video-design.md](2026-08-09-rob-d-video-design.md). Note that
-this spec expected off-repo hosting to be the fix; it was not, and slug size is
-now ~380 MB of the 500 MB limit.
+this spec expected off-repo hosting to be the fix; it was not. The compressed
+slug is comfortably inside Heroku's 1000 MB limit; the binding constraint is
+the separate 1 GB uncompressed HEAD-checkout limit, against which this branch
+sits at ~381 MB.
 
 **No rollback on the first deploy.** A brand-new app has no prior release, so
 `heroku rollback` is unavailable until a second release exists. If the first
@@ -272,9 +274,10 @@ the platform will not stop it.
 Heroku's 500 MB limit. Builds will take several minutes and every deploy
 re-uploads all assets. Not blocking, but it caps how much more media can be
 committed to the repo. Updated 2026-08-09: the committed video chunks add
-~183 MB, bringing the slug to roughly 380 MB. The remaining headroom is now
-small enough that the next large asset will force the move to off-repo
-hosting.
+~183 MB, bringing the uncompressed HEAD checkout to roughly 381 MB against
+Heroku's 1 GB uncompressed-checkout limit — a separate, tighter constraint
+than the 1000 MB compressed-slug limit this paragraph originally cited as
+500 MB. There is more headroom than originally assumed.
 
 **Static asset serving.** Puma serves all 197 MB of images directly. Adequate
 for a portfolio site's traffic; the first thing to revisit if response times
